@@ -1,0 +1,110 @@
+[
+  {
+    "src": "/monitor2.webp",
+    "id": 1,
+    "name": "Gaming Monitor Alienware 27'",
+    "old": "R$ 2.832,91",
+    "price": "R$ 2.599,00",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 244,66",
+    "discount": "-9%"
+  },
+  {
+    "src": "/mouse1.webp",
+    "id": 2,
+    "name": "Wireless Mouse Alienware - Aw720m",
+    "old": "R$649,93",
+    "price": "R$ 618,99",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 58,28",
+    "discount": "-5%"
+  },
+  {
+    "src": "/headset1.webp",
+    "id": 3,
+    "name": "Headset gamer Alienware",
+    "old": "R$916.92",
+    "price": "R$ 849,00",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 79,94",
+    "discount": "-8%"
+  },
+  {
+    "src": "/teclado1.webp",
+    "id": 4,
+    "name": "Gamer Keyboard Alienware - Aw920k",
+    "old": "R$ 2.014,88",
+    "price": "R$ 1.799,00",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 169,40",
+    "discount": "-12%"
+  },
+  {
+    "src": "/mochila1.webp",
+    "id": 5,
+    "name": "Travel Backpack Alienware",
+    "old": "R$ 880,95",
+    "price": "R$ 839,00",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 79,00",
+    "discount": "-5%"
+  },
+  {
+    "src": "/notebook1.webp",
+    "id": 6,
+    "name": "Notebook Dell Alienware - M18",
+    "old": "R$ 40.681,74",
+    "price": "R$ 38.379,00",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 3.614,02",
+    "discount": "-6%"
+  },
+  {
+    "src": "/pc1.webp",
+    "id": 7,
+    "name": "PC Gamer Dell Alienware - Aurora R15",
+    "old": "R$ 17.937,7",
+    "price": "R$ 15.598,99",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 1.468,90",
+    "discount": "-15%"
+  },
+  {
+    "src": "/teclado2.webp",
+    "id": 8,
+    "name": "Teclado Dell Alienware - AW768 USB",
+    "old": "R$ 2.532,45",
+    "price": "R$ 2.302,23",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 216,79",
+    "discount": "-10%"
+  },
+  {
+    "src": "/notebook2.webp",
+    "id": 9,
+    "name": "Notebook Dell Alienware - ALW18 ",
+    "old": "R$ 43.165,5",
+    "price": "R$ 41.110,00",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 3.870,25",
+    "discount": "-5%"
+  },
+  {
+    "src": "/cadeira1.webp",
+    "id": 10,
+    "name": "Alienware S5000 Gaming Chair",
+    "old": "R$ 1.948,78",
+    "price": "R$ 1.739.99",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 163,84",
+    "discount": "-12%"
+  },
+  {
+    "src": "/monitor3.webp",
+    "id": 11,
+    "name": "Gaming Monitor Curved 34'- Alienware",
+    "old": "R$ 8.184,43",
+    "price": "R$ 7.649,00",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 720,28",
+    "discount": "-7%"
+  },
+  {
+    "src": "/mouse3.avif",
+    "id": 12,
+    "name": "Wireless Mouse Alienware - Aw610m ",
+    "old": "RS 615,60",
+    "price": "R$ 586,29",
+    "offer": "Payable via Pix or up\\nto 12 installments of R$ 55,20",
+    "discount": "-5%"
+  }
+]
