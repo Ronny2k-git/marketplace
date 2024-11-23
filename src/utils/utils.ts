@@ -224,7 +224,7 @@ to 12 installments of R$ 720,28`,
   },
   {
     src: ["/mouse3.avif"],
-    id: "12",
+    id: "18",
     name: "Wireless Mouse Alienware - Aw610m ",
     old: "RS 615,60",
     price: "R$ 586,29",
