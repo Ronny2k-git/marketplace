@@ -14,17 +14,26 @@ export default function Cart() {
     }
   }, []);
 
-  // const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
 
   const removeCart = (Id: string) => {
     const updatedCart = cart.filter((product) => product.id !== Id);
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-    // setMessage("Produto Removido do Carrinho");
+  };
+
+  const handleClick = (product: Product) => {
+    removeCart(product.id);
+    setMessage("Product removed from cart");
+    const timeOut = setTimeout(() => {
+      clearTimeout(timeOut);
+      setMessage("");
+    }, 3000);
   };
 
   return (
     <main className="viewPort min-h-screen w-screen bg-gray-950">
+      <title>Cart</title>
       <div className="flex items-center justify-center">
         <TiShoppingCart className="mt-16 mr-2 text-[42px]" />
         <div className="mt-16 text-[40px]">Your Products</div>
@@ -36,7 +45,7 @@ export default function Cart() {
           ) : (
             cart.map((product: Product, index: number) => (
               <div
-                className="Square flex h-[200px] w-[50%] mb-2 mt-6 rounded-lg bg-gray-900 p-4"
+                className="Square flex h-[20%] w-[50%] mb-2 mt-6 rounded-lg bg-gray-900 p-4"
                 key={product.id}
               >
                 <img
@@ -46,20 +55,23 @@ export default function Cart() {
                 />
                 <div className="ml-4">
                   <h3 className="text-white text-[18px]">{product.name}</h3>
-                  <p className="text-blue-500 text-[18px]">{product.price}</p>
+                  <p className="text-blue-500 text-[18px] flex">
+                    {product.price}
+                  </p>
                   <p className="text-blue-500 text-[18px]">
                     {product.discount}
                   </p>
                 </div>
                 <button
                   className="flex h-full w-full justify-end"
-                  onClick={() => removeCart(product.id)}
+                  onClick={() => handleClick(product)}
                 >
-                  <MdOutlineRemoveShoppingCart />
+                  <MdOutlineRemoveShoppingCart className="hover:bg-gray-700" />
                 </button>
               </div>
             ))
           )}
+          {message && <div className="text-red-500 mt-4">{message}</div>}
         </div>
       </div>
     </main>

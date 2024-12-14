@@ -1,5 +1,5 @@
 export type Product = {
-  src: string[];
+  src: string;
   id: string;
   name: string;
   old: string;
@@ -7,10 +7,11 @@ export type Product = {
   discount: string;
   offer: string;
   description: string;
+  category:string;
 };
 export const Products: Product[] = [
   {
-    src: ["/monitor2.webp"],
+    src: "/monitor2.webp",
     id: "1",
     name: "Gaming Monitor Alienware 27'",
     old: "R$ 2.832,91",
@@ -26,9 +27,10 @@ to 12 installments of R$ 244,66`,
        • Seu brilho é de 600cd/m² 
        • Com conexão USB-B 3.2 
        • É giratório e reclinável`,
+       category:"Peripherals"
   },
   {
-    src: ["/mouse1.webp"],
+    src: "/mouse1.webp",
     id: "2",
     name: "Wireless Mouse Alienware - Aw720m",
     old: "R$649,93",
@@ -45,11 +47,12 @@ to 12 installments of R$ 58,28`,
       • DPI até 26.000 
       • Bateria: Polimero Litio de até 420 horas de duração  
       • Número de Botões: 8`,
+      category:"Peripherals"
   },
   {
-    src: ["/headset1.webp"],
+    src: "/headset1.webp",
     id: "3",
-    name: "Headset gamer Alienware",
+    name: "Gamer Alienware Headset",
     old: "R$916.92",
     price: "R$ 849,00",
     offer: `Payable via Pix or up
@@ -63,9 +66,10 @@ to 12 installments of R$ 79,94`,
       • Formato: Microfone de fone de ouvido
       • Saída de áudio — Resposta de frequência 20 - 40000 Hz
       🗰 Garantia: Garantia limitada - 2 anos`,
+      category:"Peripherals"
   },
   {
-    src: ["/teclado1.webp"],
+    src: "/teclado1.webp",
     id: "4",
     name: "Gamer Keyboard Alienware - Aw920k",
     old: "R$ 2.014,88",
@@ -80,9 +84,10 @@ to 12 installments of R$ 169,40`,
         Interface: USB 2.4 GHz, Bluetooth 5.1
       🔅 Iluminação traseira: AlienFX RGB por tecla / 16,8 milhões de cores
         Recursos: Teclado numérico`,
+       category:"Peripherals"
   },
   {
-    src: ["/mochila1.webp"],
+    src: "/mochila1.webp",
     id: "5",
     name: "Travel Backpack Alienware",
     old: "R$ 880,95",
@@ -104,9 +109,10 @@ to 12 installments of R$ 79,00`,
        cinta de esterno ajustável.
       • Material do forro: Nylex
       • Capacidade: 33 litros`,
+      category:"Acessories"
   },
   {
-    src: ["/notebook1.webp"],
+    src: "/notebook1.webp",
     id: "6",
     name: "Notebook Dell Alienware - M18",
     old: "R$ 40.681,74",
@@ -120,9 +126,10 @@ to 12 installments of R$ 3.614,02`,
       • Processor: i9-13900HX •Storage Type:HDD (Hard Disk Drive) •Hard Drive Capacity:0 •Screen Size:18
       • Processor Speed: 5.4 •GPU: Nvidia GeForce RTX 4090 •MPN: Alienware m18 Laptop •Maximum Resolution: 2560x1600
       • Color: Dark Metallic Moon •Manufacturer Warranty: 1 •SSD Capacity: 512 •Graphics Processing Type: Dedicated Graphics`,
+      category:"Portables"
   },
   {
-    src: ["/pc1.webp"],
+    src: "/pc1.webp",
     id: "7",
     name: "PC Gamer Dell Alienware - Aurora R15",
     old: "R$ 17.937,7",
@@ -137,11 +144,12 @@ to 12 installments of R$ 1.468,90`,
       • memory: 32GB DDR5 (2x16GB) 4800MT/s; Expansível até 64GB 5600MT/s (2 slots UDIMM)
       • harddrive: SSD de 512GB PCIe NVMe M.2
       • fallbackcolor: Chassi com 750W PSU, Alienware Cryo-tech ™ Edition CPU com sistema Liquid Cooler e painel transparente`,
+      category:"Complete-PC"
   },
   {
-    src: ["/teclado2.webp"],
+    src: "/teclado2.webp",
     id: "8",
-    name: "Teclado Dell Alienware - AW768 USB",
+    name: "Dell Alienware Keyboard - AW768 USB",
     old: "R$ 2.532,45",
     price: "R$ 2.302,23",
     offer: `Payable via Pix or up
@@ -158,9 +166,10 @@ to 12 installments of R$ 216,79`,
       • Tecla cilíndrica.
       • Com conector: USB.
       • Medidas: 6.8" de altura, 19.6" de largura e 1.4" de profundidade.`,
+      category:"Peripherals"
   },
   {
-    src: ["/notebook2.webp"],
+    src: "/notebook2.webp",
     id: "9",
     name: "Notebook Dell Alienware - ALW18 ",
     old: "R$ 43.165,5",
@@ -179,9 +188,10 @@ to 12 installments of R$ 3.870,25`,
       • Operating System	Windows 11 Pro
       • Special Feature	Backlit Keyboard, Numeric Keypad
       • Graphics Card Description	Dedicated`,
+      category:"Portables"
   },
   {
-    src: ["/cadeira1.webp"],
+    src: "/cadeira1.webp",
     id: "10",
     name: "Alienware S5000 Gaming Chair",
     old: "R$ 1.948,78",
@@ -204,9 +214,10 @@ to 12 installments of R$ 163,84`,
      • Seat Depth: 480 mm / 19 in	
      • Net Weight: 27.5 kg / 60 lbs	
      • Gross Weight: 28 kg / 62 lbs`,
+     category:"Peripherals"
   },
   {
-    src: ["/monitor3.webp"],
+    src: "/monitor3.webp",
     id: "11",
     name: "Gaming Monitor Curved 34'- Alienware",
     old: "R$ 8.184,43",
@@ -221,9 +232,10 @@ to 12 installments of R$ 720,28`,
     🕑Tempo de resposta: 2 ms (cinza a cinza); 1 ms (MPRT)
       • Portas: 2 x HDMI, DisplayPort 1.4
       • Cabos: 1 x cabo HDMI, 1 x Cabo DisplayPort 1.4 - DisplayPort à DisplayPort`,
+      category:"Peripherals"
   },
   {
-    src: ["/mouse3.avif"],
+    src: "/mouse3.avif",
     id: "12",
     name: "Wireless Mouse Alienware - Aw610m ",
     old: "RS 615,60",
@@ -244,5 +256,6 @@ to 12 installments of R$ 55,20`,
       • Botões: 8
       • Acessórios incluídos: Dispositivo extensor e dispositivo USB-C
       • Interface: USB, 2.4 GHz, Bluetooth 5.1`,
+      category:"Peripherals"
   },
 ];

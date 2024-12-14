@@ -21,13 +21,14 @@ const ProductSchema = z.object({
 });
 
 export default function AddProduct() {
-  const [imageURL, setImageURL] = useState(["", ""]);
+  const [imageURL, setImageURL] = useState("");
   const [productName, setProductName] = useState("");
   const [oldPrice, setOldPrice] = useState("");
   const [price, setPrice] = useState("");
   const [discount, setDiscount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [description, setDescription] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   // Método "Manual" de verificação dos "INPUTS"
@@ -39,6 +40,21 @@ export default function AddProduct() {
   //   }
 
   const createProduct = () => {
+    if (
+      !imageURL ||
+      !productName ||
+      !oldPrice ||
+      !price ||
+      !discount ||
+      !paymentMethod ||
+      !description
+    ) {
+      setErrorMessage("Todos os campos devem ser preenchidos.");
+      return;
+    } else {
+      setErrorMessage("");
+    }
+
     const newProducts = {
       src: imageURL,
       id: uuidv4(), // Nesse caso também poderia usar o "Date.now"
@@ -57,21 +73,22 @@ export default function AddProduct() {
     }
 
     const localProducts = JSON.parse(
-      localStorage.getItem("products-test") || "[]"
+      localStorage.getItem("local-products") || "[]"
     );
     localProducts.push(parse.data); //newProducts
-    localStorage.setItem("products-test", JSON.stringify(localProducts)); //O local storage só armazena "strings".
+    localStorage.setItem("local-products", JSON.stringify(localProducts)); //O local storage só armazena "strings".
     router.push("/marketplace");
   };
 
-  function updateImage(newValue: string, index: number) {
-    const newArray = Array.from(imageURL);
-    newArray[index] = newValue;
-    setImageURL(newArray);
-  }
+  // function updateImage(newValue: string, index: number) {
+  //   const newArray = Array.from(imageURL);
+  //   newArray[index] = newValue;
+  //   setImageURL(newArray);
+  // }
 
   return (
     <main className="h-screen w-screen bg-gray-950">
+      <title>Create Product</title>
       <div className="h-full w-full">
         <div className="flex h-full w-full justify-center items-center">
           <div className="h-[900] w-[620px] flex flex-col justify-start items-center rounded-3xl bg-gray-900">
@@ -79,13 +96,11 @@ export default function AddProduct() {
               ADD YOUR PRODUCT
             </p>
             <p className="text-gray-400 text-start">Add Image(URL):</p>
-            {imageURL.map((value, index) => (
-              <input
-                className="h-10 w-[585px] text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
-                value={value}
-                onChange={(event) => updateImage(event.target.value, index)}
-              />
-            ))}
+            <input
+              className="h-10 w-[585px] text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+              value={imageURL}
+              onChange={(event) => setImageURL(event.target.value)}
+            />
             <p className="text-gray-400 text-start mt-8">Product Name:</p>
             <input
               className="h-10 w-[585px] text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
@@ -124,6 +139,11 @@ export default function AddProduct() {
               value={description}
               onChange={(event) => setDescription(event.target.value)}
             />
+            {errorMessage && (
+              <div className="text-red-500 absolute bottom-[7%]">
+                {errorMessage}
+              </div>
+            )}
             <button
               className="h-10 w-[585px] bg-blue-700 mt-14 rounded-lg hover:bg-blue-600"
               onClick={createProduct}

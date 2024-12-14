@@ -41,6 +41,7 @@ export default async function Info({ params }: infoProducts) {
   }
   return (
     <main className="h-[calc(screen - 48px)] w-screen bg-gray-950">
+      <title>Product</title>
       <div className="h-full w-full bg-gray-950 pt-">
         <div className="flex justify-center items-center ">
           <h1 className="text-3xl mb-28 pr-[300] text-gray-400 mt-16">
@@ -65,14 +66,14 @@ export default async function Info({ params }: infoProducts) {
           <div className="flex justify-center items-center gap-12">
             <div className="h-[340px] w-[340px] rounded-md bg-white flex flex-shrink-0 justify-center ml-auto items-center">
               <img
-                className="h-[340] w-[340] object-contain"
+                className="h-[340] w-[340] object-contain transition-transform duration-500 hover:scale-150"
                 src={product.src}
               />
             </div>
             <div>
               <del className="text-[14px] text-gray-500">{product.old}</del>
               <p className="text-blue-700 text-[40px] font-bold">
-                {product.price}{" "}
+                {product.price}
                 <span className="text-[18px] text-blue-500">
                   {product.discount}
                 </span>
@@ -85,7 +86,7 @@ export default async function Info({ params }: infoProducts) {
         </div>
         <div className="flex justify-center mr-[270] mt-8">
           <Link href="/Buy/cart">
-            <div className="Button flex justify-center items-center h-14 w-[355px] rounded-md bg-blue-700 hover:bg-blue-600 mb-20">
+            <div className="Button flex justify-center items-center h-14 w-[345px] ml-2 rounded-md bg-blue-700 hover:bg-blue-600 mb-20">
               <p className="text-white font-bold text-[15px]">BUY</p>
             </div>
           </Link>
