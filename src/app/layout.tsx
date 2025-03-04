@@ -52,7 +52,7 @@ export function TopBar() {
           <p className="text-3xl text-blue-600  hover:underline">AlienWare</p>
         </a>
       </div>
-      <div className="gap-2 items-center flex">
+      <div className="gap-2 items-center hidden md:flex mr-4">
         <Link href={`/marketplace`} className="flex gap-2">
           <MdOutlineExplore className="size-6 fill-white gap-4 hover:bg-gray-900" />
           <h2 className="mr-4 text-blue-600 hover:underline">Explore</h2>
@@ -66,6 +66,8 @@ export function TopBar() {
           <h4 className="mr-4 text-blue-600 hover:underline">Cart</h4>
         </Link>
         {/* Test */}
+      </div>
+      <div className="flex items-center right-0 top-7 absolute">
         <Drawer />
       </div>
     </div>
