@@ -1,7 +1,13 @@
+import { SiAlienware } from "react-icons/si";
+import { MdOutlineExplore } from "react-icons/md";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { TiShoppingCart } from "react-icons/ti";
+import { FiMenu } from "react-icons/fi";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
+import { Drawer } from "@/components/Drawer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,12 +41,7 @@ export default function RootLayout({
   );
 }
 
-import { SiAlienware } from "react-icons/si";
-import { MdOutlineExplore } from "react-icons/md";
-import { IoMdAddCircleOutline } from "react-icons/io";
-import { TiShoppingCart } from "react-icons/ti";
-
-function TopBar() {
+export function TopBar() {
   return (
     <div className="TopBar flex h-20 w-full bg-black justify-between">
       <div className="flex items-center">
@@ -48,9 +49,7 @@ function TopBar() {
           <SiAlienware className="size-10 fill-white justify-center items-center text-xs hover:bg-gray-900" />
         </Link>
         <a href={"https://www.dell.com/pt-br/gaming/alienware"}>
-          <p className="text-3xl text-blue-600 mr-96 hover:underline">
-            AlienWare
-          </p>
+          <p className="text-3xl text-blue-600  hover:underline">AlienWare</p>
         </a>
       </div>
       <div className="gap-2 items-center flex">
@@ -66,6 +65,8 @@ function TopBar() {
           <TiShoppingCart className="size-6 fill-white hover:bg-gray-900" />
           <h4 className="mr-4 text-blue-600 hover:underline">Cart</h4>
         </Link>
+        {/* Test */}
+        <Drawer />
       </div>
     </div>
   );

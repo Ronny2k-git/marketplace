@@ -10,7 +10,6 @@ import { useEffect } from "react";
 
 export default function MarketPlace() {
   const [search, setSearch] = useState<string>("");
-  // const [filteredProducts, setFilteredProducts] = useState<any[]>(Products);
   const [products, setProducts] = useState<Product[]>([]);
   const [select, setSelect] = useState("");
 
@@ -21,14 +20,12 @@ export default function MarketPlace() {
 
   // useEffect(() => {
   const searchFiltered = products.filter((product) => {
-    return (
-      product.name.toLowerCase().includes(search.toLowerCase()) ||
-      product.old.toLowerCase().includes(search.toLowerCase()) ||
-      product.price.toLowerCase().includes(search.toLowerCase()) ||
-      product.offer.toLowerCase().includes(search.toLowerCase()) ||
-      product.discount.toLowerCase().includes(search.toLowerCase()) ||
-      product.description.toLowerCase().includes(search.toLowerCase())
-    );
+    return product.name.toLowerCase().includes(search.toLowerCase());
+    // product.old.toLowerCase().includes(search.toLowerCase()) ||
+    // product.price.toLowerCase().includes(search.toLowerCase()) ||
+    // product.offer.toLowerCase().includes(search.toLowerCase()) ||
+    // product.discount.toLowerCase().includes(search.toLowerCase()) ||
+    // product.description.toLowerCase().includes(search.toLowerCase())
   });
   const finalFiltered = searchFiltered.filter((product) => {
     if (!select || select === "all") return true;
