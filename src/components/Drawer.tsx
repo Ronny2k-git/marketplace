@@ -60,8 +60,10 @@ export function Drawer() {
             </Link>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="bg-transparent hover:bg-gray-800 mt-[158px] w-full h-6 rounded-b-full flex justify-center items-center"
-            ></button>
+              className="bg-transparent hover:bg-gray-800 mt-[120px] w-full h-6 rounded-b-full flex justify-center items-center"
+            >
+              <div className="h-1 w-[30%] bg-blue-700"></div>
+            </button>
           </div>
         </div>
       )}
