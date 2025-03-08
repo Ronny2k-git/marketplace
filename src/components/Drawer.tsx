@@ -22,7 +22,7 @@ export function Drawer() {
       )}
 
       {menuOpen && (
-        <div className="fixed top-0 z-40 right-0 rounded-b-3xl w-full flex h-[40%] bg-gray-900">
+        <div className="fixed top-0 z-40 right-0 rounded-b-3xl w-full flex h-[350px] bg-gray-900">
           <div className="relative w-full flex flex-col justify-start mt-4 mx-4">
             <h1 className="text-3xl text-blue-600 mb-4 mx-4">AlienWare</h1>
             <button
@@ -60,7 +60,7 @@ export function Drawer() {
             </Link>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="bg-transparent hover:bg-gray-800 mt-[120px] w-full h-6 rounded-b-full flex justify-center items-center"
+              className="bg-transparent hover:bg-gray-800 mt-[90px] w-full h-6 rounded-b-full flex justify-center items-center"
             >
               <div className="h-1 w-[30%] bg-blue-700"></div>
             </button>
