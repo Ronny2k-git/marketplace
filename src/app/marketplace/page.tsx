@@ -53,10 +53,10 @@ export default function MarketPlace() {
   });
 
   return (
-    <main className="view-port w-full bg-gray-950 h-[calc(screen-48px)]">
+    <main className="view-port w-full mx-auto bg-gray-950 h-[calc(screen-48px)]">
       <title>Marketplace</title>
-      <div className=" flex justify-center items-center relative">
-        <img className="w-[1240px] h-[250px]" src="blackfriday3.avif"></img>
+      <div className=" flex justify-center max-w-screen-xl mx-auto items-center relative">
+        <img className="w-full h-[250px] px-5" src="blackfriday3.avif"></img>
         <div className="flex h-full w-full ml-[] absolute justify-center items-center mr-[650]">
           <p className=" text-black font-medium text-[21px] mr-[368]">
             PCs & ACESSORIES
@@ -66,12 +66,12 @@ export default function MarketPlace() {
           </p>
         </div>
       </div>
-      <div className="Input flex justify-center items-center">
+      <div className="Input max-w-screen-xl mx-auto px-5 flex justify-center items-center">
         <div className="relative">
           <IoSearchSharp className="absolute text-xl ml-1 -translate-y-1/2" />
         </div>
         <input
-          className="bg-gray-900 w-[735px] h-9 rounded-md text-white mt-8 mb-8 placeholder-white pl-8 max-w-screen hover:bg-gray-800"
+          className="bg-gray-900 w-full h-9 rounded-md text-white mt-8 mb-8 placeholder-white pl-8 max-w-screen hover:bg-gray-800"
           placeholder="Search Itens..."
           value={search}
           onChange={(event) => setSearch(event.target.value)}
@@ -79,7 +79,7 @@ export default function MarketPlace() {
         <RiArrowRightDoubleLine className="fill-blue-700 text-6xl mr-24 -ml-3" />
         <p className="text-blue-600">Select</p>
         <select
-          className="bg-gray-900 w-80 h-9 flex justify-center items-center hover:bg-gray-800 rounded-md ml-2 text-white mt-8 mb-8"
+          className="bg-gray-900 w-full h-9 flex justify-center items-center hover:bg-gray-800 rounded-md ml-2 text-white mt-8 mb-8"
           value={select}
           onChange={(event) => setSelect(event.target.value)}
         >
@@ -91,7 +91,7 @@ export default function MarketPlace() {
           <option value="Computer-parts">Computer parts</option>
         </select>
       </div>
-      <div className="grid grid-cols-4 w-full h-full max-w-screen-xl mx-auto gap-6 px-4 ">
+      <div className="grid grid-cols-4 max-xl:grid-cols-3  h-full max-w-screen-xl mx-auto gap-6 px-5 ">
         {productsList}
       </div>
       <div className="h-full w-full flex mt-20 justify-center items-center text-xl ">

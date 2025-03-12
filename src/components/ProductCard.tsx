@@ -35,7 +35,7 @@ export function ProductCard(product: Product) {
 
   return (
     <div>
-      <div className="w-74 h-[533px] bg-gray-900 rounded-md">
+      <div className="max-w-72 h-[533px] bg-gray-900 rounded-md">
         <div className="flex justify-center items-center">
           <Link href={`/products/${product.id}`}>
             <img
