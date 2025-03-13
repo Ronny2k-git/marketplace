@@ -57,11 +57,11 @@ export default function MarketPlace() {
       <title>Marketplace</title>
       <div className=" flex justify-center max-w-screen-xl mx-auto items-center relative">
         <img className="w-full h-[250px] px-5" src="blackfriday3.avif"></img>
-        <div className="flex h-full w-full ml-[] absolute justify-center items-center mr-[650]">
-          <p className=" text-black font-medium text-[21px] mr-[368]">
+        <div className="flex h-full w-full absolute pl-8 max-sm:mr-5 items-center">
+          <p className=" text-black font-medium text-xl max-md:text-lg">
             PCs & ACESSORIES
           </p>
-          <p className="absolute text-black mt-20 mr-12 text-[40px]">
+          <p className="absolute text-black mt-20 max-sm:text-2xl md:text-4xl max-md:text-3xl">
             The quality is out of this world
           </p>
         </div>
@@ -91,7 +91,7 @@ export default function MarketPlace() {
           <option value="Computer-parts">Computer parts</option>
         </select>
       </div>
-      <div className="grid grid-cols-4 max-xl:grid-cols-3  h-full max-w-screen-xl mx-auto gap-6 px-5 ">
+      <div className="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 h-full max-w-screen-xl mx-auto gap-6 px-5 ">
         {productsList}
       </div>
       <div className="h-full w-full flex mt-20 justify-center items-center text-xl ">

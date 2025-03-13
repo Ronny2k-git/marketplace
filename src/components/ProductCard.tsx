@@ -35,7 +35,7 @@ export function ProductCard(product: Product) {
 
   return (
     <div>
-      <div className="max-w-72 h-[533px] bg-gray-900 rounded-md">
+      <div className="w-full h-[533px] bg-gray-900 rounded-md">
         <div className="flex justify-center items-center">
           <Link href={`/products/${product.id}`}>
             <img
@@ -54,9 +54,9 @@ export function ProductCard(product: Product) {
             <p className="-mt-1.5">{product.discount}</p>
           </div>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-end items-center">
           <button onClick={() => handleClick(product)}>
-            <TiShoppingCart className="size-6 fill-white ml-64 -mt-8 mr-3 hover:bg-gray-800" />
+            <TiShoppingCart className="size-6 fill-white -mt-7 mr-3 hover:bg-gray-800" />
           </button>
         </div>
         <div className="mt-2 ml-2 whitespace-pre mb-12">{product.offer}</div>
