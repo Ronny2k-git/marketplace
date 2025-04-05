@@ -2,7 +2,6 @@ import { SiAlienware } from "react-icons/si";
 import { MdOutlineExplore } from "react-icons/md";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { TiShoppingCart } from "react-icons/ti";
-import { FiMenu } from "react-icons/fi";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";

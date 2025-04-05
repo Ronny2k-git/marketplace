@@ -3,7 +3,8 @@
 import { TiShoppingCart } from "react-icons/ti";
 import Link from "next/link";
 import { Product } from "@/utils/utils";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Image from "next/image";
 
 function getProducts(): Product[] {
   const savedCart = localStorage.getItem("cart");
@@ -38,10 +39,11 @@ export function ProductCard(product: Product) {
       <div className="w-full h-[533px] bg-gray-900 rounded-md">
         <div className="flex justify-center items-center">
           <Link href={`/products/${product.id}`}>
-            <img
+            <Image
               className="Images h-48 w-48 mt-14 mb-8 hover:opacity-80"
+              alt=""
               src={product.src}
-            ></img>
+            ></Image>
           </Link>
         </div>
         <Link href={`/products/${product.id}`}>
