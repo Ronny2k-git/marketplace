@@ -87,55 +87,53 @@ export default function AddProduct() {
   // }
 
   return (
-    <main className="h-screen w-screen bg-gray-950">
+    <main className="min-h-screen min-w-screen bg-gray-950">
       <title>Create Product</title>
       <div className="h-full w-full">
         <div className="flex h-full w-full justify-center items-center">
-          <div className="h-[900] w-[620px] flex flex-col justify-start items-center rounded-3xl bg-gray-900">
-            <p className=" text-3xl  text-gray-500 mb-16 mt-2 font-bold">
+          <div className="min-h-screen w-1/2 gap-4 max-w-lg flex flex-col justify-center items-center rounded-3xl px-6 my-10 bg-gray-900">
+            <p className=" text-3xl text-gray-500 mb-6 mt-4 font-bold">
               ADD YOUR PRODUCT
             </p>
             <p className="text-gray-400 text-start">Add Image(URL):</p>
             <input
-              className="h-10 w-[585px] text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+              className="h-9 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
               value={imageURL}
               onChange={(event) => setImageURL(event.target.value)}
             />
-            <p className="text-gray-400 text-start mt-8">Product Name:</p>
+            <p className="text-gray-400 text-start">Product Name:</p>
             <input
-              className="h-10 w-[585px] text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+              className="h-9 px-2 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
               value={productName}
               onChange={(event) => setProductName(event.target.value)}
             />
-            <p className="text-gray-400 text-start mt-8">Old Price:</p>
+            <p className="text-gray-400 text-start">Old Price:</p>
             <input
-              className="h-10 w-[585px] text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+              className="h-9 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
               value={oldPrice}
               onChange={(event) => setOldPrice(event.target.value)}
             />
-            <p className="text-gray-400 text-start mt-8">Price:</p>
+            <p className="text-gray-400 text-start">Price:</p>
             <input
-              className="h-10 w-[585px] text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+              className="h-9 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
               value={price}
               onChange={(event) => setPrice(event.target.value)}
             />
-            <p className="text-gray-400 text-start mt-8">Payment Method:</p>
+            <p className="text-gray-400 text-start">Payment Method:</p>
             <input
-              className="h-10 w-[585px] text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+              className="h-9 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
               value={paymentMethod}
               onChange={(event) => setPaymentMethod(event.target.value)}
             />
-            <p className="text-gray-400 text-start mt-8">Discount:</p>
+            <p className="text-gray-400 text-start">Discount:</p>
             <input
-              className="h-10 w-[585px] text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+              className="h-9 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
               value={discount}
               onChange={(event) => setDiscount(event.target.value)}
             />
-            <p className="text-gray-400 text-start mt-8">
-              Product Description:
-            </p>
+            <p className="text-gray-400 text-start">Product Description:</p>
             <input
-              className="h-16 w-[585px] text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+              className="h-16 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
               value={description}
               onChange={(event) => setDescription(event.target.value)}
             />
@@ -145,7 +143,7 @@ export default function AddProduct() {
               </div>
             )}
             <button
-              className="h-10 w-[585px] bg-blue-700 mt-14 rounded-lg hover:bg-blue-600"
+              className="h-9 w-full bg-blue-700 mt-4 mb-6 rounded-lg hover:bg-blue-600"
               onClick={createProduct}
             >
               CREATE PRODUCT
