@@ -39,11 +39,10 @@ export function ProductCard(product: Product) {
       <div className="w-full h-[533px] bg-gray-900 rounded-md">
         <div className="flex justify-center items-center">
           <Link href={`/products/${product.id}`}>
-            <Image
+            <img
               className="Images h-48 w-48 mt-14 mb-8 hover:opacity-80"
-              alt=""
               src={product.src}
-            ></Image>
+            ></img>
           </Link>
         </div>
         <Link href={`/products/${product.id}`}>
