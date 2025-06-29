@@ -31,14 +31,6 @@ export default function AddProduct() {
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
-  // Método "Manual" de verificação dos "INPUTS"
-
-  // const handleCreateProduct = () => {
-  //   if (!imageURL || !productName || !oldPrice || !price || !paymentMethod || !discount || !description) {
-  //     alert("Please fill all the fields!");
-  //     return;
-  //   }
-
   const createProduct = () => {
     if (
       !imageURL ||
@@ -60,10 +52,10 @@ export default function AddProduct() {
       id: uuidv4(), // Nesse caso também poderia usar o "Date.now"
       name: productName, // O "UUID" cria um id aleatório.
       old: oldPrice,
-      price: price,
-      discount: discount,
+      price,
+      discount,
       offer: paymentMethod,
-      description: description,
+      description,
     };
 
     const parse = ProductSchema.safeParse(newProducts);
@@ -75,16 +67,11 @@ export default function AddProduct() {
     const localProducts = JSON.parse(
       localStorage.getItem("local-products") || "[]"
     );
+
     localProducts.push(parse.data); //newProducts
     localStorage.setItem("local-products", JSON.stringify(localProducts)); //O local storage só armazena "strings".
     router.push("/marketplace");
   };
-
-  // function updateImage(newValue: string, index: number) {
-  //   const newArray = Array.from(imageURL);
-  //   newArray[index] = newValue;
-  //   setImageURL(newArray);
-  // }
 
   return (
     <main className="min-h-screen min-w-screen bg-gray-950">
@@ -92,7 +79,7 @@ export default function AddProduct() {
       <div className="h-full w-full">
         <div className="flex h-full w-full justify-center items-center">
           <div className="min-h-screen w-1/2 gap-4 max-w-lg flex flex-col justify-center items-center rounded-3xl px-6 my-10 bg-gray-900">
-            <p className=" text-3xl text-gray-500 mb-6 mt-4 font-bold">
+            <p className="text-3xl text-gray-500 mb-6 font-bold">
               ADD YOUR PRODUCT
             </p>
             <p className="text-gray-400 text-start">Add Image(URL):</p>
@@ -138,12 +125,12 @@ export default function AddProduct() {
               onChange={(event) => setDescription(event.target.value)}
             />
             {errorMessage && (
-              <div className="text-red-500 absolute bottom-[7%]">
+              <div className="text-red-500 absolute bottom-1">
                 {errorMessage}
               </div>
             )}
             <button
-              className="h-9 w-full bg-blue-700 mt-4 mb-6 rounded-lg hover:bg-blue-600"
+              className="h-9 w-full bg-blue-700 mt-4 rounded-lg hover:bg-blue-600"
               onClick={createProduct}
             >
               CREATE PRODUCT

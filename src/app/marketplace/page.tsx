@@ -4,8 +4,7 @@ import { ProductCard } from "../../components/ProductCard";
 import { useState } from "react";
 import { RiArrowRightDoubleLine } from "react-icons/ri";
 import { IoSearchSharp } from "react-icons/io5";
-import { Product, Products } from "../../utils/utils";
-import Link from "next/link";
+import { Product } from "../../utils/utils";
 import { useEffect } from "react";
 
 export default function MarketPlace() {
