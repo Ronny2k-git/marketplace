@@ -43,9 +43,9 @@ export default function Cart() {
           {cart.length === 0 ? (
             <div className="text-white mt-10 text-x1">Your cart ir empty</div>
           ) : (
-            cart.map((product: Product, index: number) => (
+            cart.map((product: Product) => (
               <div
-                className="Square flex h-[20%] w-[50%] mb-2 mt-6 rounded-lg bg-gray-900 p-4"
+                className="Square flex h-auto w-full max-w-5xl mb-2 mt-6 rounded-lg bg-gray-900 p-4"
                 key={product.id}
               >
                 <img

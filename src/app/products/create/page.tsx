@@ -78,7 +78,7 @@ export default function AddProduct() {
       <title>Create Product</title>
       <div className="h-full w-full">
         <div className="flex h-full w-full justify-center items-center">
-          <div className="min-h-screen w-1/2 gap-4 max-w-lg flex flex-col justify-center items-center rounded-3xl px-6 my-10 bg-gray-900">
+          <div className="min-h-screen w-full mx-4 gap-4 max-w-xl flex flex-col justify-center items-center rounded-3xl px-6 my-10 bg-gray-900">
             <p className="text-3xl text-gray-500 mb-6 font-bold">
               ADD YOUR PRODUCT
             </p>

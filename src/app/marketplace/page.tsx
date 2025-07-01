@@ -13,26 +13,16 @@ export default function MarketPlace() {
   const [select, setSelect] = useState("");
 
   useEffect(() => {
-    console.log(localStorage.getItem("local-products"));
     setProducts(JSON.parse(localStorage.getItem("local-products") ?? "[]"));
   }, []);
 
-  // useEffect(() => {
   const searchFiltered = products.filter((product) => {
     return product.name.toLowerCase().includes(search.toLowerCase());
-    // product.old.toLowerCase().includes(search.toLowerCase()) ||
-    // product.price.toLowerCase().includes(search.toLowerCase()) ||
-    // product.offer.toLowerCase().includes(search.toLowerCase()) ||
-    // product.discount.toLowerCase().includes(search.toLowerCase()) ||
-    // product.description.toLowerCase().includes(search.toLowerCase())
   });
   const finalFiltered = searchFiltered.filter((product) => {
     if (!select || select === "all") return true;
     return product.category === select;
   });
-
-  //   setFilteredProducts(finalFiltered);
-  // }, [search);
 
   const productsList = finalFiltered.map((product) => {
     return (

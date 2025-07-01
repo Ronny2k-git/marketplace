@@ -1,7 +1,28 @@
-const startDate = new Date('2025-01-01');
-const endDate = new Date('2025-12-31');
+const cars = [
+  {
+    name: "Toyota Camry",
+    year: 2020,
+    price: 104000,
+  },
+  {
+    name: "Supra",
+    year: 2018,
+    price: 284000,
+  },
+  {
+    name: "Honda Civic",
+    year: 2010,
+    price: 54000,
+  },
+  {
+    name: "Ford Mustang",
+    year: 2020,
+    price: 340000,
+  },
+];
 
-// Calculando a diferença em milissegundos
-const differenceInMilliseconds = endDate.getTime() - startDate.getTime();
+const filteredCars = cars.filter(
+  (car) => car.year > 2015 && car.price < 600000
+);
 
-console.log(differenceInMilliseconds);
+console.log("Filtered cars:", filteredCars);

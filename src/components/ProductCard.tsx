@@ -4,7 +4,6 @@ import { TiShoppingCart } from "react-icons/ti";
 import Link from "next/link";
 import { Product } from "@/utils/utils";
 import { useState } from "react";
-import Image from "next/image";
 
 function getProducts(): Product[] {
   const savedCart = localStorage.getItem("cart");
@@ -13,9 +12,6 @@ function getProducts(): Product[] {
 
 export function ProductCard(product: Product) {
   const [cart, setCart] = useState(() => getProducts());
-
-  //   const savedCart = localStorage.getItem("cart");
-  //   return savedCart ? JSON.parse(savedCart) : [];
 
   const [message, setMessage] = useState<string>("");
   const addCart = (product: Product) => {
