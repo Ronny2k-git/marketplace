@@ -24,7 +24,7 @@ export function ProductCard(product: Product) {
 
   const handleClick = (product: Product) => {
     addCart(product);
-    setMessage("Product added to cart");
+    setMessage("Product added into cart");
     setTimeout(() => {
       setMessage("");
     }, 3000);
