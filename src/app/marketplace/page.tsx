@@ -42,7 +42,7 @@ export default function MarketPlace() {
   });
 
   return (
-    <main className="view-port w-full mx-auto bg-gray-950 h-[calc(screen-48px)]">
+    <main className="view-port w-full max-w-screen-xl mx-auto bg-gray-950 h-[calc(screen-48px)]">
       <title>Marketplace</title>
       <div className=" flex justify-center max-w-screen-xl mx-auto items-center relative">
         <img className="w-full h-[250px] px-5" src="blackfriday3.avif"></img>
@@ -55,30 +55,37 @@ export default function MarketPlace() {
           </p>
         </div>
       </div>
-      <div className="Input max-w-screen-xl mx-auto px-5 flex justify-center items-center">
-        <div className="relative">
-          <IoSearchSharp className="absolute text-xl ml-1 -translate-y-1/2" />
+      <div className="Input relative max-w-screen-xl max-md:flex-col px-5 gap-4 my-8 flex justify-center items-center">
+        <div className="relative w-full flex items-center">
+          <IoSearchSharp className="absolute text-xl ml-1" />
+          <input
+            className="bg-gray-900 w-full h-9 rounded-md text-white placeholder-white pl-8 max-w-screen hover:bg-gray-800"
+            placeholder="Search Itens..."
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          ></input>
+          <RiArrowRightDoubleLine className="fill-blue-700 absolute right-0 text-6xl -mr-3" />
         </div>
-        <input
-          className="bg-gray-900 w-full h-9 rounded-md text-white mt-8 mb-8 placeholder-white pl-8 max-w-screen hover:bg-gray-800"
-          placeholder="Search Itens..."
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-        ></input>
-        <RiArrowRightDoubleLine className="fill-blue-700 text-6xl mr-24 -ml-3" />
-        <p className="text-blue-600">Select</p>
-        <select
-          className="bg-gray-900 w-full h-9 flex justify-center items-center hover:bg-gray-800 rounded-md ml-2 text-white mt-8 mb-8"
-          value={select}
-          onChange={(event) => setSelect(event.target.value)}
-        >
-          <option value="all">All Products</option>
-          <option value="Peripherals">Peripherals</option>
-          <option value="Acessories">Acessories</option>
-          <option value="Portables">Portables</option>
-          <option value="Complete-PC">Complete PC</option>
-          <option value="Computer-parts">Computer parts</option>
-        </select>
+        <div className="flex max-md:flex-col gap-1 w-full md:items-center">
+          <p className="text-blue-600 font-semibold max-md:mt-4 max-md:hidden">
+            Select
+          </p>
+          <select
+            className="bg-gray-900 w-full h-9 px-2 flex justify-center items-center hover:bg-gray-800 rounded-md text-white"
+            value={select}
+            onChange={(event) => setSelect(event.target.value)}
+          >
+            <option value="" hidden>
+              Select
+            </option>
+            <option value="all">All Products</option>
+            <option value="Peripherals">Peripherals</option>
+            <option value="Acessories">Acessories</option>
+            <option value="Portables">Portables</option>
+            <option value="Complete-PC">Complete PC</option>
+            <option value="Computer-parts">Computer parts</option>
+          </select>
+        </div>
       </div>
       <div className="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 h-full max-w-screen-xl mx-auto gap-6 px-5 ">
         {productsList}
