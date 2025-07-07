@@ -55,28 +55,25 @@ export default function MarketPlace() {
           </p>
         </div>
       </div>
-      <div className="Input relative max-w-screen-xl max-md:flex-col px-5 gap-4 my-8 flex justify-center items-center">
+      <div className="Input relative max-w-screen-xl max-md:flex-col px-5 md:gap-8 my-4 flex justify-between items-center">
         <div className="relative w-full flex items-center">
           <IoSearchSharp className="absolute text-xl ml-1" />
           <input
-            className="bg-gray-900 w-full h-9 rounded-md text-white placeholder-white pl-8 max-w-screen hover:bg-gray-800"
+            className="bg-gray-900 w-full md:max-w-[38rem] h-9 rounded-md text-white placeholder-white pl-8 max-w-screen hover:bg-gray-800"
             placeholder="Search Itens..."
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-          ></input>
-          <RiArrowRightDoubleLine className="fill-blue-700 absolute right-0 text-6xl -mr-3" />
+          />
+          <RiArrowRightDoubleLine className="fill-blue-700 text-7xl" />
         </div>
-        <div className="flex max-md:flex-col gap-1 w-full md:items-center">
-          <p className="text-blue-600 font-semibold max-md:mt-4 max-md:hidden">
-            Select
-          </p>
+        <div className="flex max-md:self-end md:items-center">
           <select
-            className="bg-gray-900 w-full h-9 px-2 flex justify-center items-center hover:bg-gray-800 rounded-md text-white"
+            className="bg-gray-900 w-ful h-9 px-2 flex justify-center items-center hover:bg-gray-800 rounded-md text-white"
             value={select}
             onChange={(event) => setSelect(event.target.value)}
           >
             <option value="" hidden>
-              Select
+              Filter
             </option>
             <option value="all">All Products</option>
             <option value="Peripherals">Peripherals</option>
