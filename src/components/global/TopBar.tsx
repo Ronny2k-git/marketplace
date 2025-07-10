@@ -2,7 +2,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdOutlineExplore } from "react-icons/md";
 import { SiAlienware } from "react-icons/si";
 import { TiShoppingCart } from "react-icons/ti";
-import { Drawer } from "../Drawer";
+import { Drawer } from "./Drawer";
 import Link from "next/link";
 
 export function TopBar() {
