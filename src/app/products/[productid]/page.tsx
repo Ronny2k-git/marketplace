@@ -1,6 +1,5 @@
 import { Products } from "@/utils/utils";
 import Link from "next/link";
-import { FaShoppingCart } from "react-icons/fa";
 import { MdDescription } from "react-icons/md";
 
 type infoProducts = {
@@ -8,7 +7,7 @@ type infoProducts = {
 };
 
 async function testPromise() {
-  return new Promise<string>((resolve, reject) => {
+  return new Promise<string>((resolve) => {
     setTimeout(() => {
       resolve("test");
     }, 5_000);
@@ -40,9 +39,9 @@ export default async function Info({ params }: infoProducts) {
     );
   }
   return (
-    <main className="h-[calc(screen - 48px)] w-screen bg-gray-950">
+    <main className="h-[calc(screen - 48px)] w-full mx-auto px-4 pb-20 bg-gray-950">
       <title>Product</title>
-      <div className="h-full w-full bg-gray-950 pt-">
+      <div className="h-full w-full max-w-5xl mx-auto bg-gray-950 pt-">
         <div className="flex justify-center items-center ">
           <h1 className="text-3xl mb-28 pr-[300] text-gray-400 mt-16">
             {product.name}
@@ -91,18 +90,15 @@ export default async function Info({ params }: infoProducts) {
             </div>
           </Link>
         </div>
-        <div className="Division h-7 w-full bg-gray-900"></div>
-        <div className="flex">
-          <MdDescription className="size-6 fill-blue-500 mt-[9]  ml-8" />
-          <h1 className=" font-bold text-[25px] ml-1 mt-1 text-gray-400 mb-1">
-            Especificações do Produto:
+        <div className="Division h-7 w-full bg-gray-900" />
+        <div className="flex mt-8">
+          <MdDescription className="size-6 fill-blue-500 mt-1" />
+          <h1 className=" font-bold text-[25px] ml-1 text-gray-400">
+            Product description
           </h1>
         </div>
-        <div className="flex ">
-          <h2 className="ml-4 whitespace-pre">{product.description}</h2>
-          <div className=" flex h-full w-full justify-end items-center">
-            <img className="h-[500] w-[900] -mt-10" src="/alien1.png"></img>
-          </div>
+        <div className="flex">
+          <h2 className="whitespace-pre">{product.description}</h2>
         </div>
       </div>
     </main>

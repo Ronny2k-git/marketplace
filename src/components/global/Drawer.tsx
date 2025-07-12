@@ -32,7 +32,7 @@ export function Drawer() {
               x
             </button>
             <hr className="border-blue-500 mb-4"></hr>
-            <Link href="/marketplace">
+            <Link href="/">
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="bg-blue-700 gap-2 w-full h-11 rounded-full flex justify-center items-center"

@@ -9,7 +9,7 @@ export function TopBar() {
   return (
     <div className="TopBar flex h-20 w-full bg-black justify-between">
       <div className="flex items-center">
-        <Link href={`/marketplace`}>
+        <Link href="/">
           <SiAlienware className="size-10 fill-white justify-center items-center text-xs hover:bg-gray-900" />
         </Link>
         <a href={"https://www.dell.com/pt-br/gaming/alienware"}>
@@ -17,7 +17,7 @@ export function TopBar() {
         </a>
       </div>
       <div className="gap-2 items-center hidden md:flex mr-4">
-        <Link href={`/marketplace`} className="flex gap-2">
+        <Link href="/" className="flex gap-2">
           <MdOutlineExplore className="size-6 fill-white gap-4 hover:bg-gray-900" />
           <h2 className="mr-4 text-blue-600 hover:underline">Explore</h2>
         </Link>
@@ -29,7 +29,7 @@ export function TopBar() {
           <TiShoppingCart className="size-6 fill-white hover:bg-gray-900" />
           <h4 className="mr-4 text-blue-600 hover:underline">Cart</h4>
         </Link>
-        {/* Test */}
+        {/*Drawer component used on the Top Bar */}
       </div>
       <div className="flex items-center right-0 top-7 absolute">
         <Drawer />
