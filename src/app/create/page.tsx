@@ -1,7 +1,7 @@
 "use client";
 
-import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
+import { z } from "zod";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -49,8 +49,8 @@ export default function AddProduct() {
 
     const newProducts = {
       src: imageURL,
-      id: uuidv4(), // Nesse caso também poderia usar o "Date.now"
-      name: productName, // O "UUID" cria um id aleatório.
+      id: uuidv4(), // Used to create a unique id for each product
+      name: productName,
       old: oldPrice,
       price,
       discount,
