@@ -1,8 +1,7 @@
+import { TopBar } from "@/global/components/TopBar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-
-import { TopBar } from "@/components/global";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
