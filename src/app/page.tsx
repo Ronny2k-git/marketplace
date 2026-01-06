@@ -45,8 +45,13 @@ export default function MarketPlaceHome() {
       <div className="w-full h-full max-w-screen-xl mx-auto">
         <title>Marketplace</title>
         <div className=" flex justify-center max-w-screen-xl mx-auto items-center relative">
-          <img className="w-full h-[250px] px-5" src="blackfriday3.avif"></img>
-          <div className="flex h-full w-full absolute pl-8 max-sm:mr-5 items-center">
+          {/* Banner */}
+          <img
+            className="w-full h-[250px] px-5 z-10"
+            src="blackfriday3.avif"
+          ></img>
+
+          <div className="flex z-20 h-full w-full absolute pl-8 max-sm:mr-5 items-center">
             <p className=" text-black font-medium text-xl max-md:text-lg">
               PCs & ACESSORIES
             </p>

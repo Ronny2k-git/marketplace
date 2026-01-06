@@ -3,64 +3,66 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
-import { IoMdSearch } from "react-icons/io";
-import { IoMdAddCircleOutline } from "react-icons/io";
+import { IoMdAddCircleOutline, IoMdSearch } from "react-icons/io";
 import { LuShoppingCart } from "react-icons/lu";
+
+const PROJECT_DRAWER_ROUTES = [
+  { label: "Explore", path: "/", icon: <IoMdSearch className="size-5" /> },
+  {
+    label: "Create Product",
+    path: "/create",
+    icon: <IoMdAddCircleOutline className="size-5" />,
+  },
+  { label: "Cart", path: "/cart", icon: <LuShoppingCart className="size-5" /> },
+];
 
 export function Drawer() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div>
+    <div className="flex h-full w-full">
       {!menuOpen && (
         <button
-          className="mr-4 flex items-center"
+          className="mr-4 flex items-center "
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <FiMenu className="size-6 md:hidden" />
+          <FiMenu className="h-9 w-9 " />
         </button>
       )}
 
       {menuOpen && (
-        <div className="fixed top-0 z-40 right-0 rounded-b-3xl w-full flex h-[350px] bg-gray-900">
-          <div className="relative w-full flex flex-col justify-start mt-4 mx-4">
-            <h1 className="text-3xl text-blue-600 mb-4 mx-4">AlienWare</h1>
-            <button
-              className="h-6 w-6 absolute top-1 right-1 bg-blue-700 rounded-full"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              x
-            </button>
-            <hr className="border-blue-500 mb-4"></hr>
-            <Link href="/">
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="bg-blue-700 gap-2 w-full h-11 rounded-full flex justify-center items-center"
-              >
-                <IoMdSearch className="size-5" /> Explore
-              </button>
-            </Link>
+        <div className="fixed top-0 h-auto z-50 right-0 rounded-b-2xl w-full flex bg-gray-900">
+          <div className=" w-full flex flex-col justify-start px-8 pt-8">
+            <div className="flex justify-between">
+              {/* Title */}
+              <h1 className="text-3xl text-blue-600 mx-4">AlienWare</h1>
 
-            <Link href="/products/create">
               <button
+                className="h-8 w-8 bg-blue-700 hover:bg-blue-800 rounded-full"
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="bg-blue-700 gap-2 IoMdSearch w-full my-2 h-11 rounded-full flex justify-center items-center"
               >
-                <IoMdAddCircleOutline className="size-5" /> Add Product
+                x
               </button>
-            </Link>
+            </div>
 
-            <Link href="/cart">
-              <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="bg-blue-700 gap-2 IoMdSearch w-full h-11 rounded-full flex justify-center items-center"
-              >
-                <LuShoppingCart className="size-5" /> Cart
-              </button>
-            </Link>
+            <hr className="border-blue-500 my-4"></hr>
+
+            <div className="flex flex-col gap-2 mb-10">
+              {PROJECT_DRAWER_ROUTES.map((route) => (
+                <Link href={route.path}>
+                  <button
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    className="bg-blue-700 hover:bg-blue-800 gap-2 w-full h-11 rounded-full flex justify-center items-center"
+                  >
+                    {route.icon} {route.label}
+                  </button>
+                </Link>
+              ))}
+            </div>
+
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="bg-transparent hover:bg-gray-800 mt-[90px] w-full h-6 rounded-b-full flex justify-center items-center"
+              className=" hover:bg-gray-700 bg-gray-800 w-full h-8 rounded-b-full flex justify-center items-center"
             >
               <div className="h-1 w-[30%] bg-blue-700"></div>
             </button>
