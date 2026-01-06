@@ -1,2 +1,2 @@
-export * from "./components/Drawer";
+export * from "./Drawer";
 export * from "./TopBar";
