@@ -1,9 +1,10 @@
 "use client";
 
-import { TiShoppingCart } from "react-icons/ti";
-import Link from "next/link";
 import { Product } from "@/utils/utils";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
+import { TiShoppingCart } from "react-icons/ti";
 
 function getProducts(): Product[] {
   const savedCart = localStorage.getItem("cart");
@@ -11,16 +12,15 @@ function getProducts(): Product[] {
 }
 
 export function ProductCard(product: Product) {
-  const [cart, setCart] = useState(() => getProducts());
-
+  const [, setCart] = useState(() => getProducts());
   const [message, setMessage] = useState<string>("");
+
   const addCart = (product: Product) => {
     const savedCart = getProducts();
     const updatedCart = [...savedCart, product];
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
-  console.log(cart);
 
   const handleClick = (product: Product) => {
     addCart(product);
@@ -31,41 +31,60 @@ export function ProductCard(product: Product) {
   };
 
   return (
-    <div>
-      <div className="w-full h-[533px] bg-gray-900 rounded-md">
-        <div className="flex justify-center items-center">
-          <Link href={`/products/${product.id}`}>
-            <img
-              className="Images h-48 w-48 mt-14 mb-8 hover:opacity-80"
-              src={product.src}
-            ></img>
-          </Link>
-        </div>
-        <Link href={`/products/${product.id}`}>
-          <p className="Name mb-3 ml-2 hover:underline">{product.name}</p>
+    <article className="w-full h-auto p-2 flex flex-col items-cente bg-gray-900 rounded-lg">
+      {/* Image */}
+      <div className="flex items-center justify-center p-8">
+        <Link href={`/product/${product.id}`}>
+          <Image
+            alt="product-image"
+            className=" h-40 w-40 hover:opacity-70 object-cover"
+            src={product.src}
+            width={192}
+            height={192}
+          />
         </Link>
-        <del className="ml-2">{product.old}</del>
-        <div className="Preco ml-2 text-2xl text-blue-600 font-bold flex items-center ">
-          {product.price}
-          <div className="Discount text-white ml-2 mt-1.5 h-5 w-10 bg-gray-700 font-light text-[15px] rounded-xl">
-            <p className="-mt-1.5">{product.discount}</p>
+      </div>
+
+      <div className="flex flex-col justify-end h-full gap-3">
+        {/* Product name */}
+        <Link href={`/product/${product.id}`}>
+          <h3 className="hover:underline">{product.name}</h3>
+        </Link>
+
+        <div className="flex justify-between items-start">
+          <div className="flex flex-col gap-2">
+            <del>{product.old}</del>
+
+            {/* Current price */}
+            <div className=" text-2xl text-blue-600 font-bold flex items-center gap-2">
+              {product.price}
+              <span className="flex items-center justify-center text-white h-5 w-10 bg-gray-700 font-light text-[15px] rounded-xl">
+                {product.discount}
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="flex justify-end items-center">
+
+          {/* Add product to the cart */}
           <button onClick={() => handleClick(product)}>
-            <TiShoppingCart className="size-6 fill-white -mt-7 mr-3 hover:bg-gray-800" />
+            <TiShoppingCart className="size-6 fill-white hover:bg-gray-800" />
           </button>
         </div>
-        <div className="mt-2 ml-2 whitespace-pre mb-12">{product.offer}</div>
-        <Link href={`/products/${product.id}`}>
-          <div className="Buy Button h-[9.5%] w-[95%] ml-2 hover:bg-blue-600 rounded-md bg-blue-700 flex justify-center items-center">
-            <p className="text-white font-bold text-[15px]">BUY</p>
-          </div>
+
+        {/* Product discount */}
+        <p className="whitespace-pre">{product.offer}</p>
+        <Link
+          className="flex justify-center items-center h-12 w-full hover:bg-blue-600 rounded-md bg-blue-700"
+          href={`/product/${product.id}`}
+        >
+          <span className="text-white font-bold text-[15px]">BUY</span>
         </Link>
-        {message && (
-          <div className="Mensagem text-green-500 ml-20">{message}</div>
-        )}
       </div>
-    </div>
+
+      {message && (
+        <p role="status" className="mt-2 text-green-500 text-center">
+          {message}
+        </p>
+      )}
+    </article>
   );
 }

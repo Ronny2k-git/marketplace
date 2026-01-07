@@ -48,6 +48,7 @@ export function TopBar() {
             </div>
           ))}
         </div>
+
         {/*Drawer component */}
         <div className="flex items-center md:hidden">
           <Drawer />

@@ -7,7 +7,7 @@ export type Product = {
   discount: string;
   offer: string;
   description: string;
-  category:string;
+  category: string;
 };
 export const Products: Product[] = [
   {
@@ -27,7 +27,7 @@ to 12 installments of R$ 244,66`,
        • Seu brilho é de 600cd/m² 
        • Com conexão USB-B 3.2 
        • É giratório e reclinável`,
-       category:"Peripherals"
+    category: "Peripherals",
   },
   {
     src: "/mouse1.webp",
@@ -47,7 +47,7 @@ to 12 installments of R$ 58,28`,
       • DPI até 26.000 
       • Bateria: Polimero Litio de até 420 horas de duração  
       • Número de Botões: 8`,
-      category:"Peripherals"
+    category: "Peripherals",
   },
   {
     src: "/headset1.webp",
@@ -66,7 +66,7 @@ to 12 installments of R$ 79,94`,
       • Formato: Microfone de fone de ouvido
       • Saída de áudio — Resposta de frequência 20 - 40000 Hz
       🗰 Garantia: Garantia limitada - 2 anos`,
-      category:"Peripherals"
+    category: "Peripherals",
   },
   {
     src: "/teclado1.webp",
@@ -84,7 +84,7 @@ to 12 installments of R$ 169,40`,
         Interface: USB 2.4 GHz, Bluetooth 5.1
       🔅 Iluminação traseira: AlienFX RGB por tecla / 16,8 milhões de cores
         Recursos: Teclado numérico`,
-       category:"Peripherals"
+    category: "Peripherals",
   },
   {
     src: "/mochila1.webp",
@@ -109,7 +109,7 @@ to 12 installments of R$ 79,00`,
        cinta de esterno ajustável.
       • Material do forro: Nylex
       • Capacidade: 33 litros`,
-      category:"Acessories"
+    category: "Acessories",
   },
   {
     src: "/notebook1.webp",
@@ -126,7 +126,7 @@ to 12 installments of R$ 3.614,02`,
       • Processor: i9-13900HX •Storage Type:HDD (Hard Disk Drive) •Hard Drive Capacity:0 •Screen Size:18
       • Processor Speed: 5.4 •GPU: Nvidia GeForce RTX 4090 •MPN: Alienware m18 Laptop •Maximum Resolution: 2560x1600
       • Color: Dark Metallic Moon •Manufacturer Warranty: 1 •SSD Capacity: 512 •Graphics Processing Type: Dedicated Graphics`,
-      category:"Portables"
+    category: "Portables",
   },
   {
     src: "/pc1.webp",
@@ -144,7 +144,7 @@ to 12 installments of R$ 1.468,90`,
       • memory: 32GB DDR5 (2x16GB) 4800MT/s; Expansível até 64GB 5600MT/s (2 slots UDIMM)
       • harddrive: SSD de 512GB PCIe NVMe M.2
       • fallbackcolor: Chassi com 750W PSU, Alienware Cryo-tech ™ Edition CPU com sistema Liquid Cooler e painel transparente`,
-      category:"Complete-PC"
+    category: "Complete-PC",
   },
   {
     src: "/teclado2.webp",
@@ -166,7 +166,7 @@ to 12 installments of R$ 216,79`,
       • Tecla cilíndrica.
       • Com conector: USB.
       • Medidas: 6.8" de altura, 19.6" de largura e 1.4" de profundidade.`,
-      category:"Peripherals"
+    category: "Peripherals",
   },
   {
     src: "/notebook2.webp",
@@ -188,7 +188,7 @@ to 12 installments of R$ 3.870,25`,
       • Operating System	Windows 11 Pro
       • Special Feature	Backlit Keyboard, Numeric Keypad
       • Graphics Card Description	Dedicated`,
-      category:"Portables"
+    category: "Portables",
   },
   {
     src: "/cadeira1.webp",
@@ -214,7 +214,7 @@ to 12 installments of R$ 163,84`,
      • Seat Depth: 480 mm / 19 in	
      • Net Weight: 27.5 kg / 60 lbs	
      • Gross Weight: 28 kg / 62 lbs`,
-     category:"Peripherals"
+    category: "Peripherals",
   },
   {
     src: "/monitor3.webp",
@@ -232,7 +232,7 @@ to 12 installments of R$ 720,28`,
     🕑Tempo de resposta: 2 ms (cinza a cinza); 1 ms (MPRT)
       • Portas: 2 x HDMI, DisplayPort 1.4
       • Cabos: 1 x cabo HDMI, 1 x Cabo DisplayPort 1.4 - DisplayPort à DisplayPort`,
-      category:"Peripherals"
+    category: "Peripherals",
   },
   {
     src: "/mouse3.avif",
@@ -256,6 +256,6 @@ to 12 installments of R$ 55,20`,
       • Botões: 8
       • Acessórios incluídos: Dispositivo extensor e dispositivo USB-C
       • Interface: USB, 2.4 GHz, Bluetooth 5.1`,
-      category:"Peripherals"
+    category: "Peripherals",
   },
 ];

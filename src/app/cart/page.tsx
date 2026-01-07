@@ -1,9 +1,11 @@
 "use client";
 
 import { Product } from "@/utils/utils";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { TiShoppingCart } from "react-icons/ti";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
+import { TiShoppingCart } from "react-icons/ti";
 export default function Cart() {
   const [cart, setCart] = useState<Product[]>([]);
 
@@ -32,44 +34,53 @@ export default function Cart() {
   };
 
   return (
-    <main className="viewPort min-h-screen w-screen px-8 pb-8 bg-gray-950">
+    <main className=" min-h-screen w-screen sm:p-8 p-6 bg-gray-950">
       <title>Cart</title>
-      <div className="flex items-center justify-center">
-        <TiShoppingCart className="mt-16 mr-2 text-[42px]" />
-        <div className="mt-16 text-[40px]">Your Products</div>
+
+      <div className="flex items-center justify-center gap-2">
+        <TiShoppingCart className="text-[3rem]" />
+        <h1 className="text-4xl">Your Products</h1>
       </div>
+
       <div className="flex w-full justify-end items-center">
-        <div className="h-full w-full flex flex-col justify-center items-center bg-gray-950">
+        <div className="h-full w-full flex flex-col items-center bg-gray-950">
           {cart.length === 0 ? (
             <div className="text-white mt-10 text-x1">Your cart ir empty</div>
           ) : (
             cart.map((product: Product) => (
               <div
-                className="Square relative flex max-sm:flex-col gap-4 h-auto w-full max-w-5xl mb-2 mt-6 rounded-lg bg-gray-900 p-4"
+                className=" relative flex max-sm:flex-col gap-4 h-auto w-full max-w-5xl mb-2 mt-6 rounded-lg bg-gray-900 p-4"
                 key={product.id}
               >
-                <img
-                  src={product.src}
-                  alt={product.name}
-                  className="h-40 max-sm:h-1/2 max-sm:w-full w-40 object-scale-down rounded-md"
-                />
-                <div className="flex flex-col">
-                  <h3 className="text-white text-lg sm:text-xl">
-                    {product.name}
-                  </h3>
-                  <p className="text-blue-500 text-lg sm:text-xl">
-                    {product.price}
-                  </p>
-                  <p className="text-blue-500 text-lg sm:text-xl">
-                    {product.discount}
-                  </p>
+                <div className="flex gap-4 sm:gap-10">
+                  <Image
+                    src={product.src}
+                    alt={product.name}
+                    className="h-40 w-40 object-cover rounded-md"
+                    width={160}
+                    height={160}
+                  />
+
+                  <div className="flex flex-col gap-2">
+                    <Link href={`/products/${product.id}`}>
+                      <h3 className="text-white text-lg sm:text-xl hover:underline">
+                        {product.name}
+                      </h3>
+                    </Link>
+                    <p className="text-blue-500 text-lg sm:text-xl">
+                      {product.price}
+                    </p>
+                    <p className="text-blue-500 text-lg sm:text-xl">
+                      {product.discount}
+                    </p>
+                  </div>
+                  <button
+                    className="absolute right-0 top-0 py-2 px-2"
+                    onClick={() => handleClick(product)}
+                  >
+                    <MdOutlineRemoveShoppingCart className="hover:bg-gray-700" />
+                  </button>
                 </div>
-                <button
-                  className="absolute right-0 top-0 py-2 px-2"
-                  onClick={() => handleClick(product)}
-                >
-                  <MdOutlineRemoveShoppingCart className="hover:bg-gray-700" />
-                </button>
               </div>
             ))
           )}
