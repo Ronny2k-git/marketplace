@@ -1,4 +1,6 @@
+import { EmptyBanner } from "@/global/components";
 import { Products } from "@/utils/utils";
+import Image from "next/image";
 import Link from "next/link";
 import { MdDescription } from "react-icons/md";
 
@@ -6,100 +8,96 @@ type infoProducts = {
   params: Promise<{ productid: string }>;
 };
 
-async function testPromise() {
-  return new Promise<string>((resolve) => {
-    setTimeout(() => {
-      resolve("test");
-    }, 5_000);
-  });
-}
-
-export default async function Info({ params }: infoProducts) {
-  console.log(await params);
-
+export default async function ProductPage({ params }: infoProducts) {
   const productid = (await params).productid;
   const product = Products.find((product) => product.id == productid);
 
-  testPromise().then((result) => {
-    console.log("Promise resolve", result);
-  });
-
   if (product == undefined) {
     return (
-      <div className="h-screen w-screen">
-        <div className="h-full w-full">
-          <h1 className="flex justify-center items-center mt-[450px] text-2xl">
-            Lamentamos, nenhum produto foi encontrado com o termo pesquisado
-          </h1>
-          <h2 className="flex justify-center items-center text-xl">
-            Tente novamente com outros termos...
-          </h2>
-        </div>
+      <div className="h-[calc(100vh-88px)] w-full flex items-center justify-center">
+        <EmptyBanner
+          title="No products found"
+          subtitle="Try again with different terms"
+        />
       </div>
     );
   }
   return (
-    <main className="h-[calc(screen - 48px)] w-full mx-auto px-4 pb-20 bg-gray-950">
+    <main className="min-h-screen w-full flex justify-center px-4 py-16 bg-gray-950">
       <title>Product</title>
-      <div className="h-full w-full max-w-5xl mx-auto bg-gray-950 pt-">
-        <div className="flex justify-center items-center ">
-          <h1 className="text-3xl mb-28 pr-[300] text-gray-400 mt-16">
-            {product.name}
-          </h1>
-        </div>
-        <div className="flex justify-center gap-8">
-          <div className="flex flex-col gap-8">
-            <div className="h-14 w-14 rounded-md bg-white">
-              <img className="h-14 w-14 object-contain" src={product.src}></img>
-            </div>
-            <div className="h-14 w-14 rounded-md bg-white">
-              <img className="h-14 w-14 object-contain" src={product.src}></img>
-            </div>
-            <div className="h-14 w-14 rounded-md bg-white">
-              <img className="h-14 w-14 object-contain" src={product.src}></img>
-            </div>
-            <div className="h-14 w-14 rounded-md bg-white">
-              <img className="h-14 w-14 object-contain" src={product.src}></img>
-            </div>
+
+      <div className="w-full max-w-5xl flex flex-col gap-8">
+        <section
+          className="flex flex-col bg-gray-900/20 border rounded-2xl max-w-5xl border-gray-800/70
+          py-12 w-full items-center gap-8"
+        >
+          {/* Product Name */}
+          <div className="flex justify-center mb-8">
+            <h1 className="text-3xl text-center text-gray-400">
+              {product.name}
+            </h1>
           </div>
-          <div className="flex justify-center items-center gap-12">
-            <div className="h-[340px] w-[340px] rounded-md bg-white flex flex-shrink-0 justify-center ml-auto items-center">
-              <img
-                className="h-[340] w-[340] object-contain transition-transform duration-500 hover:scale-150"
+
+          <div className="flex max-md:flex-col max-md:items-center justify-center gap-8">
+            {/* Secondary Images */}
+            <div className="flex md:flex-col gap-8">
+              {Array.from({ length: 4 }).map((_, index) => (
+                <Image
+                  key={index}
+                  alt="secondary-image"
+                  className="object-contain"
+                  src={product.src}
+                  width={56}
+                  height={56}
+                />
+              ))}
+            </div>
+
+            {/* Product Infos */}
+            <div className="flex flex-col justify-center items-center gap-12">
+              <Image
+                alt="main-image"
+                className=" object-contain transition-transform duration-500 hover:scale-110"
                 src={product.src}
+                width={340}
+                height={340}
               />
-            </div>
-            <div>
-              <del className="text-[14px] text-gray-500">{product.old}</del>
-              <p className="text-blue-700 text-[40px] font-bold">
-                {product.price}
-                <span className="text-[18px] text-blue-500">
-                  {product.discount}
-                </span>
-              </p>
-              <p className="ml-auto text-[13px] text-gray-500">
-                {product.offer}
-              </p>
+
+              <div>
+                <del className="text-[14px] text-gray-500">{product.old}</del>
+                <p className="text-blue-700 text-[40px] font-bold">
+                  {product.price}
+                  <span className="text-[18px] text-blue-500">
+                    {product.discount}
+                  </span>
+                </p>
+                <p className="text-[13px] text-gray-500">{product.offer}</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="flex justify-center mr-[270] mt-8">
-          <Link href="/Buy/cart">
-            <div className="Button flex justify-center items-center h-14 w-[345px] ml-2 rounded-md bg-blue-700 hover:bg-blue-600 mb-20">
+
+          {/* Buy Button */}
+          <Link className="w-full max-w-[21rem]" href="/cart">
+            <div className=" flex justify-center md:ml-10 items-center h-14 w-full rounded-md bg-blue-700 hover:bg-blue-600">
               <p className="text-white font-bold text-[15px]">BUY</p>
             </div>
           </Link>
-        </div>
-        <div className="Division h-7 w-full bg-gray-900" />
-        <div className="flex mt-8">
-          <MdDescription className="size-6 fill-blue-500 mt-1" />
-          <h1 className=" font-bold text-[25px] ml-1 text-gray-400">
-            Product description
-          </h1>
-        </div>
-        <div className="flex">
-          <h2 className="whitespace-pre">{product.description}</h2>
-        </div>
+        </section>
+
+        <div className="h-0.5 my-8 w-full bg-gray-900" />
+
+        <section className="flex flex-col gap-8">
+          <div className="flex items-start gap-2">
+            <MdDescription className="size-8 fill-blue-500" />
+            <h1 className=" font-bold text-[25px] text-gray-400">
+              Product description
+            </h1>
+          </div>
+
+          <h2 className="whitespace-pre-line break-words">
+            {product.description}
+          </h2>
+        </section>
       </div>
     </main>
   );

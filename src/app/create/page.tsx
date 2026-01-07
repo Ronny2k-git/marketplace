@@ -69,7 +69,7 @@ export default function AddProduct() {
       localStorage.getItem("local-products") || "[]"
     );
 
-    localProducts.push(parse.data); //newProducts
+    localProducts.push(parse.data); // New Products
     localStorage.setItem("local-products", JSON.stringify(localProducts)); //The local storage only stores strings.
     router.push("/marketplace");
   };

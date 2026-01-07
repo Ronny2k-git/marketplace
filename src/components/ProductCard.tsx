@@ -13,7 +13,6 @@ function getProducts(): Product[] {
 
 export function ProductCard(product: Product) {
   const [, setCart] = useState(() => getProducts());
-  const [message, setMessage] = useState<string>("");
 
   const addCart = (product: Product) => {
     const savedCart = getProducts();
@@ -24,14 +23,11 @@ export function ProductCard(product: Product) {
 
   const handleClick = (product: Product) => {
     addCart(product);
-    setMessage("Product added into cart");
-    setTimeout(() => {
-      setMessage("");
-    }, 3000);
+    alert("Product added into cart");
   };
 
   return (
-    <article className="w-full h-auto p-2 flex flex-col items-cente bg-gray-900 rounded-lg">
+    <article className=" w-full h-auto p-2 flex flex-col items-cente bg-gray-900 rounded-lg">
       {/* Image */}
       <div className="flex items-center justify-center p-8">
         <Link href={`/product/${product.id}`}>
@@ -79,12 +75,6 @@ export function ProductCard(product: Product) {
           <span className="text-white font-bold text-[15px]">BUY</span>
         </Link>
       </div>
-
-      {message && (
-        <p role="status" className="mt-2 text-green-500 text-center">
-          {message}
-        </p>
-      )}
     </article>
   );
 }

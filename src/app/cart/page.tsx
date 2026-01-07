@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { TiShoppingCart } from "react-icons/ti";
+
 export default function Cart() {
   const [cart, setCart] = useState<Product[]>([]);
 
@@ -34,11 +35,6 @@ export default function Cart() {
     }, 3000);
   };
 
-  //  1 REFACTOR ALL COMPONENTS
-
-  //  3 CHECK WHAT IS THE PROBLEM ON THE CART PAGE WHEN THE USER CLICKS ON A PRODUCT
-  //    THEY ARE NOT BEEING REDIRECTED TO THE ESPECIFIC PRODUCT PAGE
-
   return (
     <main className=" min-h-screen w-screen sm:p-8 p-6 bg-gray-950">
       <title>Cart</title>
@@ -59,20 +55,22 @@ export default function Cart() {
           ) : (
             cart.map((product: Product) => (
               <div
-                className=" relative flex max-sm:flex-col gap-4 h-auto w-full max-w-5xl mb-2 mt-6 rounded-lg bg-gray-900 p-4"
+                className=" relative flex max-sm:flex-col gap-4 h-auto w-full max-w-5xl mt-6 rounded-lg bg-gray-900 p-4"
                 key={product.id}
               >
                 <div className="flex gap-4 sm:gap-10">
-                  <Image
-                    src={product.src}
-                    alt={product.name}
-                    className="h-40 w-40 object-cover rounded-md"
-                    width={160}
-                    height={160}
-                  />
+                  <Link href={`/product/${product.id}`}>
+                    <Image
+                      src={product.src}
+                      alt={product.name}
+                      className="h-40 w-40 object-cover rounded-md hover:scale-105"
+                      width={160}
+                      height={160}
+                    />
+                  </Link>
 
                   <div className="flex flex-col gap-2">
-                    <Link href={`/products/${product.id}`}>
+                    <Link href={`/product/${product.id}`}>
                       <h3 className="text-white text-lg sm:text-xl hover:underline">
                         {product.name}
                       </h3>
