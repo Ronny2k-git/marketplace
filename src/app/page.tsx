@@ -50,7 +50,12 @@ export default function MarketPlaceHome() {
               The quality is out of this world
             </h3>
           </div>
-          <Image alt="PC" src={"/home-banner.png"} width={300} height={300} />
+          <Image
+            alt="PC"
+            src={"/banners/home-banner.png"}
+            width={300}
+            height={300}
+          />
         </div>
 
         {/* Input to filter the products by name */}
@@ -108,7 +113,7 @@ export default function MarketPlaceHome() {
               <EmptyBanner
                 className=" col-span-full"
                 title="No Products Found"
-                subtitle="Please check your filters"
+                subtitle="Please check your filters and try again."
               />
             </div>
           )}

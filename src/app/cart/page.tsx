@@ -1,5 +1,6 @@
 "use client";
 
+import { EmptyBanner } from "@/global/components";
 import { Product } from "@/utils/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,6 +34,11 @@ export default function Cart() {
     }, 3000);
   };
 
+  //  1 REFACTOR ALL COMPONENTS
+
+  //  3 CHECK WHAT IS THE PROBLEM ON THE CART PAGE WHEN THE USER CLICKS ON A PRODUCT
+  //    THEY ARE NOT BEEING REDIRECTED TO THE ESPECIFIC PRODUCT PAGE
+
   return (
     <main className=" min-h-screen w-screen sm:p-8 p-6 bg-gray-950">
       <title>Cart</title>
@@ -45,7 +51,11 @@ export default function Cart() {
       <div className="flex w-full justify-end items-center">
         <div className="h-full w-full flex flex-col items-center bg-gray-950">
           {cart.length === 0 ? (
-            <div className="text-white mt-10 text-x1">Your cart ir empty</div>
+            <EmptyBanner
+              title="Your cart is empty"
+              subtitle="Select a product on the home page"
+              className="my-10"
+            />
           ) : (
             cart.map((product: Product) => (
               <div

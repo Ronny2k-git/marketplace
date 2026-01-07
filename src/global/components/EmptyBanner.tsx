@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { IoMdSad } from "react-icons/io";
 import { twMerge } from "tailwind-merge";
 
 export type EmptyBannerProps = {
@@ -11,15 +11,23 @@ export function EmptyBanner({ title, subtitle, className }: EmptyBannerProps) {
   return (
     <div
       className={twMerge(
-        "bg-[url('/')] w-full h-auto p-8 gap-2 flex flex-col justify-center-center items-center max-w-2xl  rounded-xl",
+        `relative bg-[url('/banners/empty-banner.jpg')] bg-center bg-cover w-full h-auto max-sm:p-8 p-20 
+         gap-2 border border-blue-950 flex flex-col justify-center-center items-center max-w-4xl rounded-2xl`,
         className
       )}
     >
-      <Image alt="banner-image" src="/" width={80} height={80} />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50 rounded-2xl" />
 
-      <h2 className="text-3xl text-gray-300">{title}</h2>
+      <div className="flex flex-col items-center gap-2 z-10">
+        <IoMdSad className="z-10 max-sm:text-7xl text-8xl text-gray-400" />
 
-      <p className="text-gray-400">{subtitle}</p>
+        <h2 className="text-2xl sm:text-3xl text-center text-gray-300">
+          {title}
+        </h2>
+
+        <p className="text-gray-300/90 text-center">{subtitle}</p>
+      </div>
     </div>
   );
 }
