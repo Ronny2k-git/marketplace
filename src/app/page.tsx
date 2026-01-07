@@ -1,6 +1,7 @@
 "use client";
 
 import { ProductCard } from "@/components";
+import { EmptyBanner } from "@/global/components";
 import { Product } from "@/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -57,7 +58,7 @@ export default function MarketPlaceHome() {
           <div className="relative w-full flex items-center">
             <IoSearchSharp className="absolute text-xl ml-2" />
             <input
-              className="bg-gray-900 w-full md:max-w-[38rem] h-10 rounded-md text-white placeholder-white pl-10 hover:bg-gray-800"
+              className="bg-gray-900 w-full md:max-w-[38rem] h-10 rounded-md text-white pl-10 hover:bg-gray-800"
               placeholder="Search products ..."
               value={search}
               onChange={(event) => setSearch(event.target.value)}
@@ -68,7 +69,7 @@ export default function MarketPlaceHome() {
           {/* Selector to filter the products by value */}
           <div className="flex max-md:self-end md:items-center">
             <select
-              className="bg-gray-900 w-ful h-10 px-4 flex justify-center items-center hover:bg-gray-800 rounded-md text-white"
+              className="bg-gray-900 h-10 px-4 flex justify-center items-center hover:bg-gray-800 rounded-md text-white"
               value={select}
               onChange={(event) => setSelect(event.target.value)}
             >
@@ -86,28 +87,38 @@ export default function MarketPlaceHome() {
         </div>
 
         {/* Filtered Products */}
-        <div className="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 h-full gap-6 ">
-          {selectFilteredProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              src={product.src}
-              name={product.name}
-              old={product.old}
-              price={product.price}
-              offer={product.offer}
-              discount={product.discount}
-              description={product.description}
-              category=""
-            />
-          ))}
+        <div className="w-full h-full gap-6 grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 ">
+          {selectFilteredProducts.length > 0 ? (
+            selectFilteredProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                src={product.src}
+                name={product.name}
+                old={product.old}
+                price={product.price}
+                offer={product.offer}
+                discount={product.discount}
+                description={product.description}
+                category=""
+              />
+            ))
+          ) : (
+            <div className="flex w-full col-span-full justify-center my-10">
+              <EmptyBanner
+                className=" col-span-full"
+                title="No Products Found"
+                subtitle="Please check your filters"
+              />
+            </div>
+          )}
         </div>
 
         {/* Pagination Mock */}
         {selectFilteredProducts.length >= 1 ? (
-          <div className="h-full w-full flex justify-center mt-10 gap-1 items-center text-black font-bold">
+          <div className="h-full w-full flex justify-center mt-10 gap-1 items-center text-gray-300 font-bold">
             <button className="h-9 w-9 hover:bg-blue-600 flex items-center justify-center bg-blue-500 rounded-2xl text-sm">
-              <RiArrowLeftDoubleLine className="fill-black text-3xl" />
+              <RiArrowLeftDoubleLine className="fill-gray text-3xl" />
             </button>
             <button className="h-9 w-9 hover:bg-blue-600 bg-blue-500 rounded-2xl text-base">
               {"1"}
@@ -115,12 +126,12 @@ export default function MarketPlaceHome() {
             <button className="h-9 w-9 hover:bg-blue-600 bg-blue-500 rounded-2xl text-base">
               {"2"}
             </button>
-            <p className="-mt-2 text-xm text-blue-400">...</p>
+            <p className="-mt-2 text-xm text-gray-300">...</p>
             <button className="h-9 w-9 hover:bg-blue-600 bg-blue-500 rounded-2xl text-base">
               {"10"}
             </button>
             <button className="h-9 w-9 hover:bg-blue-600 flex items-center justify-center bg-blue-500 rounded-2xl text-sm">
-              <RiArrowRightDoubleLine className="fill-black text-3xl" />
+              <RiArrowRightDoubleLine className="fill-gray text-3xl" />
             </button>
           </div>
         ) : null}
