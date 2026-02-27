@@ -2,21 +2,12 @@
 
 import { ProductCard } from "@/components";
 import { EmptyBanner } from "@/global/components";
+import { SELECTOR_VALUES } from "@/global/utils";
 import { Product } from "@/utils";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { RiArrowLeftDoubleLine, RiArrowRightDoubleLine } from "react-icons/ri";
-
-const SELECTOR_VALUES = [
-  { value: "", label: "Filter", class: "hidden" },
-  { value: "all", label: "All Products" },
-  { value: "Peripherals", label: "Peripherals" },
-  { value: "Acessories", label: "Acessories" },
-  { value: "Portables", label: "Portables" },
-  { value: "Complete-PC", label: "Complete PC" },
-  { value: "Computer-parts", label: "Computer Parts" },
-];
 
 export default function MarketPlaceHome() {
   const [search, setSearch] = useState<string>("");
@@ -32,7 +23,7 @@ export default function MarketPlaceHome() {
   });
   const selectFilteredProducts = searchFilteredProducts.filter((product) => {
     if (!select || select === "all") return true;
-    return product.category === select;
+    return product.productType === select;
   });
 
   return (
@@ -78,6 +69,8 @@ export default function MarketPlaceHome() {
               value={select}
               onChange={(event) => setSelect(event.target.value)}
             >
+              <option value={""}>All</option>
+
               {SELECTOR_VALUES.map((product, index) => (
                 <option
                   value={product.value}
@@ -102,10 +95,9 @@ export default function MarketPlaceHome() {
                 name={product.name}
                 old={product.old}
                 price={product.price}
-                offer={product.offer}
-                discount={product.discount}
+                payment={product.payment}
                 description={product.description}
-                category=""
+                productType=""
               />
             ))
           ) : (
@@ -113,7 +105,7 @@ export default function MarketPlaceHome() {
               <EmptyBanner
                 className=" col-span-full"
                 title="No Products Found"
-                subtitle="Please check your filters and try again."
+                subtitle="Please check your filters or Create a Product"
               />
             </div>
           )}

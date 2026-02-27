@@ -1,20 +1,36 @@
+"use client";
+
 import { EmptyBanner } from "@/global/components";
-import { Products } from "@/utils/utils";
-import Image from "next/image";
+import { CalculatePct } from "@/global/utils";
+import { Product } from "@/utils";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { MdDescription } from "react-icons/md";
 
-type infoProducts = {
-  params: Promise<{ productid: string }>;
-};
+export default function ProductPage() {
+  const params = useParams();
+  const productId = params.productid as string;
 
-export default async function ProductPage({ params }: infoProducts) {
-  const productid = (await params).productid;
-  const product = Products.find((product) => product.id == productid);
+  const [product, setProduct] = useState<Product>();
 
+  {
+    /*Fetch Product */
+    useEffect(() => {
+      const localProducts = JSON.parse(
+        localStorage.getItem("local-products") ?? "",
+      );
+
+      const foundProduct = localProducts.find(
+        (product: Product) => product.id === productId,
+      );
+
+      setProduct(foundProduct);
+    }, [productId]);
+  }
   if (product == undefined) {
     return (
-      <div className="h-[calc(100vh-88px)] w-full flex items-center justify-center">
+      <div className="h-[calc(100vh-88px)] p-4 bg-gray-950 w-full flex items-center justify-center">
         <EmptyBanner
           title="No products found"
           subtitle="Try again with different terms"
@@ -22,14 +38,15 @@ export default async function ProductPage({ params }: infoProducts) {
       </div>
     );
   }
+
   return (
     <main className="min-h-screen w-full flex justify-center px-4 py-16 bg-gray-950">
       <title>Product</title>
 
       <div className="w-full max-w-5xl flex flex-col gap-8">
         <section
-          className="flex flex-col bg-gray-900/20 border rounded-2xl max-w-5xl border-gray-800/70
-          py-12 w-full items-center gap-8"
+          className="flex flex-col p-4 sm:py-16 bg-gray-900/20 border rounded-2xl max-w-5xl border-gray-800/70
+          w-full items-center gap-8"
         >
           {/* Product Name */}
           <div className="flex justify-center mb-8">
@@ -40,38 +57,38 @@ export default async function ProductPage({ params }: infoProducts) {
 
           <div className="flex max-md:flex-col max-md:items-center justify-center gap-8">
             {/* Secondary Images */}
-            <div className="flex md:flex-col gap-8">
+            <div className="flex md:flex-col gap-4 sm:gap-8">
               {Array.from({ length: 4 }).map((_, index) => (
-                <Image
+                <img
                   key={index}
                   alt="secondary-image"
-                  className="object-contain"
+                  className="object-cover h-14 w-14"
                   src={product.src}
-                  width={56}
-                  height={56}
                 />
               ))}
             </div>
 
             {/* Product Infos */}
             <div className="flex flex-col justify-center items-center gap-12">
-              <Image
+              <img
                 alt="main-image"
-                className=" object-contain transition-transform duration-500 hover:scale-110"
+                className=" h-64 w-64 sm:h-80 sm:w-80 object-cover transition-transform duration-500 hover:scale-110"
                 src={product.src}
-                width={340}
-                height={340}
               />
 
-              <div>
-                <del className="text-[14px] text-gray-500">{product.old}</del>
-                <p className="text-blue-700 text-[40px] font-bold">
-                  {product.price}
-                  <span className="text-[18px] text-blue-500">
-                    {product.discount}
+              <div className="">
+                <span className="text-base line-through text-gray-500">{`$ ${product.old}`}</span>
+
+                <div className="flex gap-4 items-center">
+                  <span className="text-[40px] text-blue-700">
+                    {`$${product.price}`}
                   </span>
-                </p>
-                <p className="text-[13px] text-gray-500">{product.offer}</p>
+
+                  <span className="text-base h-6 bg-gray-700 px-1 rounded-xl text-white">
+                    {`- ${CalculatePct(Number(product.old), Number(product.price))}`}
+                  </span>
+                </div>
+                <p className="text-[13px] text-gray-500">{product.payment}</p>
               </div>
             </div>
           </div>

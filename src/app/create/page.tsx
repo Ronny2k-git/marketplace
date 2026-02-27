@@ -3,20 +3,20 @@
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 
+import { SELECTOR_VALUES } from "@/global/utils";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 //Fazer a verificação dos itens do produto.
 // UUID ele gera um id aleatório e único.
-
 const ProductSchema = z.object({
   src: z.string().min(5, { message: "Insira uma foto válida" }),
   id: z.string().uuid(),
   name: z.string().min(5),
   old: z.string().min(1),
   price: z.string().min(1),
-  discount: z.string().min(1),
-  offer: z.string().min(1),
+  payment: z.string().min(1),
+  productType: z.string(),
   description: z.string().min(1),
 });
 
@@ -25,8 +25,8 @@ export default function AddProduct() {
   const [productName, setProductName] = useState("");
   const [oldPrice, setOldPrice] = useState("");
   const [price, setPrice] = useState("");
-  const [discount, setDiscount] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [productType, setProductType] = useState("");
   const [description, setDescription] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
@@ -37,8 +37,8 @@ export default function AddProduct() {
       !productName ||
       !oldPrice ||
       !price ||
-      !discount ||
       !paymentMethod ||
+      !productType ||
       !description
     ) {
       alert("Todos os campos devem ser preenchidos.");
@@ -54,8 +54,8 @@ export default function AddProduct() {
       name: productName,
       old: oldPrice,
       price,
-      discount,
-      offer: paymentMethod,
+      payment: paymentMethod,
+      productType,
       description,
     };
 
@@ -85,58 +85,81 @@ export default function AddProduct() {
           ADD YOUR PRODUCT
         </h2>
 
+        {/* Image URL */}
         <div>
           <p className="text-gray-400 text-start">Add Image(URL):</p>
           <input
-            className="h-10 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+            className="h-10 px-2 outline-none w-full text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
             value={imageURL}
             onChange={(event) => setImageURL(event.target.value)}
           />
         </div>
+
+        {/* Product Name */}
         <div>
           <p className="text-gray-400 text-start">Product Name:</p>
           <input
-            className="h-10 px-2 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+            className="h-10 px-2 outline-none w-full text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
             value={productName}
             onChange={(event) => setProductName(event.target.value)}
           />
         </div>
+
+        {/* Old Price */}
         <div>
           <p className="text-gray-400 text-start">Old Price:</p>
           <input
-            className="h-10 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+            className="h-10 px-2 outline-none w-full text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
             value={oldPrice}
             onChange={(event) => setOldPrice(event.target.value)}
           />
         </div>
+
+        {/* Price */}
         <div>
           <p className="text-gray-400 text-start">Price:</p>
           <input
-            className="h-10 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+            className="h-10 px-2 outline-none w-full text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
             value={price}
             onChange={(event) => setPrice(event.target.value)}
           />
         </div>
+
+        {/* Payment Method */}
         <div>
           <p className="text-gray-400 text-start">Payment Method:</p>
           <input
-            className="h-10 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+            className="h-10 px-2 outline-none w-full text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
             value={paymentMethod}
             onChange={(event) => setPaymentMethod(event.target.value)}
           />
         </div>
+
+        {/* Product Type */}
         <div>
-          <p className="text-gray-400 text-start">Discount:</p>
-          <input
-            className="h-10 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
-            value={discount}
-            onChange={(event) => setDiscount(event.target.value)}
-          />
+          <p className="text-gray-400 text-start">Payment Method:</p>
+          <select
+            className="h-10 px-2 outline-none w-full text-lg rounded-lg hover:bg-gray-600 bg-gray-700"
+            value={productType}
+            onChange={(event) => setProductType(event.target.value)}
+          >
+            {SELECTOR_VALUES.map((product, index) => (
+              <option
+                value={product.value}
+                key={index}
+                className={`${product.class}`}
+              >
+                {product.label}
+              </option>
+            ))}
+          </select>
         </div>
+
+        {/* Product Description  */}
         <div className="col-span-full">
           <p className="text-gray-400 text-start">Product Description:</p>
-          <input
-            className="h-24 w-full text-black text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
+          <textarea
+            className="min-h-24 max-h-24 p-4 w-full outline-none text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
@@ -149,7 +172,7 @@ export default function AddProduct() {
             </div>
           )}
           <button
-            className="h-10 w-full bg-blue-700 mt-4 rounded-lg hover:bg-blue-600"
+            className="h-10 px-2 outline-none w-full bg-blue-700 mt-4 rounded-lg hover:bg-blue-600"
             onClick={createProduct}
           >
             CREATE PRODUCT

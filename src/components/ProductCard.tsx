@@ -1,5 +1,6 @@
 "use client";
 
+import { CalculatePct } from "@/global/utils";
 import { Product } from "@/utils/utils";
 import Link from "next/link";
 import { useState } from "react";
@@ -46,13 +47,14 @@ export function ProductCard(product: Product) {
 
         <div className="flex justify-between items-start">
           <div className="flex flex-col gap-2">
-            <del>{product.old}</del>
+            <del>{`$ ${product.old}`}</del>
 
             {/* Current price */}
             <div className=" text-2xl text-blue-600 font-bold flex items-center gap-2">
-              {product.price}
-              <span className="flex items-center justify-center text-white h-5 w-10 bg-gray-700 font-light text-[15px] rounded-xl">
-                {product.discount}
+              {`$ ${product.price}`}
+
+              <span className="flex items-center text-white h-6 w-auto px-1 bg-gray-700 font-light text-[15px] rounded-xl">
+                {`- ${CalculatePct(Number(product.old), Number(product.price))}`}
               </span>
             </div>
           </div>
@@ -63,8 +65,9 @@ export function ProductCard(product: Product) {
           </button>
         </div>
 
-        {/* Product discount */}
-        <p className="whitespace-pre">{product.offer}</p>
+        {/* Payment method */}
+        <p className="whitespace-pre text-sm">{`Paymenth method: ${product.payment}`}</p>
+
         <Link
           className="flex justify-center items-center h-12 w-full hover:bg-blue-600 rounded-md bg-blue-700"
           href={`/product/${product.id}`}

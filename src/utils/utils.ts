@@ -4,10 +4,9 @@ export type Product = {
   name: string;
   old: string;
   price: string;
-  discount: string;
-  offer: string;
+  payment: string;
   description: string;
-  category: string;
+  productType: string;
 };
 export const Products: Product[] = [
   {
@@ -16,9 +15,8 @@ export const Products: Product[] = [
     name: "Gaming Monitor Alienware 27'",
     old: "R$ 2.832,91",
     price: "R$ 2.599,00",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 244,66`,
-    discount: "-9%",
     description: `
        • Tamanho da tela: 27'
        • Tem uma resolução de 2560px-1440px 
@@ -27,7 +25,7 @@ to 12 installments of R$ 244,66`,
        • Seu brilho é de 600cd/m² 
        • Com conexão USB-B 3.2 
        • É giratório e reclinável`,
-    category: "Peripherals",
+    productType: "Peripherals",
   },
   {
     src: "/products/mouse1.webp",
@@ -35,9 +33,8 @@ to 12 installments of R$ 244,66`,
     name: "Wireless Mouse Alienware - Aw720m",
     old: "R$649,93",
     price: "R$ 618,99",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 58,28`,
-    discount: "-5%",
     description: `
       • Conectividade: USB 
       • Wireless 2.4 GHz 
@@ -47,7 +44,7 @@ to 12 installments of R$ 58,28`,
       • DPI até 26.000 
       • Bateria: Polimero Litio de até 420 horas de duração  
       • Número de Botões: 8`,
-    category: "Peripherals",
+    productType: "Peripherals",
   },
   {
     src: "/products/headset1.webp",
@@ -55,9 +52,8 @@ to 12 installments of R$ 58,28`,
     name: "Gamer Alienware Headset",
     old: "R$916.92",
     price: "R$ 849,00",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 79,94`,
-    discount: "-8%",
     description: `
        • Compatibilidade: Windows
        • Conexões / tipo de conector
@@ -66,7 +62,7 @@ to 12 installments of R$ 79,94`,
       • Formato: Microfone de fone de ouvido
       • Saída de áudio — Resposta de frequência 20 - 40000 Hz
       🗰 Garantia: Garantia limitada - 2 anos`,
-    category: "Peripherals",
+    productType: "Peripherals",
   },
   {
     src: "/products/teclado1.webp",
@@ -74,9 +70,8 @@ to 12 installments of R$ 79,94`,
     name: "Gamer Keyboard Alienware - Aw920k",
     old: "R$ 2.014,88",
     price: "R$ 1.799,00",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 169,40`,
-    discount: "-12%",
     description: `
         Conectividade: Sem fio ou com cabo
        • Teclas de atalho: Programável com comutador basculante e botão rotativo
@@ -84,7 +79,7 @@ to 12 installments of R$ 169,40`,
         Interface: USB 2.4 GHz, Bluetooth 5.1
       🔅 Iluminação traseira: AlienFX RGB por tecla / 16,8 milhões de cores
         Recursos: Teclado numérico`,
-    category: "Peripherals",
+    productType: "Peripherals",
   },
   {
     src: "/products/mochila1.webp",
@@ -92,9 +87,8 @@ to 12 installments of R$ 169,40`,
     name: "Travel Backpack Alienware",
     old: "R$ 880,95",
     price: "R$ 839,00",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 79,00`,
-    discount: "-5%",
     description: `
       • Material do produto: Tecido 840D, Espuma EVA
       • Largura: 34.5 cm • Profundidade: 22 cm • Altura: 51 cm • Peso: 1.8 kg
@@ -109,7 +103,7 @@ to 12 installments of R$ 79,00`,
        cinta de esterno ajustável.
       • Material do forro: Nylex
       • Capacidade: 33 litros`,
-    category: "Acessories",
+    productType: "Acessories",
   },
   {
     src: "/products/notebook1.webp",
@@ -117,16 +111,15 @@ to 12 installments of R$ 79,00`,
     name: "Notebook Dell Alienware - M18",
     old: "R$ 40.681,74",
     price: "R$ 38.379,00",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 3.614,02`,
-    discount: "-6%",
     description: `
       • Gaming Laptop •Most Suitable For •Serious Gaming
       • Model: Alienware m18 Laptop •Series: Alienware m18 Laptop •RAM Size: 16 •Operating System: Win 11
       • Processor: i9-13900HX •Storage Type:HDD (Hard Disk Drive) •Hard Drive Capacity:0 •Screen Size:18
       • Processor Speed: 5.4 •GPU: Nvidia GeForce RTX 4090 •MPN: Alienware m18 Laptop •Maximum Resolution: 2560x1600
       • Color: Dark Metallic Moon •Manufacturer Warranty: 1 •SSD Capacity: 512 •Graphics Processing Type: Dedicated Graphics`,
-    category: "Portables",
+    productType: "Portables",
   },
   {
     src: "/products/pc1.webp",
@@ -134,9 +127,8 @@ to 12 installments of R$ 3.614,02`,
     name: "PC Gamer Dell Alienware - Aurora R15",
     old: "R$ 17.937,7",
     price: "R$ 15.598,99",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 1.468,90`,
-    discount: "-15%",
     description: `
       • 13ª geração Intel® Core™ i7-13700K (16-core, cache de 54MB, até 5.4GHz)
       • laptop: Windows 11 Home Single Language (português – Brasil)
@@ -144,7 +136,7 @@ to 12 installments of R$ 1.468,90`,
       • memory: 32GB DDR5 (2x16GB) 4800MT/s; Expansível até 64GB 5600MT/s (2 slots UDIMM)
       • harddrive: SSD de 512GB PCIe NVMe M.2
       • fallbackcolor: Chassi com 750W PSU, Alienware Cryo-tech ™ Edition CPU com sistema Liquid Cooler e painel transparente`,
-    category: "Complete-PC",
+    productType: "Complete-PC",
   },
   {
     src: "/products/teclado2.webp",
@@ -152,9 +144,8 @@ to 12 installments of R$ 1.468,90`,
     name: "Dell Alienware Keyboard - AW768 USB",
     old: "R$ 2.532,45",
     price: "R$ 2.302,23",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 216,79`,
-    discount: "-10%",
     description: `
       • Idioma: Inglês internacional
       • Layout: QWERTY
@@ -166,7 +157,7 @@ to 12 installments of R$ 216,79`,
       • Tecla cilíndrica.
       • Com conector: USB.
       • Medidas: 6.8" de altura, 19.6" de largura e 1.4" de profundidade.`,
-    category: "Peripherals",
+    productType: "Peripherals",
   },
   {
     src: "/products/notebook2.webp",
@@ -174,9 +165,8 @@ to 12 installments of R$ 216,79`,
     name: "Notebook Dell Alienware - ALW18 ",
     old: "R$ 43.165,5",
     price: "R$ 41.110,00",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 3.870,25`,
-    discount: "-5%",
     description: `
       • Brand	Alienware
       • Model Name	Alienware M18 Gaming Laptop
@@ -188,7 +178,7 @@ to 12 installments of R$ 3.870,25`,
       • Operating System	Windows 11 Pro
       • Special Feature	Backlit Keyboard, Numeric Keypad
       • Graphics Card Description	Dedicated`,
-    category: "Portables",
+    productType: "Portables",
   },
   {
     src: "/products/cadeira1.webp",
@@ -196,9 +186,8 @@ to 12 installments of R$ 3.870,25`,
     name: "Alienware S5000 Gaming Chair",
     old: "R$ 1.948,78",
     price: "R$ 1.739.99",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 163,84`,
-    discount: "-12%",
     description: `
      • ModeL: VG-S5000_AL	
      • Colors:	N/A	
@@ -214,7 +203,7 @@ to 12 installments of R$ 163,84`,
      • Seat Depth: 480 mm / 19 in	
      • Net Weight: 27.5 kg / 60 lbs	
      • Gross Weight: 28 kg / 62 lbs`,
-    category: "Peripherals",
+    productType: "Peripherals",
   },
   {
     src: "/products/monitor3.webp",
@@ -222,9 +211,8 @@ to 12 installments of R$ 163,84`,
     name: "Gaming Monitor Curved 34'- Alienware",
     old: "R$ 8.184,43",
     price: "R$ 7.649,00",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 720,28`,
-    discount: "-7%",
     description: `
       • Tamanho na diagonal: 34"
       • Taxa de atualização: Resolução WQHD 3440 x 1440 (DisplayPort: 144 Hz HDMI: 100 Hz)
@@ -232,7 +220,7 @@ to 12 installments of R$ 720,28`,
     🕑Tempo de resposta: 2 ms (cinza a cinza); 1 ms (MPRT)
       • Portas: 2 x HDMI, DisplayPort 1.4
       • Cabos: 1 x cabo HDMI, 1 x Cabo DisplayPort 1.4 - DisplayPort à DisplayPort`,
-    category: "Peripherals",
+    productType: "Peripherals",
   },
   {
     src: "/products/mouse3.avif",
@@ -240,9 +228,8 @@ to 12 installments of R$ 720,28`,
     name: "Wireless Mouse Alienware - Aw610m ",
     old: "RS 615,60",
     price: "R$ 586,29",
-    offer: `Payable via Pix or up
+    payment: `Payable via Pix or up
 to 12 installments of R$ 55,20`,
-    discount: "-5%",
     description: `
       Dimensões e peso:
 
@@ -256,6 +243,6 @@ to 12 installments of R$ 55,20`,
       • Botões: 8
       • Acessórios incluídos: Dispositivo extensor e dispositivo USB-C
       • Interface: USB, 2.4 GHz, Bluetooth 5.1`,
-    category: "Peripherals",
+    productType: "Peripherals",
   },
 ];

@@ -1,6 +1,7 @@
 "use client";
 
 import { EmptyBanner } from "@/global/components";
+import { CalculatePct } from "@/global/utils";
 import { Product } from "@/utils/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -65,11 +66,11 @@ export default function Cart() {
                       <img
                         src={product.src}
                         alt={product.name}
-                        className="min-h-20 min-w-20 max-w-20 max-h-20 sm:h-28 sm:w-28 object-cover rounded-md hover:scale-105"
+                        className="min-h-20 min-w-20 max-w-20 max-h-20 object-cover rounded-md hover:scale-105"
                       />
                     </Link>
 
-                    <div className="flex flex-col gap-1 min-w-0 mr-4">
+                    <div className="flex flex-col min-w-0 mr-4">
                       <Link href={`/product/${product.id}`}>
                         <h3 className="text-white text-base sm:text-xl truncate max-w-full hover:underline">
                           {product.name}
@@ -77,13 +78,24 @@ export default function Cart() {
                       </Link>
 
                       <div className="flex flex-col">
-                        <span> {`$ ${product.old}`}</span>
+                        <div className="flex gap-2">
+                          <span className="line-through">
+                            {`$ ${product.old}`}
+                          </span>
+
+                          <span className="bg-gray-700 rounded-xl px-1">{`- ${CalculatePct(Number(product.old), Number(product.price))}`}</span>
+                        </div>
+
                         <span className="text-blue-500 text-lg sm:text-xl">
                           {`$ ${product.price}`}
                         </span>
                       </div>
 
-                      {/* <select className="w-20 h-5 rounded-md bg-gray-700"></select> */}
+                      <select className="absolute px-2 right-2 bottom-5 w-16 sm:w-20 h-6 sm:h-8 rounded-md bg-gray-700 outline-none cursor-pointer">
+                        {[1, 2, 3, 4, 5, "+ 6"].map((value, index) => (
+                          <option key={index}>{value}</option>
+                        ))}
+                      </select>
                     </div>
 
                     <button
