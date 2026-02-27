@@ -66,19 +66,20 @@ export default function AddProduct() {
     }
 
     const localProducts = JSON.parse(
-      localStorage.getItem("local-products") || "[]"
+      localStorage.getItem("local-products") || "[]",
     );
 
     localProducts.push(parse.data); // New Products
     localStorage.setItem("local-products", JSON.stringify(localProducts)); //The local storage only stores strings.
-    router.push("/marketplace");
+    router.push("/");
   };
 
   return (
     <main className="flex flex-col min-h-screen py-10 w-full justify-center items-center bg-gray-950">
       <h1 className="text-4xl text-gray-400">Creation Page</h1>
 
-      <div className="h-full w-full my-10 gap-4 p-8 max-w-2xl grid sm:grid-cols-2 rounded-3xl bg-gray-900">
+      {/* Creation Card */}
+      <div className="h-full w-full my-10 border border-gray-700 gap-4 p-8 max-w-2xl grid sm:grid-cols-2 rounded-3xl bg-gray-900">
         {/* Title */}
         <h2 className="text-3xl col-span-full text-gray-500 mb-6 font-bold">
           ADD YOUR PRODUCT

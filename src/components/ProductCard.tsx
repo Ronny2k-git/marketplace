@@ -1,7 +1,6 @@
 "use client";
 
 import { Product } from "@/utils/utils";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
@@ -27,16 +26,14 @@ export function ProductCard(product: Product) {
   };
 
   return (
-    <article className=" w-full h-auto p-2 flex flex-col items-cente bg-gray-900 rounded-lg">
+    <div className=" w-full h-auto p-2 flex flex-col border border-gray-700 bg-gray-900 rounded-lg">
       {/* Image */}
       <div className="flex items-center justify-center p-8">
         <Link href={`/product/${product.id}`}>
-          <Image
+          <img
             alt="product-image"
-            className=" h-40 w-40 hover:opacity-70 object-cover"
+            className="aspect-video min-h-48 hover:opacity-70 object-cover"
             src={product.src}
-            width={192}
-            height={192}
           />
         </Link>
       </div>
@@ -75,6 +72,6 @@ export function ProductCard(product: Product) {
           <span className="text-white font-bold text-[15px]">BUY</span>
         </Link>
       </div>
-    </article>
+    </div>
   );
 }

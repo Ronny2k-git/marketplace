@@ -120,7 +120,7 @@ export default function MarketPlaceHome() {
         </div>
 
         {/* Pagination Mock */}
-        {selectFilteredProducts.length >= 1 ? (
+        {selectFilteredProducts.length > 9 ? (
           <div className="h-full w-full flex justify-center mt-10 gap-1 items-center text-gray-300 font-bold">
             <button className="h-9 w-9 hover:bg-blue-600 flex items-center justify-center bg-blue-500 rounded-2xl text-sm">
               <RiArrowLeftDoubleLine className="fill-gray text-3xl" />
