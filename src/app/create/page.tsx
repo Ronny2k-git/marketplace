@@ -81,8 +81,8 @@ export default function AddProduct() {
   };
 
   return (
-    <main className="flex flex-col min-h-screen py-10 w-full justify-center items-center bg-gray-950">
-      <h1 className="text-4xl text-gray-400">Creation Page</h1>
+    <main className="flex flex-col h-full py-10 w-full px-4 justify-center items-center bg-gray-950">
+      <h1 className="text-3xl font-bold text-center">Add Your Product</h1>
 
       {/* Creation Card */}
       <div

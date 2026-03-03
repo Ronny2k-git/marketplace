@@ -1,60 +1,43 @@
 import Link from "next/link";
-import { IoMdAddCircleOutline } from "react-icons/io";
-import { MdOutlineExplore } from "react-icons/md";
-import { SiAlienware } from "react-icons/si";
-import { TiShoppingCart } from "react-icons/ti";
+import { FiPackage } from "react-icons/fi";
+import { PROJECT_ROUTES } from "../utils";
 import { Drawer } from "./Drawer";
-
-const PROJECT_ROUTES = [
-  {
-    label: "Explore",
-    path: "/",
-    icon: <MdOutlineExplore className="size-7" />,
-  },
-  {
-    label: "Create Product",
-    path: "/create",
-    icon: <IoMdAddCircleOutline className="size-7" />,
-  },
-  { label: "Cart", path: "/cart", icon: <TiShoppingCart className="size-7" /> },
-];
 
 export function TopBar() {
   return (
-    <div className="w-full bg-black px-5">
-      <div className="flex max-w-7xl mx-auto h-20 items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Link href="/">
-            <SiAlienware className="h-12 w-12 fill-white justify-center items-center text-xs" />
+    <header className="w-full fixed pt-6 flex items-center justify-center bg-gray-950/80 backdrop-blur-[1px] px-3 ">
+      <div className="w-full px-2 rounded-full border border-blue-700/40 max-w-7xl">
+        {/* Nav */}
+        <nav className="flex max-w-7xl mx-auto p-2 items-center justify-between">
+          <Link className="flex items-center gap-3" href="/">
+            <FiPackage className="h-10 w-10 text-blue-600 fill-white/85" />
+
+            <span className="text-2xl text-white">Product Manager</span>
           </Link>
 
-          <span className="text-3xl text-blue-600  hover:underline">
-            TechPlace
-          </span>
-        </div>
+          <div className="md:flex gap-2 items-cente hidden">
+            {PROJECT_ROUTES.map((route, index) => (
+              <div className="flex items-center justify-center" key={index}>
+                <Link
+                  href={route.path}
+                  className="flex items-center text-blue-600 justify-center gap-2"
+                >
+                  {route.icon}
 
-        <div className="md:flex gap-2 items-cente hidden">
-          {PROJECT_ROUTES.map((route, index) => (
-            <div className="flex items-center justify-center" key={index}>
-              <Link
-                href={route.path}
-                className="flex items-center justify-center gap-2"
-              >
-                {route.icon}
+                  <h2 className="mr-4 text-lg text-white hover:underline">
+                    {route.label}
+                  </h2>
+                </Link>
+              </div>
+            ))}
+          </div>
 
-                <h2 className="mr-4 text-lg text-blue-600 hover:underline">
-                  {route.label}
-                </h2>
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        {/*Drawer component */}
-        <div className="flex items-center md:hidden">
-          <Drawer />
-        </div>
+          {/*Drawer component */}
+          <div className="flex items-center md:hidden">
+            <Drawer />
+          </div>
+        </nav>
       </div>
-    </div>
+    </header>
   );
 }

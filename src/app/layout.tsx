@@ -27,9 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} overflow-hidden content- h-screen overflow-y-auto flex-col antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} h-screen overflow-y-auto flex-col antialiased`}
       >
-        <TopBar /> {children}
+        <TopBar />
+        <main className="pt-28 bg-gray-950">{children}</main>
       </body>
     </html>
   );
