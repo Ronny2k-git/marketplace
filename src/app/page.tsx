@@ -23,17 +23,14 @@ export default function MarketPlaceHome() {
   });
   const selectFilteredProducts = searchFilteredProducts.filter((product) => {
     if (!select || select === "all") return true;
-    return product.productType === select;
+    return product.category === select;
   });
 
   // TO DO LATER:
 
-  // 1 CHANGE THE CREATION PAGE
   // 2 CHANGE THE CART
   // 3 CREATE A PAGE TO EDIT THE PRODUCT
   // 4 REFACTOR THE WHOLE PROJECT
-  // 5 UPDATE THE TOP BAR COMPONENT
-  // 6 CREATE A FOOTER COMPONENT
 
   return (
     <main className="flex w-full min-h-screen justify-center py-10 px-4 bg-gray-950 ">
@@ -99,10 +96,9 @@ export default function MarketPlaceHome() {
                 src={product.src}
                 category={product.category}
                 name={product.name}
-                old={product.old}
-                data="12/10/2025"
+                createdAt={product.createdAt}
+                updatedAt={product.updatedAt}
                 description={product.description}
-                productType=""
               />
             ))
           ) : (

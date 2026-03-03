@@ -1,220 +1,170 @@
 "use client";
 
-import { v4 as uuidv4 } from "uuid";
-import { z } from "zod";
-
 import { SELECTOR_VALUES } from "@/global/utils";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { z } from "zod";
 
-//Fazer a verificação dos itens do produto.
-// UUID: This is used to generate a unique and random ID
 const ProductSchema = z.object({
-  src: z.string().min(5, { message: "Insira uma foto válida" }),
+  src: z.string().min(5),
   id: z.string().uuid(),
   name: z.string().min(5),
-  old: z.string().min(1),
-  price: z.string().min(1),
-  payment: z.string().min(1),
-  productType: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
   description: z.string().min(1),
+  category: z.string().min(1),
 });
 
 const initialForm = {
   imageURL: "",
   productName: "",
-  oldPrice: "",
-  price: "",
-  paymentMethod: "",
-  productType: "",
   description: "",
+  category: "",
 };
 
 export default function AddProduct() {
   const [form, setForm] = useState(initialForm);
-  const [errorMessage, setErroMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
   const router = useRouter();
 
-  // Create a new Product
   const createProduct = () => {
-    const newProducts = {
+    const now = new Date().toISOString();
+
+    const newProduct = {
       src: form.imageURL,
-      id: uuidv4(), // Used to create a unique id for each product
+      id: uuidv4(),
       name: form.productName,
-      old: form.oldPrice,
-      price: form.price,
-      payment: form.paymentMethod,
-      productType: form.productType,
+      createdAt: now,
+      updatedAt: now,
       description: form.description,
+      category: form.category,
     };
 
-    // 1. Validation
-    const parse = ProductSchema.safeParse(newProducts);
+    const parse = ProductSchema.safeParse(newProduct);
 
     if (!parse.success) {
-      setErroMessage("All fields are required");
+      setErrorMessage("Please fill all fields correctly.");
       return;
     }
 
-    // 2. Fetch products stored in local storage
     const localProducts = JSON.parse(
       localStorage.getItem("local-products") || "[]",
     );
 
-    // 3. Save the new product in local storage
-    localProducts.push(parse.data); // New Products
-    localStorage.setItem("local-products", JSON.stringify(localProducts)); //The local storage only stores strings.
+    localProducts.push(parse.data);
+    localStorage.setItem("local-products", JSON.stringify(localProducts));
 
-    // 4. Final message
-    setSuccessMessage("Product created successfully. Redirecting...");
-    setTimeout(() => {
-      router.push("/");
-    }, 3000);
-  };
-
-  // 5. Clear the Formulary
-  const clearForm = () => {
-    setForm(initialForm);
-    setErroMessage("");
+    setSuccessMessage("Product created successfully!. Redirecting...");
+    setTimeout(() => router.push("/"), 3000);
   };
 
   return (
-    <main className="flex flex-col h-full py-10 w-full px-4 justify-center items-center bg-gray-950">
-      <h1 className="text-3xl font-bold text-center">Add Your Product</h1>
+    <main className="min-h-screen bg-gray-950 flex justify-center px-4 py-10">
+      <div className="w-full max-w-4xl flex flex-col gap-12">
+        {/* Back Button */}
+        <button
+          onClick={() => router.push("/")}
+          className="text-sm text-blue-500 hover:underline self-start"
+        >
+          ← Back to products
+        </button>
 
-      {/* Creation Card */}
-      <div
-        className="h-full w-full my-10 border border-gray-700 gap-4 p-8 max-w-2xl grid sm:grid-cols-2 
-      rounded-3xl bg-gray-900"
-      >
-        {/* Title */}
-        <h2 className="text-3xl max-sm:text-[26px] col-span-full text-center text-gray-500 mb-6 font-bold">
-          ADD YOUR PRODUCT
-        </h2>
-
-        {/* Image URL */}
+        {/* Page Header */}
         <div>
-          <p className="text-gray-400 text-start">Add Image(URL):</p>
-          <input
-            className="h-10 px-2 outline-none w-full text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
-            value={form.imageURL}
-            onChange={(event) =>
-              setForm({ ...form, imageURL: event.target.value })
-            }
-          />
+          <h1 className="text-3xl font-bold text-white">Create New Product</h1>
+          <p className="text-gray-500 mt-2">
+            Fill the information below to register a new product.
+          </p>
         </div>
 
-        {/* Product Name */}
-        <div>
-          <p className="text-gray-400 text-start">Product Name:</p>
-          <input
-            className="h-10 px-2 outline-none w-full text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
-            value={form.productName}
-            onChange={(event) =>
-              setForm({ ...form, productName: event.target.value })
-            }
-          />
-        </div>
+        {/* Form Card */}
+        <section className="bg-gray-900/30 p-10 rounded-2xl border border-gray-800 flex flex-col gap-8">
+          {/* Image URL */}
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-400">Image URL</label>
+            <input
+              className="h-11 px-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-600 outline-none transition"
+              value={form.imageURL}
+              onChange={(e) => setForm({ ...form, imageURL: e.target.value })}
+              placeholder="https://example.com/image.jpg"
+            />
+          </div>
 
-        {/* Old Price */}
-        <div>
-          <p className="text-gray-400 text-start">Old Price:</p>
-          <input
-            className="h-10 px-2 outline-none w-full text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
-            value={form.oldPrice}
-            onChange={(event) =>
-              setForm({ ...form, oldPrice: event.target.value })
-            }
-          />
-        </div>
+          {/* Product Name */}
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-400">Product Name</label>
+            <input
+              className="h-11 px-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-600 outline-none transition"
+              value={form.productName}
+              onChange={(e) =>
+                setForm({ ...form, productName: e.target.value })
+              }
+              placeholder="Enter product name"
+            />
+          </div>
 
-        {/* Price */}
-        <div>
-          <p className="text-gray-400 text-start">Price:</p>
-          <input
-            className="h-10 px-2 outline-none w-full text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
-            value={form.price}
-            onChange={(event) =>
-              setForm({ ...form, price: event.target.value })
-            }
-          />
-        </div>
-
-        {/* Payment Method */}
-        <div>
-          <p className="text-gray-400 text-start">Payment Method:</p>
-          <input
-            className="h-10 px-2 outline-none w-full text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
-            value={form.paymentMethod}
-            onChange={(event) =>
-              setForm({ ...form, paymentMethod: event.target.value })
-            }
-          />
-        </div>
-
-        {/* Product Type */}
-        <div>
-          <p className="text-gray-400 text-start">Product Type:</p>
-          <select
-            className="h-10 px-2 outline-none w-full text-lg rounded-lg hover:bg-gray-600 bg-gray-700"
-            value={form.productType}
-            onChange={(event) =>
-              setForm({ ...form, productType: event.target.value })
-            }
-          >
-            {SELECTOR_VALUES.map((product, index) => (
-              <option
-                value={product.value}
-                key={index}
-                className={`${product.class}`}
-              >
-                {product.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Product Description  */}
-        <div className="col-span-full">
-          <p className="text-gray-400 text-start">Product Description:</p>
-          <textarea
-            className="min-h-24 max-h-24 p-4 w-full outline-none text-xl rounded-lg hover:bg-gray-600 bg-gray-700"
-            value={form.description}
-            onChange={(event) =>
-              setForm({ ...form, description: event.target.value })
-            }
-          />
-        </div>
-
-        <div className="col-span-full flex flex-col gap-4">
-          {errorMessage && (
-            <div className="text-green-500 bottom-1 text-center">
-              {errorMessage}
-            </div>
-          )}
-          {successMessage && (
-            <div className="text-green-500 bottom-1 text-center">
-              {successMessage}
-            </div>
-          )}
-          <div className="flex max-sm:flex-col gap-2">
-            <button
-              className="h-10 px-2 outline-none w-full bg-gray-700 rounded-lg hover:bg-gray-600"
-              onClick={clearForm}
+          {/* Category */}
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-400">Category</label>
+            <select
+              className="h-11 px-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-600 outline-none transition"
+              value={form.category}
+              onChange={(e) => setForm({ ...form, category: e.target.value })}
             >
-              CLEAR FORM
+              <option value="">Select a category</option>
+              {SELECTOR_VALUES.map((item, index) => (
+                <option key={index} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Description */}
+          <div className="flex flex-col gap-2">
+            <label className="text-sm text-gray-400">Product Description</label>
+            <textarea
+              className="min-h-[120px] p-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-600 outline-none transition resize-none"
+              value={form.description}
+              onChange={(e) =>
+                setForm({ ...form, description: e.target.value })
+              }
+              placeholder="Describe the product..."
+            />
+          </div>
+
+          {/* Messages */}
+          {errorMessage && (
+            <div className="text-red-500 text-center">{errorMessage}</div>
+          )}
+
+          {successMessage && (
+            <div className="text-green-500 text-center">{successMessage}</div>
+          )}
+
+          {/* Buttons */}
+          <div className="flex gap-4 pt-4">
+            <button
+              onClick={() => {
+                setForm(initialForm);
+                setErrorMessage("");
+              }}
+              className="flex-1 h-11 rounded-lg bg-gray-800 hover:bg-gray-700 transition"
+            >
+              Clear
             </button>
 
             <button
-              className="h-10 px-2 outline-none w-full bg-blue-700 rounded-lg hover:bg-blue-600"
               onClick={createProduct}
+              className="flex-1 h-11 rounded-lg bg-blue-700 hover:bg-blue-600 font-semibold transition"
             >
-              CREATE PRODUCT
+              Create Product
             </button>
           </div>
-        </div>
+        </section>
       </div>
     </main>
   );

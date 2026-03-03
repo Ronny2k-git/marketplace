@@ -4,11 +4,13 @@ import { MdDashboard } from "react-icons/md";
 
 export const SELECTOR_VALUES = [
   { value: "", label: "Select one", class: "hidden" },
-  { value: "peripherals", label: "Peripherals" },
-  { value: "acessories", label: "Acessories" },
-  { value: "portables", label: "Portables" },
-  { value: "complete-PC", label: "Complete PC" },
-  { value: "computer-parts", label: "Computer Parts" },
+  { value: "electronics", label: "Electronics" },
+  { value: "clothing", label: "Clothing" },
+  { value: "home", label: "Home & Kitchen" },
+  { value: "books", label: "Books" },
+  { value: "sports", label: "Sports" },
+  { value: "beauty", label: "Beauty" },
+  { value: "toys", label: "Toys" },
 ];
 
 export const PROJECT_ROUTES = [

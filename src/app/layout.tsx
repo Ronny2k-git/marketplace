@@ -1,4 +1,5 @@
-import { TopBar } from "@/global/components/TopBar";
+import { Footer } from "@/global/components";
+import { Header } from "@/global/components/Header";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -29,8 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} h-screen overflow-y-auto flex-col antialiased`}
       >
-        <TopBar />
+        <Header />
+
         <main className="pt-28 bg-gray-950">{children}</main>
+
+        <Footer />
       </body>
     </html>
   );

@@ -1,12 +1,22 @@
+export const category = [
+  "electronics",
+  "clothing",
+  "home",
+  "books",
+  "sports",
+  "beauty",
+  "beauty",
+  "toys",
+] as const;
+
 export type Product = {
   src: string;
   id: string;
-  category: string;
   name: string;
-  old: string;
-  data: string;
+  createdAt: string;
+  updatedAt: string;
   description: string;
-  productType: string;
+  category: (typeof category)[number];
 };
 
 // export const Products: Product[] = [

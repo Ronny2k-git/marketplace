@@ -1,34 +1,49 @@
 "use client";
 
 import { EmptyBanner } from "@/global/components";
-import { CalculatePct } from "@/global/utils";
-import { Product } from "@/utils";
+import { Product, category } from "@/utils";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MdDescription } from "react-icons/md";
+
+type Category = (typeof category)[number];
+
+const formattedCategory: Record<Category, string> = {
+  electronics: "Electronics",
+  clothing: "Clothing",
+  home: "Home & Kitchen",
+  books: "Books",
+  sports: "Sports",
+  beauty: "Beauty",
+  toys: "Toys",
+};
 
 export default function ProductPage() {
   const params = useParams();
+  const router = useRouter();
   const productId = params.productid as string;
 
-  const [product, setProduct] = useState<Product>();
+  const [product, setProduct] = useState<Product | null>(null);
 
-  {
-    /*Fetch Product */
-    useEffect(() => {
-      const localProducts = JSON.parse(
-        localStorage.getItem("local-products") ?? "",
-      );
-
-      const foundProduct = localProducts.find(
-        (product: Product) => product.id === productId,
-      );
-
-      setProduct(foundProduct);
-    }, [productId]);
+  // Format date
+  function formattedDate(date: string) {
+    return new Date(date).toLocaleDateString("en-US");
   }
-  if (product == undefined) {
+
+  // Fetch Product
+  useEffect(() => {
+    const localProducts = JSON.parse(
+      localStorage.getItem("local-products") ?? "[]",
+    );
+
+    const foundProduct = localProducts.find(
+      (product: Product) => product.id === productId,
+    );
+
+    setProduct(foundProduct ?? null);
+  }, [productId]);
+
+  if (!product) {
     return (
       <div className="h-[calc(100vh-88px)] p-4 bg-gray-950 w-full flex items-center justify-center">
         <EmptyBanner
@@ -40,80 +55,76 @@ export default function ProductPage() {
   }
 
   return (
-    <main className="min-h-screen w-full flex justify-center px-4 py-16 bg-gray-950">
-      <title>Product</title>
-
-      <div className="w-full max-w-5xl flex flex-col gap-8">
-        <section
-          className="flex flex-col p-4 sm:py-16 bg-gray-900/20 border rounded-2xl max-w-5xl border-gray-800/70
-          w-full items-center gap-8"
+    <main className="min-h-screen w-full flex justify-center px-4 py-10 bg-gray-950">
+      <div className="w-full max-w-6xl flex flex-col gap-12">
+        {/* Back Button */}
+        <button
+          onClick={() => router.push("/")}
+          className="text-sm text-blue-500 hover:underline self-start"
         >
-          {/* Product Name */}
-          <div className="flex justify-center mb-8">
-            <h1 className="text-3xl text-center text-gray-400">
-              {product.name}
-            </h1>
+          ← Back to products
+        </button>
+
+        {/* Top Section */}
+        <section className="grid md:grid-cols-2 gap-8 sm:gap-12 bg-gray-900/30 p-8 rounded-2xl border border-gray-800">
+          {/* Product Image */}
+          <div className="flex justify-center items-center">
+            <img
+              src={product.src}
+              alt="product-image"
+              className="rounded-xl object-cover w-full max-h-[400px]"
+            />
           </div>
 
-          <div className="flex max-md:flex-col max-md:items-center justify-center gap-8">
-            {/* Secondary Images */}
-            <div className="flex md:flex-col gap-4 sm:gap-8">
-              {Array.from({ length: 4 }).map((_, index) => (
-                <img
-                  key={index}
-                  alt="secondary-image"
-                  className="object-cover h-14 w-14"
-                  src={product.src}
-                />
-              ))}
+          {/* Product Details */}
+          <div className="flex flex-col gap-6">
+            <h1 className="text-3xl font-bold text-white">{product.name}</h1>
+
+            <span className="px-3 py-1 w-fit text-sm bg-blue-600/20 text-blue-400 rounded-full">
+              {formattedCategory[product.category]}
+            </span>
+
+            <div className="text-sm text-gray-500">
+              Product ID: {product.id}
             </div>
 
-            {/* Product Infos */}
-            <div className="flex flex-col justify-center items-center gap-12">
-              <img
-                alt="main-image"
-                className=" h-64 w-64 sm:h-80 sm:w-80 object-cover transition-transform duration-500 hover:scale-110"
-                src={product.src}
-              />
+            <div className="flex gap-8 text-sm text-gray-400">
+              <span>
+                Created:{" "}
+                <span className="text-blue-400">
+                  {formattedDate(product.createdAt)}
+                </span>
+              </span>
 
-              <div className="">
-                <span className="text-base line-through text-gray-500">{`$ ${product.old}`}</span>
+              <span>
+                Updated:{" "}
+                <span className="text-yellow-400">
+                  {formattedDate(product.updatedAt)}
+                </span>
+              </span>
+            </div>
 
-                <div className="flex gap-4 items-center">
-                  <span className="text-[40px] text-blue-700">
-                    {`$${product.price}`}
-                  </span>
-
-                  <span className="text-base h-6 bg-gray-700 px-1 rounded-xl text-white">
-                    {`- ${CalculatePct(Number(product.old), Number(product.price))}`}
-                  </span>
-                </div>
-                <p className="text-[13px] text-gray-500">{product.payment}</p>
-              </div>
+            {/* Action Buttons */}
+            <div className="flex gap-4 mt-6">
+              <Link
+                href={`/edit-product/${product.id}`}
+                className="flex-1 h-10 flex items-center justify-center bg-yellow-600 hover:bg-yellow-500 rounded-md font-semibold"
+              >
+                Edit Product
+              </Link>
             </div>
           </div>
-
-          {/* Buy Button */}
-          <Link className="w-full max-w-[21rem]" href="/cart">
-            <div className=" flex justify-center md:ml-10 items-center h-14 w-full rounded-md bg-blue-700 hover:bg-blue-600">
-              <p className="text-white font-bold text-[15px]">BUY</p>
-            </div>
-          </Link>
         </section>
 
-        <div className="h-0.5 my-8 w-full bg-gray-900" />
-
-        <section className="flex flex-col gap-8">
-          <div className="flex items-start gap-2">
-            <MdDescription className="size-8 fill-blue-500" />
-            <h1 className=" font-bold text-[25px] text-gray-400">
-              Product description
-            </h1>
-          </div>
-
-          <h2 className="whitespace-pre-line break-words">
-            {product.description}
+        {/* Description Section */}
+        <section className="bg-gray-900/30 p-8 rounded-2xl border border-gray-800">
+          <h2 className="text-xl font-bold text-gray-300 mb-6">
+            Product Description
           </h2>
+
+          <p className="text-gray-400 whitespace-pre-line leading-relaxed">
+            {product.description}
+          </p>
         </section>
       </div>
     </main>

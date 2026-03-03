@@ -22,7 +22,7 @@ export function EmptyBanner({ title, subtitle, className }: EmptyBannerProps) {
           rounded-2xl
           overflow-hidden
           shadow-2xl
-          border border-blue-500/60
+          border border-blue-700/60
           flex items-center justify-center
           `,
           className,
