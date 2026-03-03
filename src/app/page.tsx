@@ -4,7 +4,7 @@ import { ProductCard } from "@/components";
 import { EmptyBanner } from "@/global/components";
 import { SELECTOR_VALUES } from "@/global/utils";
 import { Product } from "@/utils";
-import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { RiArrowLeftDoubleLine, RiArrowRightDoubleLine } from "react-icons/ri";
@@ -31,22 +31,18 @@ export default function MarketPlaceHome() {
       <div className="w-full h-full max-w-screen-xl">
         <title>Marketplace</title>
 
-        {/* Main Card */}
-        <div className="w-full h-auto p-4 flex max-sm:flex-col-reverse gap-4 items-center justify-between bg-white rounded-lg">
-          <div>
-            <h2 className="text-black max-sm:text-center font-medium text-xl">
-              PCs & ACESSORIES
-            </h2>
-            <h3 className="text-black max-sm:text-center max-sm:text-3xl text-3xl md:text-4xl">
-              The quality is out of this world
-            </h3>
-          </div>
-          <Image
-            alt="PC"
-            src={"/banners/home-banner.png"}
-            width={300}
-            height={300}
-          />
+        {/* Title */}
+        <div className="flex max-[670px]:flex-col justify-between items-center gap-6 mb-12">
+          <h1 className="text-3xl font-bold text-center">
+            Product Management System
+          </h1>
+
+          <Link
+            href="/create-product"
+            className="bg-blue-700 max-w-[12rem] hover:bg-blue-600 px-6 py-3 rounded-md font-semibold"
+          >
+            + Create Product
+          </Link>
         </div>
 
         {/* Input to filter the products by name */}
@@ -55,11 +51,11 @@ export default function MarketPlaceHome() {
             <IoSearchSharp className="absolute text-xl ml-2" />
             <input
               className="bg-gray-900 w-full md:max-w-[38rem] h-10 rounded-md text-white pl-10 hover:bg-gray-800"
-              placeholder="Search products ..."
+              placeholder="Search by name ..."
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
-            <RiArrowRightDoubleLine className="fill-blue-700 text-7xl" />
+            <RiArrowRightDoubleLine className="fill-blue-700 text-6xl" />
           </div>
 
           {/* Selector to filter the products by value */}

@@ -1,5 +1,5 @@
 export const SELECTOR_VALUES = [
-  { value: "", label: "Product Type", class: "hidden" },
+  { value: "", label: "Select one", class: "hidden" },
   { value: "peripherals", label: "Peripherals" },
   { value: "acessories", label: "Acessories" },
   { value: "portables", label: "Portables" },

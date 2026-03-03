@@ -1,79 +1,69 @@
 "use client";
 
-import { CalculatePct } from "@/global/utils";
 import { Product } from "@/utils/utils";
 import Link from "next/link";
-import { useState } from "react";
-import { TiShoppingCart } from "react-icons/ti";
 
-function getProducts(): Product[] {
-  const savedCart = localStorage.getItem("cart");
-  return savedCart ? JSON.parse(savedCart) : [];
-}
+export function ProductCard({
+  id,
+  src,
+  name,
+  price,
+  payment,
+  description,
+}: Product) {
+  const handleDelete = () => {
+    const savedProducts = JSON.parse(
+      localStorage.getItem("local-products") ?? "[]",
+    );
 
-export function ProductCard(product: Product) {
-  const [, setCart] = useState(() => getProducts());
+    const updatedProducts = savedProducts.filter(
+      (product: Product) => product.id !== id,
+    );
 
-  const addCart = (product: Product) => {
-    const savedCart = getProducts();
-    const updatedCart = [...savedCart, product];
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  const handleClick = (product: Product) => {
-    addCart(product);
-    alert("Product added into cart");
+    localStorage.setItem("local-products", JSON.stringify(updatedProducts));
   };
 
   return (
-    <div className=" w-full h-auto p-2 flex flex-col border border-gray-700 bg-gray-900 rounded-lg">
+    <div className="w-full p-4 flex flex-col border border-gray-700 bg-gray-900 rounded-lg gap-4">
       {/* Image */}
-      <div className="flex items-center justify-center p-8">
-        <Link href={`/product/${product.id}`}>
-          <img
-            alt="product-image"
-            className="aspect-video min-h-48 hover:opacity-70 object-cover"
-            src={product.src}
-          />
-        </Link>
+      <div className="flex items-center justify-center">
+        <img
+          alt="product-image"
+          className="aspect-video min-h-48 object-cover rounded-md"
+          src={src}
+        />
       </div>
 
-      <div className="flex flex-col justify-end h-full gap-3">
-        {/* Product name */}
-        <Link href={`/product/${product.id}`}>
-          <h3 className="hover:underline">{product.name}</h3>
-        </Link>
+      {/* Product Info */}
+      <div className="flex flex-col gap-4">
+        <h3 className="text-lg font-semibold">{name}</h3>
 
-        <div className="flex justify-between items-start">
-          <div className="flex flex-col gap-2">
-            <del>{`$ ${product.old}`}</del>
-
-            {/* Current price */}
-            <div className=" text-2xl text-blue-600 font-bold flex items-center gap-2">
-              {`$ ${product.price}`}
-
-              <span className="flex items-center text-white h-6 w-auto px-1 bg-gray-700 font-light text-[15px] rounded-xl">
-                {`- ${CalculatePct(Number(product.old), Number(product.price))}`}
-              </span>
-            </div>
-          </div>
-
-          {/* Add product to the cart */}
-          <button onClick={() => handleClick(product)}>
-            <TiShoppingCart className="size-6 fill-white hover:bg-gray-800" />
-          </button>
+        <div className="text-gray-400 font-bold">
+          Product description:{" "}
+          <span className="text-blue-600">{description}</span>
         </div>
 
-        {/* Payment method */}
-        <p className="whitespace-pre text-sm">{`Paymenth method: ${product.payment}`}</p>
+        <div className="text-white font-bold">
+          Product Price: <span className="text-blue-600">{price}</span>
+        </div>
+        <p className="text-sm text-gray-400">{`Payment method: ${payment}`}</p>
+      </div>
 
+      {/* Actions */}
+      <div className="flex gap-2 mt-2">
         <Link
-          className="flex justify-center items-center h-12 w-full hover:bg-blue-600 rounded-md bg-blue-700"
-          href={`/product/${product.id}`}
+          href={`/edit-product/${id}`}
+          className="flex-1 h-10 flex items-center justify-center bg-yellow-600 hover:bg-yellow-500 rounded-md font-semibold"
         >
-          <span className="text-white font-bold text-[15px]">BUY</span>
+          Edit
         </Link>
+
+        <button
+          onClick={handleDelete}
+          className="flex-1 h-10 bg-red-600 hover:bg-red-500 rounded-md font-semibold"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

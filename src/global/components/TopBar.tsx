@@ -27,9 +27,10 @@ export function TopBar() {
           <Link href="/">
             <SiAlienware className="h-12 w-12 fill-white justify-center items-center text-xs" />
           </Link>
-          <a href={"https://www.dell.com/pt-br/gaming/alienware"}>
-            <p className="text-3xl text-blue-600  hover:underline">AlienWare</p>
-          </a>
+
+          <span className="text-3xl text-blue-600  hover:underline">
+            TechPlace
+          </span>
         </div>
 
         <div className="md:flex gap-2 items-cente hidden">
