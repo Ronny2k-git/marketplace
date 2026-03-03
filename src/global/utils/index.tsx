@@ -3,7 +3,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
 
 export const SELECTOR_VALUES = [
-  { value: "", label: "Select one", class: "hidden" },
+  { value: "", label: "Select a category", class: "hidden" },
   { value: "electronics", label: "Electronics" },
   { value: "clothing", label: "Clothing" },
   { value: "home", label: "Home & Kitchen" },

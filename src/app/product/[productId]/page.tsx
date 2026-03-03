@@ -19,9 +19,8 @@ const formattedCategory: Record<Category, string> = {
 };
 
 export default function ProductPage() {
-  const params = useParams();
+  const { productId } = useParams();
   const router = useRouter();
-  const productId = params.productid as string;
 
   const [product, setProduct] = useState<Product | null>(null);
 
@@ -72,7 +71,7 @@ export default function ProductPage() {
             <img
               src={product.src}
               alt="product-image"
-              className="rounded-xl object-cover w-full max-h-[400px]"
+              className="rounded-xl object-cover w-full max-h-[18rem]"
             />
           </div>
 
@@ -84,8 +83,8 @@ export default function ProductPage() {
               {formattedCategory[product.category]}
             </span>
 
-            <div className="text-sm text-gray-500">
-              Product ID: {product.id}
+            <div className="text-sm text-gray-400">
+              Product ID: <span className="text-gray-300">{product.id}</span>
             </div>
 
             <div className="flex gap-8 text-sm text-gray-400">

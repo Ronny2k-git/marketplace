@@ -26,18 +26,10 @@ export default function MarketPlaceHome() {
     return product.category === select;
   });
 
-  // TO DO LATER:
-
-  // 2 CHANGE THE CART
-  // 3 CREATE A PAGE TO EDIT THE PRODUCT
-  // 4 REFACTOR THE WHOLE PROJECT
-
   return (
     <main className="flex w-full min-h-screen justify-center py-10 px-4 bg-gray-950 ">
-      <div className="w-full h-full max-w-screen-xl">
-        <title>Management System</title>
-
-        {/* Title */}
+      <div className="w-full h-full max-w-7xl">
+        {/* Main Title */}
         <div className="flex max-[670px]:flex-col justify-between items-center gap-6 mb-12">
           <h1 className="text-3xl font-bold text-center">
             Product Management System
@@ -52,7 +44,7 @@ export default function MarketPlaceHome() {
         </div>
 
         {/* Input to filter the products by name */}
-        <div className=" max-md:flex-col md:gap-8 my-4 flex justify-between items-center">
+        <div className=" max-md:flex-col md:gap-8 my-10 flex justify-between items-center">
           <div className=" w-full flex items-center ">
             <IoSearchSharp className="absolute text-xl ml-2" />
             <input
