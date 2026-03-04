@@ -43,7 +43,7 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="h-full p-4 bg-gray-950 w-full flex items-center justify-center">
+      <div className="h-full p-4 w-full flex items-center justify-center">
         <EmptyBanner
           title="No products found"
           subtitle="Try again with different terms"

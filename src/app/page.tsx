@@ -4,10 +4,9 @@ import { ProductCard } from "@/components";
 import { EmptyBanner } from "@/global/components";
 import { SELECTOR_VALUES } from "@/global/constants";
 import { Product } from "@/global/types";
-
+import { Input } from "@/ui/components";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { IoSearchSharp } from "react-icons/io5";
 import { RiArrowRightDoubleLine } from "react-icons/ri";
 
 export default function MarketPlaceHome() {
@@ -45,39 +44,54 @@ export default function MarketPlaceHome() {
         </div>
 
         {/* Input to filter the products by name */}
-        <div className=" max-md:flex-col md:gap-8 my-10 flex justify-between items-center">
-          <div className=" w-full flex items-center ">
-            <IoSearchSharp className="absolute text-xl ml-2" />
-            <input
-              className="bg-gray-900 w-full md:max-w-[38rem] h-10 rounded-md text-white pl-10 hover:bg-gray-800"
-              placeholder="Search by name ..."
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-            />
-            <RiArrowRightDoubleLine className="fill-blue-700 text-6xl" />
-          </div>
+        <section className="max-md:flex-col md:gap-8 my-10 flex justify-between items-center">
+          <div
+            className="flex w-full max-sm:flex-col gap-4 rounded-2xl p-6 justify-between border 
+            border-gray-700 bg-gray-900"
+          >
+            <div className="flex w-full max-sm:justify-center">
+              <Input
+                className="max-w-md"
+                size={"default"}
+                rightIcon={
+                  <RiArrowRightDoubleLine className="fill-blue-700 text-4xl" />
+                }
+                placeholder="Search by name ..."
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+              />
+            </div>
 
-          {/* Selector to filter the products by value */}
-          <div className="flex max-md:self-end md:items-center">
-            <select
-              className="bg-gray-900 h-10 px-4 flex justify-center items-center hover:bg-gray-800 rounded-md text-white"
-              value={select}
-              onChange={(event) => setSelect(event.target.value)}
-            >
-              <option value={""}>All</option>
+            {/* Selector to filter the products by value */}
+            <div className="flex gap-4 justify-center">
+              <select
+                className="bg-gray-800 h-10 px-4 flex justify-center items-center hover:bg-gray-800 rounded-md text-white"
+                value={select}
+                onChange={(event) => setSelect(event.target.value)}
+              >
+                <option value={""}>All</option>
 
-              {SELECTOR_VALUES.map((product, index) => (
-                <option
-                  value={product.value}
-                  key={index}
-                  className={`${product.class}`}
-                >
-                  {product.label}
-                </option>
-              ))}
-            </select>
+                {SELECTOR_VALUES.map((product, index) => (
+                  <option
+                    value={product.value}
+                    key={index}
+                    className={`${product.class}`}
+                  >
+                    {product.label}
+                  </option>
+                ))}
+              </select>
+
+              {/* Clear Filters*/}
+              <button
+                className="px-4 py-2 rounded-lg border border-gray-700
+               hover:bg-gray-800 transition"
+              >
+                Clear
+              </button>
+            </div>
           </div>
-        </div>
+        </section>
 
         {/* Filtered Products */}
         <div className="w-full h-full gap-6 grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 ">

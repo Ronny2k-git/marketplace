@@ -27,6 +27,13 @@ const ProductSchema = z.object({
   ]),
 });
 
+// TO DO LATER
+
+//   1 FINISH EDIT PAGE (Update and Delete Functionalities)
+//   2 FINISH PRODUCTS PAGE
+//   3 TEST ALL FEATURES IN THE CLOUD
+//   4 CREATE A HOOK TO UPDATE INFO STORED IN LOCAL STORAGE
+
 const initialForm = {
   imageURL: "",
   productName: "",
@@ -75,7 +82,7 @@ export default function AddProduct() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-950 flex justify-center px-4 py-10">
+    <main className="min-h-screen flex justify-center px-4 py-10">
       <div className="w-full max-w-4xl flex flex-col gap-12">
         {/* Page Header */}
         <PageHeader

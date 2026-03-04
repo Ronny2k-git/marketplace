@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BiSolidConfused } from "react-icons/bi";
 import { twMerge } from "tailwind-merge";
 
 export type EmptyBannerProps = {
@@ -35,7 +34,7 @@ export function EmptyBanner({ title, subtitle, className }: EmptyBannerProps) {
 
         {/* Conteúdo */}
         <div className="relative z-10 text-center items-center flex flex-col gap-3 max-w-2xl">
-          <BiSolidConfused className="size-24 text-gray-200" />
+          <p className="text-7xl mb-4">📦</p>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
             {title}

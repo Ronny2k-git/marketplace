@@ -2,7 +2,8 @@
 
 import { PageHeader, ProductForm } from "@/global/components";
 import { useFetchLocalStorage } from "@/global/hooks";
-import { Product } from "@/utils";
+import { Product } from "@/global/types";
+
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -12,6 +13,13 @@ const initialForm = {
   description: "",
   category: "",
 };
+
+// TO DO TOMORROW
+
+//   1 FINISH EDIT PAGE (Update and Delete Functionalities)
+//   2 FINISH PRODUCTS PAGE
+//   3 USE THE USEFETCHLOCALSTORAGE IN ALL FILES
+//   3 TEST ALL FEATURES IN THE CLOUD
 
 export default function EditProduct() {
   const [form, setForm] = useState(initialForm);
@@ -64,7 +72,12 @@ export default function EditProduct() {
 
         {/* Form Card */}
         <div className="flex flex-col bg-gray-900/30 gap-14 px-4 py-6 sm:p-10 rounded-2xl border border-gray-800 ">
-          <section>
+          <section className="flex flex-col gap-8">
+            <div className="text-sm text-gray-400">
+              Product ID: <span className="text-gray-300">{productId}</span>
+            </div>
+
+            {/* Form */}
             <ProductForm form={form} setForm={setForm} />
 
             {/* Messages */}
