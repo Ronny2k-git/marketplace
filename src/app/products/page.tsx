@@ -18,24 +18,13 @@ export default function Products() {
   }, []);
 
   // Delete product
-  const handleDelete = (id: string) => {
-    const confirmDelete = confirm(
-      "Are you sure you want to delete this product?",
-    );
+  const handleDelete = () => {};
 
-    if (!confirmDelete) return;
+  // TO DO TOMORROW
 
-    const updatedProducts = products.filter((p) => p.id !== id);
-
-    setProducts(updatedProducts);
-    localStorage.setItem("local-products", JSON.stringify(updatedProducts));
-
-    setMessage("Product deleted successfully");
-
-    setTimeout(() => {
-      setMessage("");
-    }, 3000);
-  };
+  // 1 FINISH EDIT PAGE (Update and Delete Functionalities)
+  // 2 FINISH PRODUCTS PAGE
+  // 3 TEST THE FEATURES IN THE CLOUD
 
   return (
     <main className="min-h-screen bg-gray-950 px-4 py-10">
@@ -49,8 +38,8 @@ export default function Products() {
           />
 
           <Link
-            href="/add-product"
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl font-semibold transition"
+            href="/create"
+            className="bg-blue-700 max-w-[12rem] hover:bg-blue-600 px-6 py-3 rounded-md font-semibold"
           >
             + Create Product
           </Link>

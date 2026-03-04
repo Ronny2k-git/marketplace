@@ -1,5 +1,6 @@
 "use client";
 
+import { Card } from "@/ui/components";
 import { category, Product } from "@/utils/utils";
 import Link from "next/link";
 
@@ -24,24 +25,16 @@ export function ProductCard({
   description,
   category,
 }: Product) {
-  // const handleDelete = () => {
-  //   const savedProducts = JSON.parse(
-  //     localStorage.getItem("local-products") ?? "[]",
-  //   );
-
-  //   const updatedProducts = savedProducts.filter(
-  //     (product: Product) => product.id !== id,
-  //   );
-
-  //   localStorage.setItem("local-products", JSON.stringify(updatedProducts));
-  // };
-
   function formatedDate(date: string) {
     return new Date(date).toLocaleDateString("en-US");
   }
 
   return (
-    <div className="w-full p-4 flex flex-col border border-gray-700 bg-gray-900 rounded-lg gap-6">
+    <Card
+      className="w-full p-4 rounded-lg gap-6"
+      variant={"basic"}
+      size={"default"}
+    >
       {/* Image */}
       <img
         alt="product-image"
@@ -98,6 +91,6 @@ export function ProductCard({
           </Link>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

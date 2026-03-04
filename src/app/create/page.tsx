@@ -1,6 +1,7 @@
 "use client";
 
 import { PageHeader, ProductForm } from "@/global/components";
+import { Card } from "@/ui/components";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -73,42 +74,44 @@ export default function AddProduct() {
         />
 
         {/* Form Card */}
-        <section className="bg-gray-900/30 px-4 py-6 sm:p-10 rounded-2xl border border-gray-800 flex flex-col gap-8">
-          {/* Creation Form */}
-          <ProductForm form={form} setForm={setForm} />
+        <section>
+          <Card className="gap-8" variant={"basic2"} size={"md"}>
+            {/* Creation Form */}
+            <ProductForm form={form} setForm={setForm} />
 
-          {/* Messages */}
-          {errorMessage && (
-            <div className="text-red-500 p-2 border rounded-md border-red-500/35 text-center">
-              {errorMessage}
+            {/* Messages */}
+            {errorMessage && (
+              <div className="text-red-500 p-2 border rounded-md border-red-500/35 text-center">
+                {errorMessage}
+              </div>
+            )}
+
+            {successMessage && (
+              <div className="text-green-500 p-2 border rounded-md border-green-500 text-center">
+                {successMessage}
+              </div>
+            )}
+
+            {/* Buttons */}
+            <div className="flex gap-4 pt-4">
+              <button
+                onClick={() => {
+                  setForm(initialForm);
+                  setErrorMessage("");
+                }}
+                className="flex-1 h-11 rounded-lg bg-gray-800 hover:bg-gray-700 transition"
+              >
+                Clear
+              </button>
+
+              <button
+                onClick={createProduct}
+                className="flex-1 h-11 rounded-lg bg-blue-700 hover:bg-blue-600 font-semibold transition"
+              >
+                Create Product
+              </button>
             </div>
-          )}
-
-          {successMessage && (
-            <div className="text-green-500 p-2 border rounded-md border-green-500 text-center">
-              {successMessage}
-            </div>
-          )}
-
-          {/* Buttons */}
-          <div className="flex gap-4 pt-4">
-            <button
-              onClick={() => {
-                setForm(initialForm);
-                setErrorMessage("");
-              }}
-              className="flex-1 h-11 rounded-lg bg-gray-800 hover:bg-gray-700 transition"
-            >
-              Clear
-            </button>
-
-            <button
-              onClick={createProduct}
-              className="flex-1 h-11 rounded-lg bg-blue-700 hover:bg-blue-600 font-semibold transition"
-            >
-              Create Product
-            </button>
-          </div>
+          </Card>
         </section>
       </div>
     </main>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { BiSolidConfused } from "react-icons/bi";
 import { twMerge } from "tailwind-merge";
 
 export type EmptyBannerProps = {
@@ -17,12 +19,12 @@ export function EmptyBanner({ title, subtitle, className }: EmptyBannerProps) {
           bg-contain bg-center bg-no-repeat
           w-full 
           h-auto
-          py-24
+          py-16
           max-w-4xl
           rounded-2xl
           overflow-hidden
           shadow-2xl
-          border border-blue-700/60
+          border border-blue-800/60
           flex items-center justify-center
           `,
           className,
@@ -32,12 +34,19 @@ export function EmptyBanner({ title, subtitle, className }: EmptyBannerProps) {
         <div className="absolute bg-blue-700/60 inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
 
         {/* Conteúdo */}
-        <div className="relative z-10 text-center flex flex-col gap-3 max-w-2xl">
+        <div className="relative z-10 text-center items-center flex flex-col gap-3 max-w-2xl">
+          <BiSolidConfused className="size-24 text-gray-200" />
+
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
             {title}
           </h2>
-
           <p className="text-sm sm:text-base text-gray-200">{subtitle}</p>
+          <Link
+            href="/create"
+            className="w-full p-2 border mt-4 border-blue-400 bg-blue-600/40 hover:bg-blue-600/30 rounded-xl"
+          >
+            Create your product
+          </Link>
         </div>
       </div>
     </div>

@@ -45,6 +45,18 @@ export default function EditProduct() {
   // Delete Project
   const handleDelete = () => {};
 
+  // const handleDelete = () => {
+  //   const savedProducts = JSON.parse(
+  //     localStorage.getItem("local-products") ?? "[]",
+  //   );
+
+  //   const updatedProducts = savedProducts.filter(
+  //     (product: Product) => product.id !== id,
+  //   );
+
+  //   localStorage.setItem("local-products", JSON.stringify(updatedProducts));
+  // };
+
   return (
     <main className="min-h-screen bg-gray-950 flex justify-center px-4 py-10">
       <div className="w-full max-w-4xl flex flex-col gap-12">

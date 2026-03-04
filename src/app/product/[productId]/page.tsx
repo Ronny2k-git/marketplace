@@ -35,16 +35,16 @@ export default function ProductPage() {
       localStorage.getItem("local-products") ?? "[]",
     );
 
-    const foundProduct = localProducts.find(
+    const filteredProduct = localProducts.find(
       (product: Product) => product.id === productId,
     );
 
-    setProduct(foundProduct ?? null);
+    setProduct(filteredProduct ?? null);
   }, [productId]);
 
   if (!product) {
     return (
-      <div className="h-[calc(100vh-88px)] p-4 bg-gray-950 w-full flex items-center justify-center">
+      <div className="h-full p-4 bg-gray-950 w-full flex items-center justify-center">
         <EmptyBanner
           title="No products found"
           subtitle="Try again with different terms"
@@ -71,47 +71,47 @@ export default function ProductPage() {
             <img
               src={product.src}
               alt="product-image"
-              className="rounded-xl object-cover w-full max-h-[18rem]"
+              className="rounded-xl object-cover w-full sm:h-[18rem]"
             />
           </div>
 
           {/* Product Details */}
-          <div className="flex flex-col gap-6">
-            <h1 className="text-3xl font-bold text-white">{product.name}</h1>
+          <div className="flex flex-col justify-center gap-6">
+            <div className="flex flex-col h-full gap-6">
+              <h1 className="text-3xl font-bold text-white">{product.name}</h1>
 
-            <span className="px-3 py-1 w-fit text-sm bg-blue-600/20 text-blue-400 rounded-full">
-              {formattedCategory[product.category]}
-            </span>
-
-            <div className="text-sm text-gray-400">
-              Product ID: <span className="text-gray-300">{product.id}</span>
-            </div>
-
-            <div className="flex gap-8 text-sm text-gray-400">
-              <span>
-                Created:{" "}
-                <span className="text-blue-400">
-                  {formattedDate(product.createdAt)}
-                </span>
+              <span className="px-3 py-1 w-fit text-sm bg-blue-600/20 text-blue-400 rounded-full">
+                {formattedCategory[product.category]}
               </span>
 
-              <span>
-                Updated:{" "}
-                <span className="text-yellow-400">
-                  {formattedDate(product.updatedAt)}
+              <div className="text-sm text-gray-400">
+                Product ID: <span className="text-gray-300">{product.id}</span>
+              </div>
+
+              <div className="flex gap-8 text-sm text-gray-400">
+                <span>
+                  Created:{" "}
+                  <span className="text-blue-400">
+                    {formattedDate(product.createdAt)}
+                  </span>
                 </span>
-              </span>
+
+                <span>
+                  Updated:{" "}
+                  <span className="text-yellow-400">
+                    {formattedDate(product.updatedAt)}
+                  </span>
+                </span>
+              </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex gap-4 mt-6">
-              <Link
-                href={`/edit-product/${product.id}`}
-                className="flex-1 h-10 flex items-center justify-center bg-yellow-600 hover:bg-yellow-500 rounded-md font-semibold"
-              >
-                Edit Product
-              </Link>
-            </div>
+            {/* Action Button */}
+            <Link
+              href={`/edit-product/${product.id}`}
+              className="text-white h-11 flex items-center justify-center bg-yellow-600 hover:bg-yellow-500 rounded-md font-semibold"
+            >
+              Edit Product
+            </Link>
           </div>
         </section>
 
