@@ -1,6 +1,7 @@
 "use client";
 
 import { PageHeader, ProductForm } from "@/global/components";
+import { useFetchLocalStorage } from "@/global/hooks";
 import { Card } from "@/ui/components";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -14,7 +15,16 @@ const ProductSchema = z.object({
   createdAt: z.string(),
   updatedAt: z.string(),
   description: z.string().min(1),
-  category: z.string().min(1),
+  category: z.enum([
+    "electronics",
+    "clothing",
+    "home",
+    "books",
+    "sports",
+    "beauty",
+    "beauty",
+    "toys",
+  ]),
 });
 
 const initialForm = {
@@ -28,9 +38,11 @@ export default function AddProduct() {
   const [form, setForm] = useState(initialForm);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const products = useFetchLocalStorage("local-products");
 
   const router = useRouter();
 
+  // Add a new product to local storage
   const createProduct = () => {
     const now = new Date().toISOString();
 
@@ -53,9 +65,7 @@ export default function AddProduct() {
       setErrorMessage("");
     }
 
-    const localProducts = JSON.parse(
-      localStorage.getItem("local-products") || "[]",
-    );
+    const localProducts = products;
 
     localProducts.push(parse.data);
     localStorage.setItem("local-products", JSON.stringify(localProducts));

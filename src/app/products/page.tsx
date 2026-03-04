@@ -1,22 +1,9 @@
 "use client";
 
 import { PageHeader } from "@/global/components";
-import { Product } from "@/utils/utils";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 export default function Products() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [message, setMessage] = useState("");
-
-  // Fetch products from localStorage
-  useEffect(() => {
-    const savedProducts = localStorage.getItem("local-products");
-    if (savedProducts) {
-      setProducts(JSON.parse(savedProducts));
-    }
-  }, []);
-
   // Delete product
   const handleDelete = () => {};
 
@@ -24,7 +11,8 @@ export default function Products() {
 
   // 1 FINISH EDIT PAGE (Update and Delete Functionalities)
   // 2 FINISH PRODUCTS PAGE
-  // 3 TEST THE FEATURES IN THE CLOUD
+  // 3 USE THE USEFETCHLOCALSTORAGE IN ALL FILES
+  // 3 TEST ALL FEATURES IN THE CLOUD
 
   return (
     <main className="min-h-screen bg-gray-950 px-4 py-10">
@@ -44,11 +32,6 @@ export default function Products() {
             + Create Product
           </Link>
         </div>
-
-        {/* Message */}
-        {message && (
-          <div className="text-center text-red-500 font-medium">{message}</div>
-        )}
       </div>
     </main>
   );

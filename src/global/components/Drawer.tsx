@@ -2,22 +2,15 @@
 
 import { Card } from "@/ui/components";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FiLogOut, FiMenu, FiPackage } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
-import { PROJECT_ROUTES } from "../utils";
+import { PROJECT_ROUTES } from "../constants";
+import { useFetchLocalStorage } from "../hooks";
 
 export function Drawer() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [products, setProducts] = useState<[]>([]);
-
-  useEffect(() => {
-    const localProducts = JSON.parse(
-      localStorage.getItem("local-products") ?? "[]",
-    );
-
-    setProducts(localProducts);
-  }, []);
+  const products = useFetchLocalStorage("local-products");
 
   return (
     <>

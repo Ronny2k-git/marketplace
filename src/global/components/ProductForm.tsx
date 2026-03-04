@@ -1,4 +1,5 @@
-import { SELECTOR_VALUES } from "../utils";
+import { SELECTOR_VALUES } from "../constants";
+
 type ProductFormData = {
   imageURL: string;
   productName: string;

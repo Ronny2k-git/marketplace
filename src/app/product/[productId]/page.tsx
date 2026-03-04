@@ -1,12 +1,11 @@
 "use client";
 
 import { EmptyBanner } from "@/global/components";
-import { Product, category } from "@/utils";
+import { Category, Product } from "@/global/types";
+
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-type Category = (typeof category)[number];
 
 const formattedCategory: Record<Category, string> = {
   electronics: "Electronics",

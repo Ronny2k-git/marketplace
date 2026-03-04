@@ -1,6 +1,7 @@
 "use client";
 
 import { PageHeader, ProductForm } from "@/global/components";
+import { useFetchLocalStorage } from "@/global/hooks";
 import { Product } from "@/utils";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -16,19 +17,14 @@ export default function EditProduct() {
   const [form, setForm] = useState(initialForm);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const products = useFetchLocalStorage("local-products");
 
   const router = useRouter();
   const { productId } = useParams();
 
-  console.log(productId);
-
-  // Fetch Product
+  // Update product info
   useEffect(() => {
-    const localProducts = JSON.parse(
-      localStorage.getItem("local-products") ?? "[]",
-    );
-
-    const foundProduct = localProducts.find(
+    const foundProduct = products.find(
       (product: Product) => product.id === productId,
     );
 
@@ -40,7 +36,7 @@ export default function EditProduct() {
       description: foundProduct.description,
       category: foundProduct.category,
     });
-  }, [productId]);
+  }, [products, productId]);
 
   // Delete Project
   const handleDelete = () => {};

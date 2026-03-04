@@ -2,6 +2,17 @@ import { AiOutlineAppstore } from "react-icons/ai";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
 
+export const categories = [
+  "electronics",
+  "clothing",
+  "home",
+  "books",
+  "sports",
+  "beauty",
+  "beauty",
+  "toys",
+] as const;
+
 export const SELECTOR_VALUES = [
   { value: "", label: "Select a category", class: "hidden" },
   { value: "electronics", label: "Electronics" },
@@ -30,10 +41,3 @@ export const PROJECT_ROUTES = [
     icon: <IoMdAddCircleOutline className="size-7" />,
   },
 ];
-
-export function CalculatePct(original: number, current: number) {
-  const discount = original - current;
-  const percentage = (discount / original) * 100;
-
-  return `${Math.round(percentage)}%`;
-}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FiPackage } from "react-icons/fi";
-import { PROJECT_ROUTES } from "../utils";
+
+import { PROJECT_ROUTES } from "../constants";
 import { Drawer } from "./Drawer";
 
 export function Header() {

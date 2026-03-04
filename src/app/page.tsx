@@ -2,8 +2,9 @@
 
 import { ProductCard } from "@/components";
 import { EmptyBanner } from "@/global/components";
-import { SELECTOR_VALUES } from "@/global/utils";
-import { Product } from "@/utils";
+import { SELECTOR_VALUES } from "@/global/constants";
+import { Product } from "@/global/types";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
