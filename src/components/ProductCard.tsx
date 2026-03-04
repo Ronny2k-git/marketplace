@@ -1,10 +1,12 @@
 "use client";
 
+import { categories } from "@/global/constants";
+import { Product } from "@/global/types";
 import { Card } from "@/ui/components";
-import { category, Product } from "@/utils/utils";
+
 import Link from "next/link";
 
-type Category = (typeof category)[number];
+type Category = (typeof categories)[number];
 
 const formattedCategory: Record<Category, string> = {
   electronics: "Electronics",
