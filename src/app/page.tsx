@@ -3,24 +3,23 @@
 import { ProductCard } from "@/components";
 import { EmptyBanner } from "@/global/components";
 import { SELECTOR_VALUES } from "@/global/constants";
-import { Product } from "@/global/types";
+import { useFetchLocalStorage } from "@/global/hooks";
 import { Input } from "@/ui/components";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RiArrowRightDoubleLine } from "react-icons/ri";
 
 export default function MarketPlaceHome() {
   const [search, setSearch] = useState<string>("");
-  const [products, setProducts] = useState<Product[]>([]);
   const [select, setSelect] = useState("");
+  const products = useFetchLocalStorage("local-products");
 
-  useEffect(() => {
-    setProducts(JSON.parse(localStorage.getItem("local-products") ?? "[]"));
-  }, []);
-
+  // Search filter
   const searchFilteredProducts = products.filter((product) => {
     return product.name.toLowerCase().includes(search.toLowerCase());
   });
+
+  // Filter product by category
   const selectFilteredProducts = searchFilteredProducts.filter((product) => {
     if (!select || select === "all") return true;
     return product.category === select;
@@ -43,7 +42,7 @@ export default function MarketPlaceHome() {
           </Link>
         </div>
 
-        {/* Input to filter the products by name */}
+        {/* Filter products by name */}
         <section className="max-md:flex-col md:gap-8 my-10 flex justify-between items-center">
           <div
             className="flex w-full max-sm:flex-col gap-4 rounded-2xl p-6 justify-between border 
@@ -86,6 +85,10 @@ export default function MarketPlaceHome() {
               <button
                 className="px-4 py-2 rounded-lg border border-gray-700
                hover:bg-gray-800 transition"
+                onClick={() => {
+                  setSearch("");
+                  setSelect("");
+                }}
               >
                 Clear
               </button>

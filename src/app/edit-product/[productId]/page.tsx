@@ -14,12 +14,13 @@ const initialForm = {
   category: "",
 };
 
-// TO DO TOMORROW
+// TO DO LATER
 
 //   1 FINISH EDIT PAGE (Update and Delete Functionalities)
-//   2 FINISH PRODUCTS PAGE
-//   3 USE THE USEFETCHLOCALSTORAGE IN ALL FILES
+//   2 FINISH PRODUCTS PAGE FUNCTIONALITIES
 //   3 TEST ALL FEATURES IN THE CLOUD
+//   4 CREATE A HOOK TO UPDATE INFO STORED IN LOCAL STORAGE
+//   5 CREATE A HOOK TO DELETE INFO STORED IN LOCAL STORAGE
 
 export default function EditProduct() {
   const [form, setForm] = useState(initialForm);

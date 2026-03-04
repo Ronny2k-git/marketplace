@@ -27,13 +27,6 @@ const ProductSchema = z.object({
   ]),
 });
 
-// TO DO LATER
-
-//   1 FINISH EDIT PAGE (Update and Delete Functionalities)
-//   2 FINISH PRODUCTS PAGE
-//   3 TEST ALL FEATURES IN THE CLOUD
-//   4 CREATE A HOOK TO UPDATE INFO STORED IN LOCAL STORAGE
-
 const initialForm = {
   imageURL: "",
   productName: "",

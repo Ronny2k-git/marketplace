@@ -1,6 +1,7 @@
 "use client";
 
 import { EmptyBanner } from "@/global/components";
+import { useFetchLocalStorage } from "@/global/hooks";
 import { Category, Product } from "@/global/types";
 
 import Link from "next/link";
@@ -20,6 +21,7 @@ const formattedCategory: Record<Category, string> = {
 export default function ProductPage() {
   const { productId } = useParams();
   const router = useRouter();
+  const products = useFetchLocalStorage("local-products");
 
   const [product, setProduct] = useState<Product | null>(null);
 
@@ -30,16 +32,12 @@ export default function ProductPage() {
 
   // Fetch Product
   useEffect(() => {
-    const localProducts = JSON.parse(
-      localStorage.getItem("local-products") ?? "[]",
-    );
-
-    const filteredProduct = localProducts.find(
+    const filteredProduct = products.find(
       (product: Product) => product.id === productId,
     );
 
     setProduct(filteredProduct ?? null);
-  }, [productId]);
+  }, [products, productId]);
 
   if (!product) {
     return (
@@ -70,7 +68,7 @@ export default function ProductPage() {
             <img
               src={product.src}
               alt="product-image"
-              className="rounded-xl object-cover w-full sm:h-[18rem]"
+              className="max-sm:aspect-square rounded-xl object-cover w-full sm:h-[18rem]"
             />
           </div>
 
