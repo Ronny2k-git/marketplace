@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Product } from "../types";
 
-export function useFetchLocalStorage(key: string) {
+export function useLocalStorageFetch(key: string) {
   const [value, setValue] = useState<Product[]>([]);
 
   useEffect(() => {

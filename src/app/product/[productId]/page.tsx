@@ -1,7 +1,7 @@
 "use client";
 
 import { EmptyBanner } from "@/global/components";
-import { useFetchLocalStorage } from "@/global/hooks";
+import { useLocalStorageFetch } from "@/global/hooks";
 import { Category, Product } from "@/global/types";
 
 import Link from "next/link";
@@ -21,7 +21,7 @@ const formattedCategory: Record<Category, string> = {
 export default function ProductPage() {
   const { productId } = useParams();
   const router = useRouter();
-  const products = useFetchLocalStorage("local-products");
+  const products = useLocalStorageFetch("local-products");
 
   const [product, setProduct] = useState<Product | null>(null);
 

@@ -5,7 +5,7 @@ import {
   ProductCardPreview,
   ProductForm,
 } from "@/global/components";
-import { useFetchLocalStorage } from "@/global/hooks";
+import { useLocalStorageFetch } from "@/global/hooks";
 import { Card } from "@/ui/components";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -41,7 +41,7 @@ export default function AddProduct() {
   const [form, setForm] = useState(initialForm);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const products = useFetchLocalStorage("local-products");
+  const products = useLocalStorageFetch("local-products");
 
   const router = useRouter();
 

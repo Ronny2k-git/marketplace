@@ -6,7 +6,7 @@ import {
   SELECTOR_CATEGORY_VALUES,
 } from "@/global/constants";
 import {
-  useFetchLocalStorage,
+  useLocalStorageFetch,
   useProductsByCategory,
   useSearchProduct,
   useSortProduct,
@@ -16,7 +16,7 @@ import { Card, Input } from "@/ui/components";
 import Link from "next/link";
 
 export default function Products() {
-  const products = useFetchLocalStorage("local-products");
+  const products = useLocalStorageFetch("local-products");
   const now = new Date();
 
   // Filter products by name, category and creation date
@@ -65,6 +65,11 @@ export default function Products() {
     { label: "Updated This Week", value: updatedThisWeek },
     { label: "New This Month", value: newThisMonth },
   ];
+
+  // TO DO LATER
+
+  //   1 TEST ALL FEATURES IN THE CLOUD
+  //   2 SHOW A MESSAGE OR BANNER WHEN THE FILTERS RETURNS NOTHING ON PRODUCTS PAGE
 
   return (
     <main className="w-full overflow-hidden min-h-screen flex flex-col items-center bg-gray-950 px-4 py-10">

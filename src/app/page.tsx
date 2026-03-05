@@ -4,7 +4,7 @@ import { ProductCard } from "@/components";
 import { EmptyBanner } from "@/global/components";
 import { SELECTOR_CATEGORY_VALUES } from "@/global/constants";
 import {
-  useFetchLocalStorage,
+  useLocalStorageFetch,
   useProductsByCategory,
   useSearchProduct,
 } from "@/global/hooks";
@@ -13,7 +13,7 @@ import Link from "next/link";
 import { RiArrowRightDoubleLine } from "react-icons/ri";
 
 export default function MarketPlaceHome() {
-  const products = useFetchLocalStorage("local-products");
+  const products = useLocalStorageFetch("local-products");
 
   // Filter products by name and category
   const { search, searchFilteredProduct, setSearch } = useSearchProduct({
