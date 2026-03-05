@@ -3,26 +3,25 @@
 import { ProductCard } from "@/components";
 import { EmptyBanner } from "@/global/components";
 import { SELECTOR_VALUES } from "@/global/constants";
-import { useFetchLocalStorage } from "@/global/hooks";
+import {
+  useFetchLocalStorage,
+  useProductsByCategory,
+  useSearchProduct,
+} from "@/global/hooks";
 import { Input } from "@/ui/components";
 import Link from "next/link";
-import { useState } from "react";
 import { RiArrowRightDoubleLine } from "react-icons/ri";
 
 export default function MarketPlaceHome() {
-  const [search, setSearch] = useState<string>("");
-  const [select, setSelect] = useState("");
   const products = useFetchLocalStorage("local-products");
 
-  // Search filter
-  const searchFilteredProducts = products.filter((product) => {
-    return product.name.toLowerCase().includes(search.toLowerCase());
+  // Filter products by name and category
+  const { search, searchFilteredProducts, setSearch } = useSearchProduct({
+    product: products,
   });
 
-  // Filter product by category
-  const selectFilteredProducts = searchFilteredProducts.filter((product) => {
-    if (!select || select === "all") return true;
-    return product.category === select;
+  const { select, selectedProduct, setSelect } = useProductsByCategory({
+    product: searchFilteredProducts,
   });
 
   return (
@@ -98,8 +97,8 @@ export default function MarketPlaceHome() {
 
         {/* Filtered Products */}
         <div className="w-full h-full gap-6 grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 ">
-          {selectFilteredProducts.length > 0 ? (
-            selectFilteredProducts.map((product) => (
+          {selectedProduct.length > 0 ? (
+            selectedProduct.map((product) => (
               <ProductCard
                 key={product.id}
                 id={product.id}

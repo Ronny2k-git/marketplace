@@ -8,11 +8,39 @@ import Link from "next/link";
 export default function Products() {
   const products = useFetchLocalStorage("local-products");
 
-  // Delete product
-  const handleDelete = () => {};
+  const now = new Date();
+
+  // Products Infos
+  const totalProducts = products.length ?? 0;
+  const totalCategories = new Set(products.map((p) => p.category ?? 0)).size;
+
+  const updatedThisWeek =
+    products.filter((p) => {
+      const updated = new Date(p.updatedAt);
+      const diff = now.getTime() - updated.getTime();
+
+      return diff <= 7 * 24 * 60 * 60 * 1000;
+    }).length ?? 0;
+
+  const newThisMonth =
+    products.filter((p) => {
+      const created = new Date(p.createdAt);
+
+      return (
+        created.getMonth() === now.getMonth() &&
+        created.getFullYear() === now.getFullYear()
+      );
+    }).length ?? 0;
+
+  const productStats = [
+    { label: "Total Products", value: totalProducts },
+    { label: "Categories", value: totalCategories },
+    { label: "Updated This Week", value: updatedThisWeek },
+    { label: "New This Month", value: newThisMonth },
+  ];
 
   return (
-    <main className="w-full min-h-screen flex flex-col items-center bg-gray-950 px-4 py-10">
+    <main className="w-full overflow-hidden min-h-screen flex flex-col items-center bg-gray-950 px-4 py-10">
       <div className="flex flex-col gap-10 max-w-6xl w-full">
         {/* Header */}
         <section className="flex justify-between items-center flex-wrap gap-6">
@@ -31,19 +59,17 @@ export default function Products() {
 
         {/* Stats Overview */}
         <section className="w-full grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4">
-          {["Total Products", "Categories", "Low Stock", "Draft"].map(
-            (label, index) => (
-              <Card
-                className="p-6 items-center rounded-2xl hover:border-gray-500/80"
-                key={index}
-                variant={"basic"}
-                size={"default"}
-              >
-                <p className="text-sm text-gray-400">{label}</p>
-                <h3 className="text-2xl font-bold">10</h3>
-              </Card>
-            ),
-          )}
+          {productStats.map((product, index) => (
+            <Card
+              className="p-6 items-center rounded-2xl hover:border-gray-500/80"
+              key={index}
+              variant={"basic"}
+              size={"default"}
+            >
+              <p className="text-sm text-gray-400">{product.label}</p>
+              <h3 className="text-2xl font-bold">{product.value}</h3>
+            </Card>
+          ))}
         </section>
 
         {/* Filters */}
@@ -81,9 +107,9 @@ export default function Products() {
           <Card
             variant="basic2"
             size="default"
-            className="rounded-2xl overflow-hidden p-0"
+            className="rounded-2xl overflow-y-auto p-0"
           >
-            <table className="w-full text-left text-md">
+            <table className="w-full text-left text-md min-w-[55rem]">
               <thead className="bg-gray-900 border-b border-gray-800">
                 <tr>
                   <th className="px-4 py-4">Product</th>
@@ -109,7 +135,9 @@ export default function Products() {
                         className="w-10 h-10 object-cover rounded-md"
                       />
                     </td>
-                    <td className="px-4 py-4 font-medium">MacBook Pro {i}</td>
+                    <td className="px-4 py-4 font-medium">
+                      MacBook Prossssssss {i}
+                    </td>
                     <td className="px-4 py-4 text-gray-400">Electronics</td>
                     <td className="px-4 py-4">
                       {" "}
@@ -129,15 +157,13 @@ export default function Products() {
                       </span>
                     </td>
                     <td className="px-5 py-4 ">
-                      <div className="flex justify-end gap-3">
+                      <div className="flex justify-end gap-3 text-sm">
                         <Link
                           href={`edit-product/${"productId"}`}
-                          className="text-yellow-400/90 hover:underline"
+                          className="px-4 py-1 text-blue-400 border border-blue-500/40 rounded-lg
+                          hover:bg-blue-500/10 hover:border-blue-400 transition-all duration-200"
                         >
-                          Edit
-                        </Link>
-                        <Link href="" className="text-red-400 hover:underline">
-                          Delete
+                          Manage
                         </Link>
                       </div>
                     </td>
