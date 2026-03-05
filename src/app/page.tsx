@@ -2,7 +2,7 @@
 
 import { ProductCard } from "@/components";
 import { EmptyBanner } from "@/global/components";
-import { SELECTOR_VALUES } from "@/global/constants";
+import { SELECTOR_CATEGORY_VALUES } from "@/global/constants";
 import {
   useFetchLocalStorage,
   useProductsByCategory,
@@ -16,12 +16,12 @@ export default function MarketPlaceHome() {
   const products = useFetchLocalStorage("local-products");
 
   // Filter products by name and category
-  const { search, searchFilteredProducts, setSearch } = useSearchProduct({
+  const { search, searchFilteredProduct, setSearch } = useSearchProduct({
     product: products,
   });
 
   const { select, selectedProduct, setSelect } = useProductsByCategory({
-    product: searchFilteredProducts,
+    product: searchFilteredProduct,
   });
 
   return (
@@ -54,7 +54,7 @@ export default function MarketPlaceHome() {
                 rightIcon={
                   <RiArrowRightDoubleLine className="fill-blue-700 text-4xl" />
                 }
-                placeholder="Search by name ..."
+                placeholder="Search product by name ..."
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
               />
@@ -69,7 +69,7 @@ export default function MarketPlaceHome() {
               >
                 <option value={""}>All</option>
 
-                {SELECTOR_VALUES.map((product, index) => (
+                {SELECTOR_CATEGORY_VALUES.map((product, index) => (
                   <option
                     value={product.value}
                     key={index}

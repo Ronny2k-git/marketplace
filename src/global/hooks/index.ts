@@ -1,3 +1,4 @@
 export * from "./useFetchLocalStorage";
-export * from "./useProductsByCategory";
+export * from "./useProductByCategory";
 export * from "./useSearchProduct";
+export * from "./useSortProduct";

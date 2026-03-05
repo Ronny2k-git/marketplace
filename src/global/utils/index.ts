@@ -4,3 +4,7 @@ export function CalculatePct(original: number, current: number) {
 
   return `${Math.round(percentage)}%`;
 }
+
+export function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US");
+}

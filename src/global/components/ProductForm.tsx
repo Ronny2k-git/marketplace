@@ -1,5 +1,5 @@
 import { Input } from "@/ui/components";
-import { SELECTOR_VALUES } from "../constants";
+import { SELECTOR_CATEGORY_VALUES } from "../constants";
 
 type ProductFormData = {
   imageURL: string;
@@ -32,6 +32,7 @@ export function ProductForm({ form, setForm }: ProductFormProps) {
         placeholder="Enter product name"
         value={form.productName}
         onChange={(e) => setForm({ ...form, productName: e.target.value })}
+        maxLength={25}
       />
 
       {/* Category */}
@@ -42,7 +43,7 @@ export function ProductForm({ form, setForm }: ProductFormProps) {
           value={form.category}
           onChange={(e) => setForm({ ...form, category: e.target.value })}
         >
-          {SELECTOR_VALUES.map((item, index) => (
+          {SELECTOR_CATEGORY_VALUES.map((item, index) => (
             <option key={index} value={item.value}>
               {item.label}
             </option>

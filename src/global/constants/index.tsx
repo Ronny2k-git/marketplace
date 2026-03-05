@@ -1,6 +1,7 @@
 import { AiOutlineAppstore } from "react-icons/ai";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
+import { Category } from "../types";
 
 export const categories = [
   "electronics",
@@ -13,7 +14,7 @@ export const categories = [
   "toys",
 ] as const;
 
-export const SELECTOR_VALUES = [
+export const SELECTOR_CATEGORY_VALUES = [
   { value: "", label: "Select a category", class: "hidden" },
   { value: "electronics", label: "Electronics" },
   { value: "clothing", label: "Clothing" },
@@ -41,3 +42,13 @@ export const PROJECT_ROUTES = [
     icon: <IoMdAddCircleOutline className="size-7" />,
   },
 ];
+
+export const formattedCategory: Record<Category, string> = {
+  electronics: "Electronics",
+  clothing: "Clothing",
+  home: "Home & Kitchen",
+  books: "Books",
+  sports: "Sports",
+  beauty: "Beauty",
+  toys: "Toys",
+};

@@ -1,22 +1,11 @@
 "use client";
 
-import { categories } from "@/global/constants";
+import { formattedCategory } from "@/global/constants";
 import { Product } from "@/global/types";
+import { formatDate } from "@/global/utils";
 import { Card } from "@/ui/components";
 
 import Link from "next/link";
-
-type Category = (typeof categories)[number];
-
-const formattedCategory: Record<Category, string> = {
-  electronics: "Electronics",
-  clothing: "Clothing",
-  home: "Home & Kitchen",
-  books: "Books",
-  sports: "Sports",
-  beauty: "Beauty",
-  toys: "Toys",
-};
 
 export function ProductCard({
   id,
@@ -27,10 +16,6 @@ export function ProductCard({
   description,
   category,
 }: Product) {
-  function formatedDate(date: string) {
-    return new Date(date).toLocaleDateString("en-US");
-  }
-
   return (
     <Card
       className="w-full p-4 rounded-lg gap-6"
@@ -64,14 +49,14 @@ export function ProductCard({
           <div className="text-white font-semibold">
             Created:{" "}
             <span className="text-blue-400 font-normal">
-              {formatedDate(createdAt)}
+              {formatDate(createdAt)}
             </span>
           </div>
 
           <div className="text-white font-semibold">
             Updated:{" "}
             <span className="text-yellow-500 font-normal">
-              {formatedDate(updatedAt)}
+              {formatDate(updatedAt)}
             </span>
           </div>
         </div>

@@ -10,9 +10,9 @@ export type useSearchProduct = {
 export function useSearchProduct({ product }: useSearchProduct) {
   const [search, setSearch] = useState<string>("");
 
-  const searchFilteredProducts = product.filter((p) => {
+  const searchFilteredProduct = product.filter((p) => {
     return p.name.toLowerCase().includes(search.toLowerCase());
   });
 
-  return { search, searchFilteredProducts, setSearch };
+  return { search, searchFilteredProduct, setSearch };
 }

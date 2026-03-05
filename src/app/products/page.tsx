@@ -1,19 +1,44 @@
 "use client";
 
 import { PageHeader } from "@/global/components";
-import { useFetchLocalStorage } from "@/global/hooks";
+import {
+  formattedCategory,
+  SELECTOR_CATEGORY_VALUES,
+} from "@/global/constants";
+import {
+  useFetchLocalStorage,
+  useProductsByCategory,
+  useSearchProduct,
+  useSortProduct,
+} from "@/global/hooks";
+import { formatDate } from "@/global/utils";
 import { Card, Input } from "@/ui/components";
 import Link from "next/link";
 
 export default function Products() {
   const products = useFetchLocalStorage("local-products");
-
   const now = new Date();
 
-  // Products Infos
+  // Filter products by name, category and creation date
+  const { search, searchFilteredProduct, setSearch } = useSearchProduct({
+    product: products,
+  });
+
+  const { select, selectedProduct, setSelect } = useProductsByCategory({
+    product: searchFilteredProduct,
+  });
+
+  const { sortDirection, sortedProduct, setSortDirection } = useSortProduct({
+    product: selectedProduct,
+  });
+
+  // Total products
   const totalProducts = products.length ?? 0;
+
+  // Total categories
   const totalCategories = new Set(products.map((p) => p.category ?? 0)).size;
 
+  // Products updated this week
   const updatedThisWeek =
     products.filter((p) => {
       const updated = new Date(p.updatedAt);
@@ -22,6 +47,7 @@ export default function Products() {
       return diff <= 7 * 24 * 60 * 60 * 1000;
     }).length ?? 0;
 
+  // Products created this month
   const newThisMonth =
     products.filter((p) => {
       const created = new Date(p.createdAt);
@@ -32,6 +58,7 @@ export default function Products() {
       );
     }).length ?? 0;
 
+  // Stats
   const productStats = [
     { label: "Total Products", value: totalProducts },
     { label: "Categories", value: totalCategories },
@@ -77,23 +104,50 @@ export default function Products() {
           <Card className="p-6 rounded-2xl" variant={"basic"} size={"default"}>
             <div className="flex max-md:flex-col gap-4 justify-between">
               <Input
+                value={search}
                 className="w-full md:max-w-md"
-                placeholder="Search by name..."
+                placeholder="Search product by name..."
+                onChange={(e) => setSearch(e.target.value)}
               />
 
               <div className="flex max-md:flex-wrap justify-center gap-4">
-                <select className="px-4 h-10 rounded-lg bg-gray-800 border border-gray-700">
-                  <option>All categories</option>
+                <select
+                  className="px-4 h-10 rounded-lg bg-gray-800 border border-gray-700"
+                  value={select}
+                  onChange={(event) => setSelect(event.target.value)}
+                >
+                  <option value={""}>All</option>
+
+                  {SELECTOR_CATEGORY_VALUES.map((product, index) => (
+                    <option
+                      value={product.value}
+                      key={index}
+                      className={`${product.class}`}
+                    >
+                      {product.label}
+                    </option>
+                  ))}
                 </select>
 
-                <select className="px-4 h-10 rounded-lg bg-gray-800 border border-gray-700">
-                  <option>Ascending</option>
-                  <option>Descending</option>
+                <select
+                  className="px-4 h-10 rounded-lg bg-gray-800 border border-gray-700"
+                  value={sortDirection}
+                  onChange={(e) =>
+                    setSortDirection(e.target.value as "asc" | "desc")
+                  }
+                >
+                  <option value={"asc"}>Ascending</option>
+                  <option value={"desc"}>Descending</option>
                 </select>
 
                 <button
                   className="px-4 h-10 rounded-lg border border-gray-700
                hover:bg-gray-800 transition"
+                  onClick={() => {
+                    setSearch("");
+                    setSelect("");
+                    setSortDirection("desc");
+                  }}
                 >
                   Clear
                 </button>
@@ -123,29 +177,31 @@ export default function Products() {
               </thead>
 
               <tbody className="">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i, index) => (
+                {sortedProduct.map((p, index) => (
                   <tr
                     className="w-full border-b border-gray-800 hover:bg-gray-800/40 transition"
                     key={index}
                   >
                     <td className="px-4 py-3 font-medium">
                       <img
-                        src="/logo.webp"
+                        src={p.src}
                         alt="Product"
                         className="w-10 h-10 object-cover rounded-md"
                       />
                     </td>
-                    <td className="px-4 py-4 font-medium">
-                      MacBook Prossssssss {i}
+                    <td className="px-4 py-4 font-medium max-w-[16rem]">
+                      {p.name}
                     </td>
-                    <td className="px-4 py-4 text-gray-400">Electronics</td>
+                    <td className="px-4 py-4 text-gray-400">
+                      {formattedCategory[p.category]}
+                    </td>
                     <td className="px-4 py-4">
                       {" "}
                       <span
                         className="px-3 py-1 rounded-full text-xs
                        bg-green-500/20 text-green-400"
                       >
-                        3/3/2026
+                        {formatDate(p.createdAt)}
                       </span>
                     </td>
                     <td className="px-4 py-4 ">
@@ -153,13 +209,13 @@ export default function Products() {
                         className="px-3 py-1 rounded-full text-xs
                        bg-yellow-500/20 text-yellow-400"
                       >
-                        3/4/2026
+                        {formatDate(p.updatedAt)}
                       </span>
                     </td>
                     <td className="px-5 py-4 ">
                       <div className="flex justify-end gap-3 text-sm">
                         <Link
-                          href={`edit-product/${"productId"}`}
+                          href={`edit-product/${p.id}`}
                           className="px-4 py-1 text-blue-400 border border-blue-500/40 rounded-lg
                           hover:bg-blue-500/10 hover:border-blue-400 transition-all duration-200"
                         >
@@ -175,24 +231,26 @@ export default function Products() {
         </section>
 
         <div className="w-full flex items-center justify-between gap-4">
-          <span>{`Showing ${"1-10"} of ${128} products`}</span>
+          <span>{`Showing ${"1-10"} of ${totalProducts} products`}</span>
 
           {/* Mock */}
-          <div className="flex gap-2">
-            <button className="px-3 py-1 border border-gray-700 rounded-md hover:bg-gray-800">
-              Prev
-            </button>
-            <button className="px-3 py-1 bg-blue-600 rounded-md">1</button>
-            <button className="px-3 py-1 border border-gray-700 rounded-md hover:bg-gray-800">
-              2
-            </button>
-            <button className="px-3 py-1 border border-gray-700 rounded-md hover:bg-gray-800">
-              3
-            </button>
-            <button className="px-3 py-1 border border-gray-700 rounded-md hover:bg-gray-800">
-              Next
-            </button>
-          </div>
+          {totalProducts > 10 && (
+            <div className="flex gap-2">
+              <button className="px-3 py-1 border border-gray-700 rounded-md hover:bg-gray-800">
+                Prev
+              </button>
+              <button className="px-3 py-1 bg-blue-600 rounded-md">1</button>
+              <button className="px-3 py-1 border border-gray-700 rounded-md hover:bg-gray-800">
+                2
+              </button>
+              <button className="px-3 py-1 border border-gray-700 rounded-md hover:bg-gray-800">
+                3
+              </button>
+              <button className="px-3 py-1 border border-gray-700 rounded-md hover:bg-gray-800">
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </main>

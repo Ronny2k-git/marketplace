@@ -1,6 +1,10 @@
 "use client";
 
-import { PageHeader, ProductForm } from "@/global/components";
+import {
+  PageHeader,
+  ProductCardPreview,
+  ProductForm,
+} from "@/global/components";
 import { useFetchLocalStorage } from "@/global/hooks";
 import { Card } from "@/ui/components";
 import { useRouter } from "next/navigation";
@@ -21,7 +25,6 @@ const ProductSchema = z.object({
     "home",
     "books",
     "sports",
-    "beauty",
     "beauty",
     "toys",
   ]),
@@ -76,53 +79,66 @@ export default function AddProduct() {
 
   return (
     <main className="min-h-screen flex justify-center px-4 py-10">
-      <div className="w-full max-w-4xl flex flex-col gap-12">
+      <div className="w-full max-w-6xl flex flex-col gap-12">
         {/* Page Header */}
         <PageHeader
           title="Create New Product"
           subtitle="Fill the information below to register a new product."
         />
 
-        {/* Form Card */}
-        <section>
-          <Card className="gap-8" variant={"basic2"} size={"md"}>
-            {/* Creation Form */}
-            <ProductForm form={form} setForm={setForm} />
+        {/* Form and Preview Sections*/}
+        <div className="flex max-[900px]:flex-col w-full gap-8">
+          {/* Form Card */}
+          <section className="flex w-full">
+            <Card className="gap-8" variant={"basic2"} size={"md"}>
+              {/* Creation Form */}
+              <ProductForm form={form} setForm={setForm} />
 
-            {/* Messages */}
-            {errorMessage && (
-              <div className="text-red-500 p-2 border rounded-md border-red-500/35 text-center">
-                {errorMessage}
+              {/* Messages */}
+              {errorMessage && (
+                <div className="text-red-500 p-2 border rounded-md border-red-500/35 text-center">
+                  {errorMessage}
+                </div>
+              )}
+
+              {successMessage && (
+                <div className="text-green-500 p-2 border rounded-md border-green-500 text-center">
+                  {successMessage}
+                </div>
+              )}
+
+              {/* Buttons */}
+              <div className="flex gap-4 pt-4">
+                <button
+                  onClick={() => {
+                    setForm(initialForm);
+                    setErrorMessage("");
+                  }}
+                  className="flex-1 h-11 rounded-lg bg-gray-800 hover:bg-gray-700 transition"
+                >
+                  Clear
+                </button>
+
+                <button
+                  onClick={createProduct}
+                  className="flex-1 h-11 rounded-lg bg-blue-700 hover:bg-blue-600 font-semibold transition"
+                >
+                  Create Product
+                </button>
               </div>
-            )}
+            </Card>
+          </section>
 
-            {successMessage && (
-              <div className="text-green-500 p-2 border rounded-md border-green-500 text-center">
-                {successMessage}
-              </div>
-            )}
-
-            {/* Buttons */}
-            <div className="flex gap-4 pt-4">
-              <button
-                onClick={() => {
-                  setForm(initialForm);
-                  setErrorMessage("");
-                }}
-                className="flex-1 h-11 rounded-lg bg-gray-800 hover:bg-gray-700 transition"
-              >
-                Clear
-              </button>
-
-              <button
-                onClick={createProduct}
-                className="flex-1 h-11 rounded-lg bg-blue-700 hover:bg-blue-600 font-semibold transition"
-              >
-                Create Product
-              </button>
-            </div>
-          </Card>
-        </section>
+          {/*Card Preview */}
+          <section className="flex">
+            <ProductCardPreview
+              src={form.imageURL}
+              name={form.productName}
+              description={form.description}
+              category={form.category}
+            />
+          </section>
+        </div>
       </div>
     </main>
   );
