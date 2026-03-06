@@ -12,7 +12,7 @@ import {
   useSortProduct,
 } from "@/global/hooks";
 import { formatDate } from "@/global/utils";
-import { Card, Input } from "@/ui/components";
+import { Card, Input, Select } from "@/ui/components";
 import Link from "next/link";
 
 export default function Products() {
@@ -66,7 +66,7 @@ export default function Products() {
     { label: "New This Month", value: newThisMonth },
   ];
 
-  // TO DO TOMORROW
+  // TO DO LATER
 
   // 1 TEST ALL FEATURES IN THE CLOUD.
   // 2 CREATE A PAGINATION COMPONENT
@@ -116,8 +116,8 @@ export default function Products() {
               />
 
               <div className="flex max-md:flex-wrap justify-center gap-4">
-                <select
-                  className="px-4 h-10 rounded-lg bg-gray-800 border border-gray-700"
+                <Select
+                  className="w-40 "
                   value={select}
                   onChange={(event) => setSelect(event.target.value)}
                 >
@@ -132,10 +132,10 @@ export default function Products() {
                       {product.label}
                     </option>
                   ))}
-                </select>
+                </Select>
 
-                <select
-                  className="px-4 h-10 rounded-lg bg-gray-800 border border-gray-700"
+                <Select
+                  className="w-40"
                   value={sortDirection}
                   onChange={(e) =>
                     setSortDirection(e.target.value as "asc" | "desc")
@@ -143,7 +143,7 @@ export default function Products() {
                 >
                   <option value={"asc"}>Ascending</option>
                   <option value={"desc"}>Descending</option>
-                </select>
+                </Select>
 
                 <button
                   className="px-4 h-10 rounded-lg border border-gray-700
@@ -174,7 +174,7 @@ export default function Products() {
               size="default"
               className="rounded-2xl overflow-y-auto p-0"
             >
-              <table className="w-full text-left text-md min-w-[55rem]">
+              <table className="w-full text-left text-md min-w-[55rem] ">
                 <thead className="bg-gray-900 border-b border-gray-800">
                   <tr>
                     <th className="px-4 py-4">Product</th>

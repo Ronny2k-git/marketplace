@@ -8,7 +8,7 @@ import {
   useProductsByCategory,
   useSearchProduct,
 } from "@/global/hooks";
-import { Input } from "@/ui/components";
+import { Input, Select } from "@/ui/components";
 import Link from "next/link";
 import { RiArrowRightDoubleLine } from "react-icons/ri";
 
@@ -62,8 +62,8 @@ export default function MarketPlaceHome() {
 
             {/* Selector to filter the products by value */}
             <div className="flex gap-4 justify-center">
-              <select
-                className="bg-gray-800 h-10 px-4 flex justify-center items-center hover:bg-gray-800 rounded-md text-white"
+              <Select
+                className="min-w-44"
                 value={select}
                 onChange={(event) => setSelect(event.target.value)}
               >
@@ -78,7 +78,7 @@ export default function MarketPlaceHome() {
                     {product.label}
                   </option>
                 ))}
-              </select>
+              </Select>
 
               {/* Clear Filters*/}
               <button
@@ -96,7 +96,7 @@ export default function MarketPlaceHome() {
         </section>
 
         {/* Filtered Products */}
-        <div className="w-full h-full gap-6 grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 ">
+        <div className="w-full h-full gap-6 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
           {selectedProduct.length > 0 ? (
             selectedProduct.map((product) => (
               <ProductCard

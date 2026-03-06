@@ -14,6 +14,18 @@
   }
 }
 
+/* Custo scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* vertical width */
+  height: 8px; /* horizontal heigth */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin; /* size  */
+  scrollbar-color: #424141 #0a0808; /* thumb / track */
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

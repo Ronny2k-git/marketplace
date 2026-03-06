@@ -95,7 +95,7 @@ export default function EditProduct() {
         />
 
         {/* Form Card */}
-        <div className="flex max-[900px]:flex-col max-sm:items-center w-full gap-8">
+        <div className="flex max-[900px]:flex-col-reverse max-sm:items-center w-full gap-8">
           <Card className=" rounded-2xl gap-12" variant={"basic2"} size={"md"}>
             <section className="flex flex-col gap-8">
               <div className="text-sm text-gray-400">

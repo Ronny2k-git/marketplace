@@ -45,7 +45,7 @@ export function ProductCard({
 
       {/* Actions */}
       <div className="flex flex-col justify-end h-full gap-2">
-        <div className="flex flex-row justify-between gap-4 text-sm">
+        <div className="flex flex-row justify-between gap- text-sm">
           <div className="text-white font-semibold">
             Created:{" "}
             <span className="text-blue-400 font-normal">

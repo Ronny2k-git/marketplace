@@ -1,4 +1,4 @@
-import { Input } from "@/ui/components";
+import { Input, Select } from "@/ui/components";
 import { SELECTOR_CATEGORY_VALUES } from "../constants";
 
 type ProductFormData = {
@@ -36,20 +36,17 @@ export function ProductForm({ form, setForm }: ProductFormProps) {
       />
 
       {/* Category */}
-      <div className="flex flex-col gap-2">
-        <label className="text-sm text-gray-400">Category</label>
-        <select
-          className="h-11 px-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-blue-600 outline-none transition"
-          value={form.category}
-          onChange={(e) => setForm({ ...form, category: e.target.value })}
-        >
-          {SELECTOR_CATEGORY_VALUES.map((item, index) => (
-            <option key={index} value={item.value}>
-              {item.label}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Select
+        label="Category"
+        value={form.category}
+        onChange={(e) => setForm({ ...form, category: e.target.value })}
+      >
+        {SELECTOR_CATEGORY_VALUES.map((item, index) => (
+          <option key={index} value={item.value}>
+            {item.label}
+          </option>
+        ))}
+      </Select>
 
       {/* Description */}
       <div className="flex flex-col gap-2">
