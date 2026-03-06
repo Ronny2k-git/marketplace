@@ -1,6 +1,6 @@
 "use client";
 
-import { PageHeader } from "@/global/components";
+import { EmptyBanner, PageHeader } from "@/global/components";
 import {
   formattedCategory,
   SELECTOR_CATEGORY_VALUES,
@@ -66,10 +66,10 @@ export default function Products() {
     { label: "New This Month", value: newThisMonth },
   ];
 
-  // TO DO LATER
+  // TO DO TOMORROW
 
-  //   1 TEST ALL FEATURES IN THE CLOUD
-  //   2 SHOW A MESSAGE OR BANNER WHEN THE FILTERS RETURNS NOTHING ON PRODUCTS PAGE
+  // 1 TEST ALL FEATURES IN THE CLOUD.
+  // 2 CREATE A PAGINATION COMPONENT
 
   return (
     <main className="w-full overflow-hidden min-h-screen flex flex-col items-center bg-gray-950 px-4 py-10">
@@ -163,76 +163,83 @@ export default function Products() {
 
         {/* Products Table */}
         <section className="w-full">
-          <Card
-            variant="basic2"
-            size="default"
-            className="rounded-2xl overflow-y-auto p-0"
-          >
-            <table className="w-full text-left text-md min-w-[55rem]">
-              <thead className="bg-gray-900 border-b border-gray-800">
-                <tr>
-                  <th className="px-4 py-4">Product</th>
+          {sortedProduct.length === 0 ? (
+            <EmptyBanner
+              title="No Products Found"
+              subtitle="Please check your filters or create a new one"
+            />
+          ) : (
+            <Card
+              variant="basic2"
+              size="default"
+              className="rounded-2xl overflow-y-auto p-0"
+            >
+              <table className="w-full text-left text-md min-w-[55rem]">
+                <thead className="bg-gray-900 border-b border-gray-800">
+                  <tr>
+                    <th className="px-4 py-4">Product</th>
 
-                  <th className="px-4 py-4">Name</th>
-                  <th className="px-4 py-4">Category</th>
-                  <th className="px-4 py-4">Created</th>
-                  <th className="px-4 py-4">Updated</th>
-                  <th className="px-4 py-4 text-right">Edit | Delete</th>
-                </tr>
-              </thead>
-
-              <tbody className="">
-                {sortedProduct.map((p, index) => (
-                  <tr
-                    className="w-full border-b border-gray-800 hover:bg-gray-800/40 transition"
-                    key={index}
-                  >
-                    <td className="px-4 py-3 font-medium">
-                      <img
-                        src={p.src}
-                        alt="Product"
-                        className="w-10 h-10 object-cover rounded-md"
-                      />
-                    </td>
-                    <td className="px-4 py-4 font-medium max-w-[16rem]">
-                      {p.name}
-                    </td>
-                    <td className="px-4 py-4 text-gray-400">
-                      {formattedCategory[p.category]}
-                    </td>
-                    <td className="px-4 py-4">
-                      {" "}
-                      <span
-                        className="px-3 py-1 rounded-full text-xs
-                       bg-green-500/20 text-green-400"
-                      >
-                        {formatDate(p.createdAt)}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4 ">
-                      <span
-                        className="px-3 py-1 rounded-full text-xs
-                       bg-yellow-500/20 text-yellow-400"
-                      >
-                        {formatDate(p.updatedAt)}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4 ">
-                      <div className="flex justify-end gap-3 text-sm">
-                        <Link
-                          href={`edit-product/${p.id}`}
-                          className="px-4 py-1 text-blue-400 border border-blue-500/40 rounded-lg
-                          hover:bg-blue-500/10 hover:border-blue-400 transition-all duration-200"
-                        >
-                          Manage
-                        </Link>
-                      </div>
-                    </td>
+                    <th className="px-4 py-4">Name</th>
+                    <th className="px-4 py-4">Category</th>
+                    <th className="px-4 py-4">Created</th>
+                    <th className="px-4 py-4">Updated</th>
+                    <th className="px-4 py-4 text-right">Edit | Delete</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </Card>
+                </thead>
+
+                <tbody className="">
+                  {sortedProduct.map((p, index) => (
+                    <tr
+                      className="w-full border-b border-gray-800 hover:bg-gray-800/40 transition"
+                      key={index}
+                    >
+                      <td className="px-4 py-3 font-medium">
+                        <img
+                          src={p.src}
+                          alt="Product"
+                          className="w-10 h-10 object-cover rounded-md"
+                        />
+                      </td>
+                      <td className="px-4 py-4 font-medium max-w-[16rem]">
+                        {p.name}
+                      </td>
+                      <td className="px-4 py-4 text-gray-400">
+                        {formattedCategory[p.category]}
+                      </td>
+                      <td className="px-4 py-4">
+                        {" "}
+                        <span
+                          className="px-3 py-1 rounded-full text-xs
+                       bg-green-500/20 text-green-400"
+                        >
+                          {formatDate(p.createdAt)}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 ">
+                        <span
+                          className="px-3 py-1 rounded-full text-xs
+                       bg-yellow-500/20 text-yellow-400"
+                        >
+                          {formatDate(p.updatedAt)}
+                        </span>
+                      </td>
+                      <td className="px-5 py-4 ">
+                        <div className="flex justify-end gap-3 text-sm">
+                          <Link
+                            href={`edit-product/${p.id}`}
+                            className="px-4 py-1 text-blue-400 border border-blue-500/40 rounded-lg
+                          hover:bg-blue-500/10 hover:border-blue-400 transition-all duration-200"
+                          >
+                            Manage
+                          </Link>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </Card>
+          )}
         </section>
 
         <div className="w-full flex items-center justify-between gap-4">

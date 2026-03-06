@@ -26,6 +26,7 @@ const initialForm = {
 export default function EditProduct() {
   const [form, setForm] = useState(initialForm);
   const [originalForm, setOriginalForm] = useState(initialForm);
+  const [productData, setProductData] = useState<Product>();
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const products = useLocalStorageFetch("local-products");
@@ -63,11 +64,13 @@ export default function EditProduct() {
     }
   };
 
-  // Fetch default data
+  // Fetch product data
   useEffect(() => {
     const foundProduct = products.find(
       (product: Product) => product.id === productId,
     );
+
+    setProductData(foundProduct);
 
     if (!foundProduct) return;
 
@@ -92,7 +95,7 @@ export default function EditProduct() {
         />
 
         {/* Form Card */}
-        <div className="flex max-[900px]:flex-col w-full gap-8">
+        <div className="flex max-[900px]:flex-col max-sm:items-center w-full gap-8">
           <Card className=" rounded-2xl gap-12" variant={"basic2"} size={"md"}>
             <section className="flex flex-col gap-8">
               <div className="text-sm text-gray-400">
@@ -171,6 +174,8 @@ export default function EditProduct() {
               name={form.productName}
               description={form.description}
               category={form.category}
+              createdAt={productData?.createdAt}
+              updatedAt={productData?.updatedAt}
             />
           </section>
         </div>

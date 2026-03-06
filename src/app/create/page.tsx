@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
+import { categories } from "./const";
 
 const ProductSchema = z.object({
   src: z.string().min(5),
@@ -19,15 +20,7 @@ const ProductSchema = z.object({
   createdAt: z.string(),
   updatedAt: z.string(),
   description: z.string().min(1),
-  category: z.enum([
-    "electronics",
-    "clothing",
-    "home",
-    "books",
-    "sports",
-    "beauty",
-    "toys",
-  ]),
+  category: z.enum(categories),
 });
 
 const initialForm = {
@@ -87,7 +80,7 @@ export default function AddProduct() {
         />
 
         {/* Form and Preview Sections*/}
-        <div className="flex max-[900px]:flex-col w-full gap-8">
+        <div className="flex max-[900px]:flex-col max-sm:items-center w-full gap-8">
           {/* Form Card */}
           <section className="flex w-full">
             <Card className="gap-8" variant={"basic2"} size={"md"}>
@@ -130,7 +123,7 @@ export default function AddProduct() {
           </section>
 
           {/*Card Preview */}
-          <section className="flex">
+          <section className="flex max-sm:w-full max-sm:justify-center">
             <ProductCardPreview
               src={form.imageURL}
               name={form.productName}

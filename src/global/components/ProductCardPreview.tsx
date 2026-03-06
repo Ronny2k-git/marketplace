@@ -1,10 +1,13 @@
 import { Card } from "@/ui/components";
+import { formatDate } from "../utils";
 
 type ProductCardPreviewProps = {
   src: string;
   name: string;
   description: string;
   category: string;
+  createdAt?: string;
+  updatedAt?: string;
 };
 
 export function ProductCardPreview({
@@ -12,10 +15,12 @@ export function ProductCardPreview({
   name,
   description,
   category,
+  createdAt,
+  updatedAt,
 }: ProductCardPreviewProps) {
   return (
     <Card
-      className="max-sm:w-full max-w-[22rem] px-0 w-[22rem] h-[19rem] rounded-2xl"
+      className="max-sm:w-full max-w-[22rem] px-0 w-[22rem] h-[20rem] rounded-2xl"
       variant={"basic"}
       size={"default"}
     >
@@ -33,8 +38,8 @@ export function ProductCardPreview({
             }}
           />
         ) : (
-          <div className="w-full h-full flex items-center  justify-center text-zinc-400 text-sm">
-            Image preview
+          <div className="w-full h-full flex items-center justify-center text-zinc-400 text-sm">
+            No image available
           </div>
         )}
       </div>
@@ -55,9 +60,30 @@ export function ProductCardPreview({
         </p>
 
         {/* Category */}
-        <span className="text-xs w-fit px-2 py-1 rounded-md bg-zinc-800 text-zinc-300 capitalize">
-          {category || "Category"}
-        </span>
+        <div className="flex justify-between items-center gap-4">
+          <span className="text-xs px-2 h-6 flex items-center rounded-md bg-zinc-800 text-zinc-300 capitalize">
+            {category || "Category"}
+          </span>
+
+          {/* Dates */}
+          {createdAt && updatedAt && (
+            <div className="flex gap-2 items-center text-xs text-gray-400">
+              <div className="flex flex-col items-center">
+                Created:
+                <span className="px-2 p-0.5 rounded-full bg-green-500/20 text-green-400">
+                  {formatDate(createdAt)}
+                </span>
+              </div>
+
+              <div className="flex flex-col items-center">
+                Updated:
+                <span className="px-2 p-0.5 rounded-full bg-yellow-500/20 text-yellow-400">
+                  {formatDate(updatedAt)}
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </Card>
   );

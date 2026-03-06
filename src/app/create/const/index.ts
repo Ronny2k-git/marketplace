@@ -1,0 +1,16 @@
+export const categories = [
+  "electronics",
+  "clothing",
+  "home",
+  "books",
+  "sports",
+  "beauty",
+  "toys",
+  "movies",
+  "automotive",
+  "food",
+  "health",
+  "pet",
+  "office",
+  "gaming",
+] as const;

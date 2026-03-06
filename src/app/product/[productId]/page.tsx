@@ -1,22 +1,13 @@
 "use client";
 
 import { EmptyBanner } from "@/global/components";
+import { formattedCategory } from "@/global/constants";
 import { useLocalStorageFetch } from "@/global/hooks";
-import { Category, Product } from "@/global/types";
+import { Product } from "@/global/types";
 
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-const formattedCategory: Record<Category, string> = {
-  electronics: "Electronics",
-  clothing: "Clothing",
-  home: "Home & Kitchen",
-  books: "Books",
-  sports: "Sports",
-  beauty: "Beauty",
-  toys: "Toys",
-};
 
 export default function ProductPage() {
   const { productId } = useParams();

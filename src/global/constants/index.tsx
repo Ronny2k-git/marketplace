@@ -3,17 +3,6 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdDashboard } from "react-icons/md";
 import { Category } from "../types";
 
-export const categories = [
-  "electronics",
-  "clothing",
-  "home",
-  "books",
-  "sports",
-  "beauty",
-  "beauty",
-  "toys",
-] as const;
-
 export const SELECTOR_CATEGORY_VALUES = [
   { value: "", label: "Select a category", class: "hidden" },
   { value: "electronics", label: "Electronics" },
@@ -23,6 +12,13 @@ export const SELECTOR_CATEGORY_VALUES = [
   { value: "sports", label: "Sports" },
   { value: "beauty", label: "Beauty" },
   { value: "toys", label: "Toys" },
+  { value: "movies", label: "Movies" },
+  { value: "automotive", label: "Automotive" },
+  { value: "food", label: "Food" },
+  { value: "health", label: "Health" },
+  { value: "pet", label: "Pet" },
+  { value: "office", label: "Office" },
+  { value: "gaming", label: "Gaming" },
 ];
 
 export const PROJECT_ROUTES = [
@@ -51,4 +47,11 @@ export const formattedCategory: Record<Category, string> = {
   sports: "Sports",
   beauty: "Beauty",
   toys: "Toys",
+  movies: "Movies",
+  automotive: "Automotive",
+  food: "Food",
+  health: "Health",
+  pet: "Pet",
+  office: "Office",
+  gaming: "Gaming",
 };
