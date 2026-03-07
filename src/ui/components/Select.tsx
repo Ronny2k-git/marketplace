@@ -2,7 +2,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import { ComponentPropsWithRef, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-export const SelectStyle = cva("flex w-full outline-none", {
+export const selectStyle = cva("flex w-full outline-none", {
   variants: {
     variant: {
       basic:
@@ -25,7 +25,7 @@ type SelectProps = Omit<ComponentPropsWithRef<"select">, "size"> & {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   label?: string;
-} & VariantProps<typeof SelectStyle>;
+} & VariantProps<typeof selectStyle>;
 
 export function Select({
   className,
@@ -50,7 +50,7 @@ export function Select({
 
         <select
           className={twMerge(
-            SelectStyle({ variant, size }),
+            selectStyle({ variant, size }),
             leftIcon && "pl-12",
             rightIcon && "pr-12",
           )}

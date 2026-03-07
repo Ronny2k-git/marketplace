@@ -13,6 +13,7 @@ import {
 } from "@/global/hooks";
 import { formatDate } from "@/global/utils";
 import { Card, Input, Select } from "@/ui/components";
+import { Button } from "@/ui/components/Button";
 import Link from "next/link";
 
 export default function Products() {
@@ -145,9 +146,11 @@ export default function Products() {
                   <option value={"desc"}>Descending</option>
                 </Select>
 
-                <button
-                  className="px-4 h-10 rounded-lg border border-gray-700
-               hover:bg-gray-800 transition"
+                {/* Clean filters */}
+                <Button
+                  className="max-w-[5rem]"
+                  variant={"ghost"}
+                  size={"md"}
                   onClick={() => {
                     setSearch("");
                     setSelect("");
@@ -155,7 +158,7 @@ export default function Products() {
                   }}
                 >
                   Clear
-                </button>
+                </Button>
               </div>
             </div>
           </Card>
@@ -225,12 +228,14 @@ export default function Products() {
                       </td>
                       <td className="px-5 py-4 ">
                         <div className="flex justify-end gap-3 text-sm">
-                          <Link
-                            href={`edit-product/${p.id}`}
-                            className="px-4 py-1 text-blue-400 border border-blue-500/40 rounded-lg
-                          hover:bg-blue-500/10 hover:border-blue-400 transition-all duration-200"
-                          >
-                            Manage
+                          <Link href={`edit-product/${p.id}`}>
+                            <Button
+                              className="max-w-[5rem]"
+                              variant={"ghost2"}
+                              size={"xs"}
+                            >
+                              Manage
+                            </Button>
                           </Link>
                         </div>
                       </td>

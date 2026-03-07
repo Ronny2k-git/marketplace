@@ -12,6 +12,7 @@ import {
 } from "@/global/hooks";
 import { Product } from "@/global/types";
 import { Card } from "@/ui/components";
+import { Button } from "@/ui/components/Button";
 import { useParams, useRouter } from "next/navigation";
 
 import { useEffect, useState } from "react";
@@ -97,7 +98,7 @@ export default function EditProduct() {
         {/* Form Card */}
         <div className="flex max-[900px]:flex-col-reverse max-sm:items-center w-full gap-8">
           <Card className=" rounded-2xl gap-12" variant={"basic2"} size={"md"}>
-            <section className="flex flex-col gap-8">
+            <section className="flex flex-col gap-8 w-full">
               <div className="text-sm text-gray-400">
                 Product ID: <span className="text-gray-300">{productId}</span>
               </div>
@@ -120,24 +121,25 @@ export default function EditProduct() {
 
               {/* Buttons */}
               <div className="flex gap-4 pt-4">
-                <button
+                <Button
+                  className="font-semibold"
+                  size={"default"}
                   onClick={() => {
                     setForm(originalForm);
                     setErrorMessage("");
                   }}
-                  className="flex-1 h-11 rounded-lg bg-gray-800 hover:bg-gray-700 transition"
                 >
                   Clear
-                </button>
+                </Button>
 
-                <button
-                  className={`flex-1 h-11 rounded-lg bg-blue-600 hover:bg-blue-500 font-semibold 
-                    transition ${!isDirty && "cursor-not-allowed opacity-60 "}`}
+                <Button
+                  className={`font-semibold ${!isDirty && "cursor-not-allowed opacity-60 "}`}
+                  variant={"basic2"}
                   onClick={handleUpdate}
                   disabled={!isDirty}
                 >
                   Update Product
-                </button>
+                </Button>
               </div>
             </section>
 
@@ -150,19 +152,20 @@ export default function EditProduct() {
                 Danger Zone
               </span>
 
-              <div className="flex max-sm:flex-col items-center gap-4 justify-between">
-                <p>
+              <div className="flex w-full max-sm:flex-col items-center gap-4 justify-between">
+                <p className="max-w-sm">
                   Once you delete a product, there is no going back. Please be
                   certain.
                 </p>
 
-                <button
-                  className="w-full max-w-[11rem] p-1.5 rounded-lg bg-red-700/90 hover:bg-red-700 
-                font-semibold transition"
+                <Button
+                  variant={"delete"}
+                  size={"sm"}
+                  className="font-semibold w-[11rem]"
                   onClick={confirmDelete}
                 >
                   Delete this product
-                </button>
+                </Button>
               </div>
             </section>
           </Card>

@@ -4,14 +4,13 @@ import { EmptyBanner } from "@/global/components";
 import { formattedCategory } from "@/global/constants";
 import { useLocalStorageFetch } from "@/global/hooks";
 import { Product } from "@/global/types";
-
+import { Button } from "@/ui/components/Button";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function ProductPage() {
   const { productId } = useParams();
-  const router = useRouter();
   const products = useLocalStorageFetch("local-products");
 
   const [product, setProduct] = useState<Product | null>(null);
@@ -44,13 +43,13 @@ export default function ProductPage() {
   return (
     <main className="min-h-screen w-full flex justify-center px-4 py-10 bg-gray-950">
       <div className="w-full max-w-6xl flex flex-col gap-12">
-        {/* Back Button */}
-        <button
-          onClick={() => router.push("/")}
+        {/* Return to home page */}
+        <Link
+          href={"/"}
           className="text-sm text-blue-500 hover:underline self-start"
         >
           ← Back to products
-        </button>
+        </Link>
 
         {/* Top Section */}
         <section className="grid md:grid-cols-2 gap-8 sm:gap-12 bg-gray-900/30 p-8 rounded-2xl border border-gray-800">
@@ -94,11 +93,10 @@ export default function ProductPage() {
             </div>
 
             {/* Action Button */}
-            <Link
-              href={`/edit-product/${product.id}`}
-              className="text-white h-11 flex items-center justify-center bg-yellow-600 hover:bg-yellow-500 rounded-md font-semibold"
-            >
-              Edit Product
+            <Link href={`/edit-product/${product.id}`}>
+              <Button className="font-semibold" variant={"edit"}>
+                Edit Product
+              </Button>
             </Link>
           </div>
         </section>

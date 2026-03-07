@@ -9,6 +9,7 @@ import {
   useSearchProduct,
 } from "@/global/hooks";
 import { Input, Select } from "@/ui/components";
+import { Button } from "@/ui/components/Button";
 import Link from "next/link";
 import { RiArrowRightDoubleLine } from "react-icons/ri";
 
@@ -80,17 +81,17 @@ export default function MarketPlaceHome() {
                 ))}
               </Select>
 
-              {/* Clear Filters*/}
-              <button
-                className="px-4 py-2 rounded-lg border border-gray-700
-               hover:bg-gray-800 transition"
+              {/* Clean search filter*/}
+              <Button
+                variant={"ghost"}
+                size={"md"}
                 onClick={() => {
                   setSearch("");
                   setSelect("");
                 }}
               >
                 Clear
-              </button>
+              </Button>
             </div>
           </div>
         </section>

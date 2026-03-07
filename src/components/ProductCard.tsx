@@ -4,6 +4,7 @@ import { formattedCategory } from "@/global/constants";
 import { Product } from "@/global/types";
 import { formatDate } from "@/global/utils";
 import { Card } from "@/ui/components";
+import { Button } from "@/ui/components/Button";
 
 import Link from "next/link";
 
@@ -63,18 +64,16 @@ export function ProductCard({
 
         {/* Links */}
         <div className="flex gap-2 mt-6">
-          <Link
-            href={`/edit-product/${id}`}
-            className="flex-1 h-10 flex items-center justify-center bg-yellow-600 hover:bg-yellow-500 rounded-md font-semibold"
-          >
-            Edit
+          <Link href={`/edit-product/${id}`} className="w-full">
+            <Button className="font-semibold" variant={"edit"}>
+              Edit
+            </Button>
           </Link>
 
-          <Link
-            href={`/product/${id}`}
-            className="flex-1 h-10 flex items-center justify-center bg-blue-700 hover:bg-blue-600 rounded-md font-semibold"
-          >
-            View More
+          <Link href={`/product/${id}`} className="w-full">
+            <Button className="font-semibold" variant={"basic2"}>
+              View More
+            </Button>
           </Link>
         </div>
       </div>

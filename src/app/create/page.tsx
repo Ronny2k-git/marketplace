@@ -7,6 +7,7 @@ import {
 } from "@/global/components";
 import { useLocalStorageFetch } from "@/global/hooks";
 import { Card } from "@/ui/components";
+import { Button } from "@/ui/components/Button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -102,22 +103,23 @@ export default function AddProduct() {
 
               {/* Buttons */}
               <div className="flex gap-4 pt-4">
-                <button
+                <Button
+                  className="font-semibold"
+                  variant={"basic"}
                   onClick={() => {
                     setForm(initialForm);
                     setErrorMessage("");
                   }}
-                  className="flex-1 h-11 rounded-lg bg-gray-800 hover:bg-gray-700 transition"
                 >
                   Clear
-                </button>
-
-                <button
+                </Button>
+                <Button
+                  className="font-semibold"
+                  variant={"basic2"}
                   onClick={createProduct}
-                  className="flex-1 h-11 rounded-lg bg-blue-700 hover:bg-blue-600 font-semibold transition"
                 >
                   Create Product
-                </button>
+                </Button>
               </div>
             </Card>
           </section>

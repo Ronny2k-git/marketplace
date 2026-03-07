@@ -1,6 +1,7 @@
 "use client";
 
 import { Card } from "@/ui/components";
+import { Button } from "@/ui/components/Button";
 import Link from "next/link";
 import { useState } from "react";
 import { FiLogOut, FiMenu, FiPackage } from "react-icons/fi";
@@ -73,10 +74,11 @@ export function Drawer() {
                     key={index}
                     href={route.path}
                     onClick={() => setMenuOpen(false)}
-                    className="bg-blue-700/80 hover:bg-blue-800/85 h-11 rounded-lg flex justify-center items-center gap-2 text-white font-medium transition-colors"
                   >
-                    {route.icon}
-                    {route.label}
+                    <Button variant={"basic2"} size={"default"}>
+                      <span>{route.icon}</span>
+                      {route.label}
+                    </Button>
                   </Link>
                 ))}
               </div>

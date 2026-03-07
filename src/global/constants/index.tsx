@@ -25,17 +25,17 @@ export const PROJECT_ROUTES = [
   {
     label: "Dashboard",
     path: "/",
-    icon: <MdDashboard className="size-7" />,
+    icon: <MdDashboard className="size-6 md:size-7" />,
   },
   {
     label: "Products",
     path: "/products",
-    icon: <AiOutlineAppstore className="size-7" />,
+    icon: <AiOutlineAppstore className="size-6 md:size-7" />,
   },
   {
     label: "Create",
     path: "/create",
-    icon: <IoMdAddCircleOutline className="size-7" />,
+    icon: <IoMdAddCircleOutline className="size-6 md:size-7" />,
   },
 ];
 
