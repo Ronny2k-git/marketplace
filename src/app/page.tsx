@@ -29,24 +29,27 @@ export default function MarketPlaceHome() {
     <main className="flex w-full min-h-screen justify-center py-10 px-4 bg-gray-950 ">
       <div className="w-full h-full max-w-7xl">
         {/* Main Title */}
-        <div className="flex max-[690px]:flex-col justify-between items-center gap-6 mb-12">
-          <div className="flex flex-col max-[690px]:gap-2">
-            <h1 className="text-3xl font-bold max-[690px]:text-center">
+        <div className="flex max-[670px]:flex-col justify-between items-center gap-6 mb-4">
+          <div className="flex flex-col gap-4 max-[670px]:items-center">
+            <h1 className="text-3xl font-bold max-[670px]:text-center">
               Product Management System
             </h1>
 
-            <p className="text-gray-400 mt-2 max-w-md max-[690px]:text-center">
+            <p className="text-gray-400 max-w-xl max-[670px]:text-center">
               Create, manage, and organize your products locally. Add new items,
               edit details, and filter them easily. All data is stored in your
               browser.
             </p>
           </div>
 
-          <Link
-            href="/create"
-            className="bg-blue-700 max-w-[12rem] hover:bg-blue-600 px-6 py-3 rounded-md font-semibold"
-          >
-            + Create Product
+          <Link href="/create">
+            <Button
+              className="font-semibold w-[11rem]"
+              variant={"basic2"}
+              size="md"
+            >
+              + Create Product
+            </Button>
           </Link>
         </div>
 

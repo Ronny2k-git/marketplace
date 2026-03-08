@@ -82,11 +82,14 @@ export default function Products() {
             subtitle="Manage and analyze your products"
           />
 
-          <Link
-            href="/create"
-            className="bg-blue-700 hover:bg-blue-600 px-6 py-3 rounded-md font-semibold"
-          >
-            + Create Product
+          <Link href="/create">
+            <Button
+              className="font-semibold w-[11rem]"
+              variant={"basic2"}
+              size="md"
+            >
+              + Create Product
+            </Button>
           </Link>
         </section>
 
@@ -210,7 +213,6 @@ export default function Products() {
                         {formattedCategory[p.category]}
                       </td>
                       <td className="px-4 py-4">
-                        {" "}
                         <span
                           className="px-3 py-1 rounded-full text-xs
                        bg-green-500/20 text-green-400"
