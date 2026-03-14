@@ -4,6 +4,7 @@ import { EmptyBanner } from "@/global/components";
 import { formattedCategory } from "@/global/constants";
 import { useLocalStorageFetch } from "@/global/hooks";
 import { Product } from "@/global/types";
+import { Card } from "@/ui/components";
 import { Button } from "@/ui/components/Button";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -52,7 +53,10 @@ export default function ProductPage() {
         </Link>
 
         {/* Top Section */}
-        <section className="grid md:grid-cols-2 gap-8 sm:gap-12 bg-gray-900/30 p-8 rounded-2xl border border-gray-800">
+        <Card
+          className="grid md:grid-cols-2 gap-8 sm:gap-12 p-4 sm:p-8 rounded-2xl"
+          variant={"basic2"}
+        >
           {/* Product Image */}
           <div className="flex justify-center items-center">
             <img
@@ -65,7 +69,9 @@ export default function ProductPage() {
           {/* Product Details */}
           <div className="flex flex-col justify-center gap-6">
             <div className="flex flex-col h-full gap-6">
-              <h1 className="text-3xl font-bold text-white">{product.name}</h1>
+              <h1 className="text-xl sm:text-3xl font-bold text-white">
+                {product.name}
+              </h1>
 
               <span className="px-3 py-1 w-fit text-sm bg-blue-600/20 text-blue-400 rounded-full">
                 {formattedCategory[product.category]}
@@ -99,7 +105,7 @@ export default function ProductPage() {
               </Button>
             </Link>
           </div>
-        </section>
+        </Card>
 
         {/* Description Section */}
         <section className="bg-gray-900/30 p-8 rounded-2xl border border-gray-800">

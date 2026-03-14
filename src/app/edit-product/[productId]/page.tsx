@@ -152,8 +152,8 @@ export default function EditProduct() {
                 Danger Zone
               </span>
 
-              <div className="flex w-full max-sm:flex-col items-center gap-4 justify-between">
-                <p className="max-w-sm">
+              <div className="flex w-full max-sm:flex-col items-center gap-6 justify-between">
+                <p className="sm:max-w-sm max-sm:text-center">
                   Once you delete a product, there is no going back. Please be
                   certain.
                 </p>
@@ -161,7 +161,7 @@ export default function EditProduct() {
                 <Button
                   variant={"delete"}
                   size={"sm"}
-                  className="font-semibold w-[11rem]"
+                  className="font-semibold min-w-[11rem] sm:max-w-[11rem]"
                   onClick={confirmDelete}
                 >
                   Delete this product
