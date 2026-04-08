@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { FiPackage } from "react-icons/fi";
-
 import { PROJECT_ROUTES } from "../constants";
 import { Drawer } from "./Drawer";
 
@@ -10,11 +8,11 @@ export function Header() {
       <div className="w-full px-2 rounded-full border border-blue-700/40 max-w-7xl">
         {/* Nav */}
         <nav className="flex max-w-7xl mx-auto p-2 items-center justify-between">
-          <Link className="flex items-center gap-3" href="/">
-            <FiPackage className="h-10 w-10 text-blue-600 fill-white/85" />
+          <div className="flex items-center gap-3">
+            <img alt="website-logo" src="/blue-box.webp" className="size-8" />
 
             <span className="text-2xl text-white">Product Manager</span>
-          </Link>
+          </div>
 
           <div className="md:flex gap-2 items-cente hidden">
             {PROJECT_ROUTES.map((route, index) => (
