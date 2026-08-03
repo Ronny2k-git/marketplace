@@ -1,4 +1,4 @@
-import { categories } from "@/app/create/const";
+import { categories } from "@/const";
 
 export type Category = (typeof categories)[number];
 

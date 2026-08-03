@@ -1,18 +1,14 @@
-"use client";
+"use client"
 
-import {
-  PageHeader,
-  ProductCardPreview,
-  ProductForm,
-} from "@/global/components";
-import { useLocalStorageFetch } from "@/global/hooks";
-import { Card } from "@/ui/components";
-import { Button } from "@/ui/components/Button";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { z } from "zod";
-import { categories } from "./const";
+import { PageHeader, ProductCardPreview, ProductForm } from "@/global/components"
+import { useLocalStorageFetch } from "@/global/hooks"
+import { Card } from "@/ui/components"
+import { Button } from "@/ui/components/Button"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { v4 as uuidv4 } from "uuid"
+import { z } from "zod"
+import { categories } from "../../const"
 
 const ProductSchema = z.object({
   src: z.string().min(5),
@@ -22,26 +18,26 @@ const ProductSchema = z.object({
   updatedAt: z.string(),
   description: z.string().min(1),
   category: z.enum(categories),
-});
+})
 
 const initialForm = {
   imageURL: "",
   productName: "",
   description: "",
   category: "",
-};
+}
 
 export default function AddProduct() {
-  const [form, setForm] = useState(initialForm);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const products = useLocalStorageFetch("local-products");
+  const [form, setForm] = useState(initialForm)
+  const [errorMessage, setErrorMessage] = useState("")
+  const [successMessage, setSuccessMessage] = useState("")
+  const products = useLocalStorageFetch("local-products")
 
-  const router = useRouter();
+  const router = useRouter()
 
   // Add a new product to local storage
   const createProduct = () => {
-    const now = new Date().toISOString();
+    const now = new Date().toISOString()
 
     const newProduct = {
       src: form.imageURL,
@@ -51,34 +47,31 @@ export default function AddProduct() {
       updatedAt: now,
       description: form.description,
       category: form.category,
-    };
-
-    const parse = ProductSchema.safeParse(newProduct);
-
-    if (!parse.success) {
-      setErrorMessage("Please fill all fields correctly.");
-      return;
-    } else {
-      setErrorMessage("");
     }
 
-    const localProducts = products;
+    const parse = ProductSchema.safeParse(newProduct)
 
-    localProducts.push(parse.data);
-    localStorage.setItem("local-products", JSON.stringify(localProducts));
+    if (!parse.success) {
+      setErrorMessage("Please fill all fields correctly.")
+      return
+    } else {
+      setErrorMessage("")
+    }
 
-    setSuccessMessage("Product created successfully!. Redirecting...");
-    setTimeout(() => router.push("/"), 3000);
-  };
+    const localProducts = products
+
+    localProducts.push(parse.data)
+    localStorage.setItem("local-products", JSON.stringify(localProducts))
+
+    setSuccessMessage("Product created successfully!. Redirecting...")
+    setTimeout(() => router.push("/"), 3000)
+  }
 
   return (
     <main className="min-h-screen flex justify-center px-4 py-10">
       <div className="w-full max-w-6xl flex flex-col gap-12">
         {/* Page Header */}
-        <PageHeader
-          title="Create New Product"
-          subtitle="Fill the information below to register a new product."
-        />
+        <PageHeader title="Create New Product" subtitle="Fill the information below to register a new product." />
 
         {/* Form and Preview Sections*/}
         <div className="flex max-[900px]:flex-col max-sm:items-center w-full gap-8">
@@ -90,9 +83,7 @@ export default function AddProduct() {
 
               {/* Messages */}
               {errorMessage && (
-                <div className="text-red-500 p-2 border rounded-md border-red-500/35 text-center">
-                  {errorMessage}
-                </div>
+                <div className="text-red-500 p-2 border rounded-md border-red-500/35 text-center">{errorMessage}</div>
               )}
 
               {successMessage && (
@@ -107,17 +98,13 @@ export default function AddProduct() {
                   className="font-semibold"
                   variant={"basic"}
                   onClick={() => {
-                    setForm(initialForm);
-                    setErrorMessage("");
+                    setForm(initialForm)
+                    setErrorMessage("")
                   }}
                 >
                   Clear
                 </Button>
-                <Button
-                  className="font-semibold"
-                  variant={"basic2"}
-                  onClick={createProduct}
-                >
+                <Button className="font-semibold" variant={"basic2"} onClick={createProduct}>
                   Create Product
                 </Button>
               </div>
@@ -136,5 +123,5 @@ export default function AddProduct() {
         </div>
       </div>
     </main>
-  );
+  )
 }
